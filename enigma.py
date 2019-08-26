@@ -5,6 +5,12 @@ from typing import Dict, List
 
 alphabet = tuple(chr(ord('a') + i) for i in range(26))
 
+def key2num(key: str):
+    return ord(key)- ord('a')
+
+def num2key(num: int):
+    return chr(num + ord('a'))
+
 class Scrambler():
     def __init__(self, name:str):
         self.name = name
@@ -24,37 +30,44 @@ class  Rotor(Scrambler):
     def __init__(self, name:str, wiring: str, notches=tuple(), isStatic=False):
         super().__init__(name);
 
+        # Define Properties:
+        self.notches = tuple(key2num(x) for x in notches)
+        self.ringPos = 0
+        self.isStatic = isStatic
+        self.__rotation = 0 
+
         # Check if wiring is valid: is alphabet and unique items
         assert tuple(sorted(wiring)) == alphabet ,'Rotor falsch initialisiert, falsches Alphabet !'
         #//TODO: char is not allowed to map on itself ?
 
         # save wiring as Dict
-        self.wiring     = {k:v for k,v in zip(alphabet,wiring)} 
+        self._wiring     = {k:v for k,v in zip(alphabet,wiring)} 
         
-        # relatives Mapping (bsp: d -> e => +1)
-        self.mapping = [(ord(character)-ord(alpha)) for character,alpha in zip(wiring,alphabet)]
+        # Mapping - abs - rel - invRev
+        absMapping = [key2num(key) for key in wiring]
+        self.relMapping =    tuple(key - i for i,key in enumerate(absMapping))
+        self.invRelMapping = tuple(key - i for i,key in enumerate(np.argsort(absMapping)))
 
-        # inverses relatives Mapping (bsp: e -> d => -1)
-        numWiring = [ord(a) for a in wiring]
-        self.inv_mapping = np.argsort(numWiring) - np.arange(len(alphabet))
-        
-        self.notches = tuple(ord(x)-ord('a') for x in notches)
-        
-        self.ringPos = 0
-        self.isStatic = isStatic
-        self.__rotation = 0 
     def route(self, character: int) -> int:
-
         rot = self.ringPos + self.rotation
-        return (character + self.mapping[(character + rot) % len(alphabet)]) % len(alphabet)
+        return (character + self.relMapping[(character + rot) % len(alphabet)]) % len(alphabet)
 
-    def inv_route(self, character):
+    def inv_route(self, character : int) -> int:
         rot = self.ringPos + self.rotation
-        return (character + self.inv_mapping[(character + rot) % len(alphabet)]) % len(alphabet)
+        return (character + self.invRelMapping[(character + rot) % len(alphabet)]) % len(alphabet)
 
     def doesStep(self):
         return any([self.rotation == n for n in self.notches])
 
+    def __repr__(self):
+        myStr = [f"Name of Rotor: {self.name}", \
+                 f"Wiring: {self._wiring}", \
+                 f"RingPosition: {self.ringPos}", \
+                 f"Rotation: {self.rotation}", \
+                 f"Notches: {self.notches}"]
+
+        return "\n".join(myStr)
+    
     @property 
     def rotation(self):
         return self.__rotation
@@ -62,7 +75,6 @@ class  Rotor(Scrambler):
     @rotation.setter 
     def rotation(self,value):
         self.__rotation = value % len(alphabet)
-
 
 class PlugBoard(Scrambler):
     def __init__(self,name):
@@ -95,7 +107,7 @@ class PlugBoard(Scrambler):
     def inv_route(self, character):
         return self.mapping[character] #symmetrisches Mapping beim Plugboard: aus "c -> a" folgt "c <- a" 
 
-    def print(self):
+    def __repr__(self):
         for source,dest in zip(alphabet,self.mapping):
             print(f"{source} -> {chr(dest+ord('a'))}")
 
@@ -157,7 +169,7 @@ rot1 = Rotor('I','EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(),('q',))
 rot2 = Rotor('II','AJDKSIRUXBLHWTMCQGZNPYFVOE'.lower(),('e',))
 rot3 = Rotor('III','BDFHJLCPRTXVZNYEIWGAKMUSQO'.lower(),('v',))
 ukw_b = Rotor('ukw_b','YRUHQSLDPXNGOKMIEBFZCWVJAT'.lower(),isStatic=True) 
-                      
+
 #Wire Enigma:
 riddle.scramblers.append(plugBoard)
 riddle.scramblers += [rot1, rot2, rot3, ukw_b]
