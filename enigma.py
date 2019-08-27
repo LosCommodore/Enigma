@@ -184,16 +184,18 @@ ukw_b = Rotor('ukw_b','YRUHQSLDPXNGOKMIEBFZCWVJAT'.lower(),isStatic=True)
 
 #Wire Enigma:
 riddle.scramblers.append(plugBoard)
-riddle.scramblers += [rot1, rot2, rot3, ukw_b]
+riddle.scramblers += [rot3, rot2, rot1, ukw_b]
 
 #Press Key:
-text = 'aaa'
+text = 'hallodiesisteintestumzusehenobmeinpythonscriptdasgleicheergebnislieferthallodiesisteintestumzusehenobmeinpythonscriptdasgleicheergebnisliefert'
 
 encoded=[]
 for key in text:
     char,routing = riddle.pressKey(key) 
-    print(char,routing)
+    #print(char,routing)
     encoded.append(chr(char[-1]+ord('a')))
+
+encoded = ''.join(encoded) #List of Strings -> String
 
 print("Encoded Text: " , encoded)
 
