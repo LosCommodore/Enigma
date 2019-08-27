@@ -80,7 +80,7 @@ class PlugBoard(Scrambler):
     def __init__(self,name):
         super().__init__(name);
         self.__cables = [] #List of Tuples, e.g: cables = [('a','b'), ('u','v'), ('r','x'), ('t','w')]
-        self.mapping = [ord(x)-ord('a') for x in alphabet]
+        self.mapping = [key2num(x) for x in alphabet]
 
     @property 
     def cables(self): 
@@ -99,17 +99,19 @@ class PlugBoard(Scrambler):
             plugMapping[i0] = cable[1]
             plugMapping[i1] = cable[0]
 
-        self.mapping = [ord(x)-ord('a') for x in plugMapping]
+        self.mapping = [key2num(x) for x in plugMapping]
 
     def route(self, character: int) -> int:
         return self.mapping[character]
 
     def inv_route(self, character):
-        return self.mapping[character] #symmetrisches Mapping beim Plugboard: aus "c -> a" folgt "c <- a" 
+        return self.mapping[character] #symmetrisches Mapping beim Plugboard: aus "c -> a" folgt "a -> c" 
 
     def __repr__(self):
-        for source,dest in zip(alphabet,self.mapping):
-            print(f"{source} -> {chr(dest+ord('a'))}")
+        myStr = [f"Name of Pulgboard: {self.name}", \
+                 f"Cables: {self.cables}"]
+
+        return "\n".join(myStr)
 
 class Enigma:
 
@@ -122,12 +124,12 @@ class Enigma:
             key=str(key)
         
         assert key in alphabet, 'ungültiger Schlüssel!'
-        key = ord(key) - ord('a')
+        key = key2num(key)
 
-        #rotate
+        # rotate
         self.rotate()
 
-        #calc Wiring
+        # calc Wiring
 
         routing = [] # --> names
         char = [key] # --> [0, 1, 10, 11, 21, 22, 17, 6, 5, 5]
@@ -145,7 +147,7 @@ class Enigma:
         rotors = [x for x in self.scramblers if isinstance(x,Rotor) and not x.isStatic]
         
         doRotate= [False] * len(rotors)
-        doRotate[0] = True 
+        doRotate[0] = True # first Rotor always rotates
         for i,step in enumerate([s.doesStep() for s in rotors]):
             if step:
                 doRotate[i] = True
@@ -153,6 +155,16 @@ class Enigma:
 
         for rotor,step in zip(rotors,doRotate):
             rotor.rotation += step
+
+    @property
+    def position(self):
+        pos = [num2key(x.rotation) for x in self.scramblers if isinstance(x,Rotor) and not x.isStatic]
+        return pos
+
+    def __repr__(self):
+        myStr = [f"Enigma, Pos: {self.position}"]
+
+        return "\n".join(myStr)    
         
 #%% main
 
