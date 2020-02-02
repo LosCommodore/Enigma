@@ -10,10 +10,11 @@
 - [Enigma Machine Mechanism 'Double Step'](https://www.youtube.com/watch?v=hcVhQeZ5gI4)
 
 ## youtube - watchlist
-- [https://www.youtube.com/watch?v=ttRDu4wuVTA](Wie ein Mathegenie Hitler knackte ARTE Doku)
+- [Wie ein Mathegenie Hitler knackte ARTE Doku](https://www.youtube.com/watch?v=ttRDu4wuVTA)
 
 	
-# Understanding the way the machine encrypts requires taking into account .the current position of each rotor, the ring setting and its internal wiring.
+# Notes
+
 ## Rotor
 - If the first letter of a rotor is E, this means that the A is wired to the E. This does not mean that E is wired to A. This looped wiring is only the case with the reflectors.
 ## Rotor offset
