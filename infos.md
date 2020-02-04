@@ -1,18 +1,38 @@
-# Quellen
-## Bücher:
+# Contents
+
+[TOC]
+
+# Introduction
+
+<img src=".\pictures\Enigma_(crittografia)_-_Museo_scienza_e_tecnologia_Milano.jpg" alt="img" style="zoom:50%;" />
+
+## Movies
+
+### Die Enigma in "das Boot"
+
+Aus https://de.wikipedia.org/wiki/Das_Boot_(Film):
+
+> In mehreren Szenen ist eine [Enigma-Schlüsselmaschine](https://de.wikipedia.org/wiki/Enigma_(Maschine)) (Bild) zu sehen, die zur [Entschlüsselung](https://de.wikipedia.org/wiki/Entschlüsselung) empfangener [Funksprüche](https://de.wikipedia.org/wiki/Funkspruch) benutzt wird. Beim ersten Auftritt der Enigma (in der 282-Minuten-Langversion nach 53 Minuten) schaut der Kriegsberichterstatter Leutnant Werner dem II. WO (Zweiter Wachoffizier) über die Schulter, während dieser einen Funkspruch mittels einer [Enigma-M4](https://de.wikipedia.org/wiki/Enigma-M4) entschlüsselt. Dabei hört man als Kommentar die Stimme von Herbert Grönemeyer: „Erst durch die Schlüsselmaschine ergibt sich aus wirren Buchstabenfolgen ganz langsam ein Sinn.“ Historisch nicht ganz korrekt an dieser Szene ist die Verwendung einer M4 (mit vier Walzen), da sie erst am 1. Februar 1942 in Dienst gestellt wurde, während *Das Boot* in Roman und Film seine Feindfahrt im Herbst und frühen Winter des Jahres 1941 durchführt. Somit hätte korrekterweise eine [M3](https://de.wikipedia.org/wiki/Enigma-M#Enigma-M3) (mit drei Walzen) gezeigt werden müssen.
+
+## Imitation game
+
+https://www.imdb.com/title/tt2084970/
+
+# Sources
+
+## Books
 - https://simonsingh.net/books/the-code-book/
 
-## Internet:
-- [wikipedia en](https://en.wikipedia.org/wiki/Enigma_rotor_details)
+## Internet
+- [wikipedia: Enigma machine](https://en.wikipedia.org/wiki/Enigma_machine)
+- [wikipedia: rotor details](https://en.wikipedia.org/wiki/Enigma_rotor_details)
+- [wikipedia: Turing-Bombe](https://de.wikipedia.org/wiki/Turing-Bombe)
 
-## youtube
+## YouTube
 - [Simon Sign ](https://www.youtube.com/watch?v=ASfAPOiq_eQ&t=309s)
 - [Enigma Machine Mechanism 'Double Step'](https://www.youtube.com/watch?v=hcVhQeZ5gI4)
 
-## youtube - watchlist
 - [Wie ein Mathegenie Hitler knackte ARTE Doku](https://www.youtube.com/watch?v=ttRDu4wuVTA)
-
-	
 # Notes
 
 ## Rotor
