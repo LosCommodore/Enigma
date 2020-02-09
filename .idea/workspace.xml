@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,10 +103,10 @@
     </state>
     <state x="557" y="105" key="CommitChangelistDialog2/0.0.1707.920@0.0.1707.920" timestamp="1580675813710" />
     <state x="627" y="119" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1580660858631" />
-    <state x="684" y="259" key="FileChooserDialogImpl" timestamp="1580664004369">
+    <state x="684" y="259" key="FileChooserDialogImpl" timestamp="1580893444820">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state x="684" y="259" key="FileChooserDialogImpl/0.0.1707.920@0.0.1707.920" timestamp="1580664004369" />
+    <state x="684" y="259" key="FileChooserDialogImpl/0.0.1707.920@0.0.1707.920" timestamp="1580893444820" />
     <state width="1686" height="277" key="GridCell.Tab.0.bottom" timestamp="1580675868251">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
