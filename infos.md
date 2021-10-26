@@ -4,8 +4,6 @@
 
 # Introduction
 
-<img src=".\pictures\Enigma_(crittografia)_-_Museo_scienza_e_tecnologia_Milano.jpg" alt="img" style="zoom:50%;" />
-
 ## Movies
 
 ### Die Enigma in "das Boot"

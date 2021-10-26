@@ -1,6 +1,9 @@
 import abc
 import numpy as np
 
+from rich.console import Console
+from rich.table import Table
+
 alphabet = tuple(chr(ord('a') + i) for i in range(26))
 
 
@@ -33,10 +36,10 @@ class Rotor(Scrambler):
         super().__init__(name)
 
         # Define Properties:
-        self.notches = tuple(key2num(x) for x in notches)
-        self.ringPos = 0
-        self.isStatic = isStatic
-        self.__rotation = 0
+        self.notches: tuple[int] = tuple(key2num(x) for x in notches)
+        self.ringPos: int = 0
+        self.isStatic: boolean = isStatic
+        self.__rotation: int = 0
 
         # Check if wiring is valid: is alphabet and unique items
         assert tuple(sorted(wiring)) == alphabet, 'Rotor falsch initialisiert, falsches Alphabet !'
@@ -69,6 +72,19 @@ class Rotor(Scrambler):
                  f"Notches: {self.notches}"]
 
         return "\n".join(myStr)
+
+    def __rich__(self) -> Table:
+        table = Table(title=f"[red]Scrambler", padding=(0, 0))
+        table.add_column("Element")
+        table.add_column("Pos")
+        for letter in alphabet:
+            table.add_column(letter, justify='right')
+
+        row = [f"{m:+03}" for m in self.relMapping]
+        row[self.rotation] = "[red bold]{}[/red bold]".format(row[self.rotation])
+        table.add_row(self.name, str(self.rotation), *row)
+
+        return table
 
     @property
     def rotation(self):
@@ -121,7 +137,7 @@ class PlugBoard(Scrambler):
 class Enigma:
 
     def __init__(self):
-        self.scramblers = []
+        self.scramblers: list[Scrambler] = []
         pass
 
     def pressKey(self, key):
@@ -170,45 +186,3 @@ class Enigma:
         myStr = [f"Enigma, Pos: {self.position}"]
 
         return "\n".join(myStr)
-
-
-def main():
-    # Create Enigma
-    riddle = Enigma()
-
-    # Create Plugboard
-    plugBoard = PlugBoard('Plugboard')
-    # plugBoard.cables =  [('a','b'), ('u','v'), ('r','x'), ('t','w')]
-    # plugBoard.print()
-
-    # Create Rotors
-    rot1 = Rotor('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(), ('q',))
-    rot2 = Rotor('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE'.lower(), ('e',))
-    rot3 = Rotor('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO'.lower(), ('v',))
-    ukw_b = Rotor('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT'.lower(), isStatic=True)
-
-    # Wire Enigma:
-    riddle.scramblers.append(plugBoard)
-    riddle.scramblers += [rot3, rot2, rot1, ukw_b]
-
-    # Press Key:
-    text = 'hallodiesisteintestumzusehenobmeinpythonscriptdasgleicheergebnislieferthallodiesisteintestumzus' \
-           'ehenobmeinpythonscriptdasgleicheergebnisliefert'
-
-    encoded = []
-    for key in text:
-        char, routing = riddle.pressKey(key)
-        # print(char,routing)
-        encoded.append(chr(char[-1] + ord('a')))
-
-    encoded = ''.join(encoded)  # List of Strings -> String
-
-    print("Encoded Text: ", encoded)
-
-    # charInv,routingInv = riddle.pressKey(lastChar)
-    # print(charInv,routingInv)
-
-
-if __name__ == "__main__":
-    main()
-    print("ende")
