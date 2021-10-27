@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="Pycharm, Korrektur Inspections">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run_enigma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Enigma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Enigma.iml" afterDir="false" />
+    <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="Rich">
+      <change afterPath="$PROJECT_DIR$/test_enigma.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/enigma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infos.md" beforeDir="false" afterPath="$PROJECT_DIR$/infos.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -60,7 +57,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="editor.reader.mode" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -108,13 +105,17 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_enigma.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.enigma" />
+      <item itemvalue="Python.run_enigma" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.run_enigma" />
@@ -146,7 +147,8 @@
       <workItem from="1634973312309" duration="976000" />
       <workItem from="1635013776940" duration="72000" />
       <workItem from="1635185104008" duration="2514000" />
-      <workItem from="1635268238230" duration="1694000" />
+      <workItem from="1635268238230" duration="3622000" />
+      <workItem from="1635356878620" duration="2453000" />
     </task>
     <task id="LOCAL-00001" summary="Pycharm">
       <created>1580660859595</created>
@@ -162,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580675814563</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Rich">
+      <created>1635270790839</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1635270790839</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,18 +187,20 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Pycharm" />
     <MESSAGE value="Pycharm, Korrektur Inspections" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pycharm, Korrektur Inspections" />
+    <MESSAGE value="Rich" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rich" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Enigma$testKivi.coverage" NAME="testKivi Coverage Results" MODIFIED="1581849779990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$testGuiQt.coverage" NAME="testGuiQt Coverage Results" MODIFIED="1634971986854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$testKivy.coverage" NAME="testKivy Coverage Results" MODIFIED="1581870552246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Enigma$run_enigma.coverage" NAME="run_enigma Coverage Results" MODIFIED="1635269662618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Enigma$run_enigma.coverage" NAME="run_enigma Coverage Results" MODIFIED="1635359286417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$enigma.coverage" NAME="enigma Coverage Results" MODIFIED="1635268976907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

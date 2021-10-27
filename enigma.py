@@ -3,6 +3,8 @@ import numpy as np
 
 from rich.console import Console
 from rich.table import Table
+from rich.console import Group
+from rich.panel import Panel
 
 alphabet = tuple(chr(ord('a') + i) for i in range(26))
 
@@ -73,18 +75,25 @@ class Rotor(Scrambler):
 
         return "\n".join(myStr)
 
-    def __rich__(self) -> Table:
-        table = Table(title=f"[red]Scrambler", padding=(0, 0))
-        table.add_column("Element")
-        table.add_column("Pos")
+    def __rich__(self):
+        table = Table(padding=(0, 0))
         for letter in alphabet:
-            table.add_column(letter, justify='right')
+            table.add_column(letter.upper(), justify='center')
+
+        highlight = "[red bold]{}[/red bold]"
+        table.columns[self.rotation].header = highlight.format(table.columns[self.rotation].header)
 
         row = [f"{m:+03}" for m in self.relMapping]
-        row[self.rotation] = "[red bold]{}[/red bold]".format(row[self.rotation])
-        table.add_row(self.name, str(self.rotation), *row)
+        row[self.rotation] = highlight.format(row[self.rotation])
+        table.add_row(*row)
 
-        return table
+        properties = (f"Name of Rotor: {self.name}\n"
+                      f"RingPosition: {self.ringPos}\n"
+                      f"Rotation: {self.rotation}\n"
+                      f"Notches: {self.notches}")
+
+        group = Group(Panel(properties, expand=False), table)
+        return Panel(group, title=f"[red]Rotor: {self.name}", expand=False)
 
     @property
     def rotation(self):
