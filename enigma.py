@@ -9,12 +9,12 @@ from rich.panel import Panel
 alphabet = tuple(chr(ord('a') + i) for i in range(26))
 
 
-def key2num(key: str):
-    return ord(key) - ord('a')
+def letter2num(key: str):
+    return alphabet.index(key)
 
 
-def num2key(num: int):
-    return chr(num + ord('a'))
+def num2letter(num: int):
+    return alphabet[num]
 
 
 class Scrambler:
@@ -38,7 +38,7 @@ class Rotor(Scrambler):
         super().__init__(name)
 
         # Define Properties:
-        self.notches: tuple[int] = tuple(key2num(x) for x in notches)
+        self.notches: tuple[int] = tuple(letter2num(x) for x in notches)
         self.ringPos: int = 0
         self.isStatic: boolean = isStatic
         self.__rotation: int = 0
@@ -51,7 +51,7 @@ class Rotor(Scrambler):
         self._wiring = {k: v for k, v in zip(alphabet, wiring)}
 
         # Mapping - abs - rel - invRev
-        absMapping = [key2num(key) for key in wiring]
+        absMapping = [letter2num(key) for key in wiring]
         self.relMapping = tuple(key - i for i, key in enumerate(absMapping))
         self.invRelMapping = tuple(key - i for i, key in enumerate(np.argsort(absMapping)))
 
@@ -107,34 +107,34 @@ class Rotor(Scrambler):
 class PlugBoard(Scrambler):
     def __init__(self, name):
         super().__init__(name)
+
+        self._mapping = [letter2num(letter) for letter in alphabet]
+        # properties
         self.__cables = []  # List of Tuples, e.g: cables = [('a','b'), ('u','v'), ('r','x'), ('t','w')]
-        self.mapping = [key2num(x) for x in alphabet]
 
     @property
-    def cables(self):
+    def cables(self) -> list[(str,str)]:
         return self.__cables
 
     @cables.setter
-    def cables(self, cables):
-        characters = [item for c in cables for item in c]
-        assert len(characters) == len(
-            set(characters)), 'Error in Plubboard! Characters are not unique'  # check for unique characters
-        self.__cables = cables.copy()  # copy!
+    def cables(self, cables: list[(str, str)]):
+        characters = [char for cable in cables for char in cable]
+        assert len(characters) == len(set(characters)), 'Error in Plubboard! Characters are not unique'
 
-        plugMapping = list(alphabet)
-        for cable in cables:
-            i0 = plugMapping.index(cable[0])
-            i1 = plugMapping.index(cable[1])
-            plugMapping[i0] = cable[1]
-            plugMapping[i1] = cable[0]
+        self.__cables = cables
 
-        self.mapping = [key2num(x) for x in plugMapping]
+        plug_mapping = list(alphabet)
+        for i,o in cables:
+            plug_mapping[alphabet.index(i)] = o
+            plug_mapping[alphabet.index(o)] = i
+
+        self._mapping = [letter2num(x) for x in plug_mapping]
 
     def route(self, character: int) -> int:
-        return self.mapping[character]
+        return self._mapping[character]
 
     def inv_route(self, character):
-        return self.mapping[character]  # symmetrisches Mapping beim Plugboard: aus "c -> a" folgt "a -> c"
+        return self._mapping[character]  # symmetrisches Mapping beim Plugboard: aus "c -> a" folgt "a -> c"
 
     def __repr__(self):
         myStr = [f"Name of Pulgboard: {self.name}",
@@ -154,7 +154,7 @@ class Enigma:
             key = str(key)
 
         assert key in alphabet, 'ungültiger Schlüssel!'
-        key = key2num(key)
+        key = letter2num(key)
 
         # rotate
         self.rotate()
@@ -188,7 +188,7 @@ class Enigma:
 
     @property
     def position(self):
-        pos = [num2key(x.rotation) for x in self.scramblers if isinstance(x, Rotor) and not x.isStatic]
+        pos = [num2letter(x.rotation) for x in self.scramblers if isinstance(x, Rotor) and not x.isStatic]
         return pos
 
     def __repr__(self):
