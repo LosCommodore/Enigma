@@ -5,7 +5,7 @@ from rich.console import Group
 from rich.panel import Panel
 from typing import Iterable, Protocol
 
-ALPHABET = tuple(chr(ord('a') + i) for i in range(26))
+ALPHABET = tuple(chr(ord('a') + i) for i in range(26))  # Alphabet of the engima machine(s)
 
 
 def _letters2num(letters: Iterable[str]) -> list[int]:
@@ -17,6 +17,9 @@ def _num2letter(num: int):
 
 
 class Scrambler(Protocol):
+    """ A Scramber is any part which takes part in the encryption of the signal. For an Enigma machine these are the
+    Rotors and the Plugboard """
+
     name: str
 
     def route(self, letter: int) -> int:
@@ -39,9 +42,10 @@ class RotorSpec:
 
 
 class Rotor(Scrambler):
+
     def __init__(self, spec: RotorSpec):
         self.spec = spec
-        self.name = spec.name
+        self.name:str = spec.name
         self.rotation: int = 0
         self.ring_position: int = 0
 

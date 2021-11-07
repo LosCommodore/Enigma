@@ -10,6 +10,7 @@
     <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/enigmatic.py" beforeDir="false" afterPath="$PROJECT_DIR$/enigmatic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_enigma.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +38,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/run_enigma.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/venv/Lib/site-packages/rich/table.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="2" />
   </component>
   <component name="ProjectId" id="1XG7YH3CCbxtcngYkO4mb6dU0HO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -48,6 +53,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -59,7 +65,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -74,7 +80,7 @@
       <recent name="C:\Users\ChLan\PyProjects\Enigma\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.run_enigma">
+  <component name="RunManager" selected="Python tests.pytest for test_enigma.test_rotor_move">
     <configuration name="run_enigma" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -97,7 +103,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test.test_create_rotor_spec" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_enigma.test_rotor_move" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -110,11 +116,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.test_create_rotor_spec&quot;" />
+      <option name="_new_target" value="&quot;test_enigma.test_rotor_move&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test.test_hello" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test.test_enigma.test_plug_board" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -127,11 +133,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.test_hello&quot;" />
+      <option name="_new_target" value="&quot;test.test_enigma.test_plug_board&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test.test_rotor_symmetry" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test.test_enigma.test_rotor_symmetry" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -144,11 +150,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.test_rotor_symmetry&quot;" />
+      <option name="_new_target" value="&quot;test.test_enigma.test_rotor_symmetry&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test.test_unvalid_rotor_spec" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_enigma.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -161,24 +167,24 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.test_unvalid_rotor_spec&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_enigma.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Python.run_enigma" />
-      <item itemvalue="Python tests.pytest for test.test_create_rotor_spec" />
-      <item itemvalue="Python tests.pytest for test.test_hello" />
-      <item itemvalue="Python tests.pytest for test.test_rotor_symmetry" />
-      <item itemvalue="Python tests.pytest for test.test_unvalid_rotor_spec" />
+      <item itemvalue="Python tests.pytest for test.test_enigma.test_rotor_symmetry" />
+      <item itemvalue="Python tests.pytest for test.test_enigma.test_plug_board" />
+      <item itemvalue="Python tests.pytest in test_enigma.py" />
+      <item itemvalue="Python tests.pytest for test_enigma.test_rotor_move" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for test.test_unvalid_rotor_spec" />
-        <item itemvalue="Python tests.pytest for test.test_rotor_symmetry" />
-        <item itemvalue="Python tests.pytest for test.test_hello" />
-        <item itemvalue="Python tests.pytest for test.test_create_rotor_spec" />
+        <item itemvalue="Python tests.pytest for test_enigma.test_rotor_move" />
+        <item itemvalue="Python tests.pytest in test_enigma.py" />
+        <item itemvalue="Python tests.pytest for test.test_enigma.test_rotor_symmetry" />
         <item itemvalue="Python.run_enigma" />
+        <item itemvalue="Python tests.pytest for test.test_enigma.test_plug_board" />
       </list>
     </recent_temporary>
   </component>
@@ -224,7 +230,9 @@
       <workItem from="1636278633395" duration="29000" />
       <workItem from="1636278678296" duration="209000" />
       <workItem from="1636278905549" duration="236000" />
-      <workItem from="1636279156379" duration="451000" />
+      <workItem from="1636279156379" duration="3591000" />
+      <workItem from="1636292605414" duration="3585000" />
+      <workItem from="1636305401023" duration="2344000" />
     </task>
     <task id="LOCAL-00001" summary="Pycharm">
       <created>1580660859595</created>
@@ -296,7 +304,28 @@
       <option name="project" value="LOCAL" />
       <updated>1636266735046</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="refactoring">
+      <created>1636282000664</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1636282000664</updated>
+    </task>
+    <task id="LOCAL-00012" summary="mypy">
+      <created>1636282033558</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1636282033558</updated>
+    </task>
+    <task id="LOCAL-00013" summary="refactoring">
+      <created>1636282617715</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1636282617715</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,30 +350,24 @@
     <MESSAGE value="Rich" />
     <MESSAGE value="Refactoring" />
     <MESSAGE value="pytest" />
+    <MESSAGE value="mypy" />
     <MESSAGE value="refactoring" />
     <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test/test.py</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Enigma$testKivi.coverage" NAME="testKivi Coverage Results" MODIFIED="1581849779990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_enigma_py.coverage" NAME="pytest in test_enigma.py Coverage Results" MODIFIED="1636292654772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_create_rotor_spec.coverage" NAME="pytest for test.test_create_rotor_spec Coverage Results" MODIFIED="1636266123302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_unvalid_rotor_spec.coverage" NAME="pytest for test.test_unvalid_rotor_spec Coverage Results" MODIFIED="1636194631837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$testGuiQt.coverage" NAME="testGuiQt Coverage Results" MODIFIED="1634971986854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_rotor_symmetry.coverage" NAME="pytest for test.test_rotor_symmetry Coverage Results" MODIFIED="1636182964224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$testKivy.coverage" NAME="testKivy Coverage Results" MODIFIED="1581870552246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_py.coverage" NAME="pytest in test.py Coverage Results" MODIFIED="1636282538402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_rotor_symmetry.coverage" NAME="pytest for test.test_rotor_symmetry Coverage Results" MODIFIED="1636282531993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$test.coverage" NAME="test Coverage Results" MODIFIED="1636181481392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
-    <SUITE FILE_PATH="coverage/Enigma$run_enigma.coverage" NAME="run_enigma Coverage Results" MODIFIED="1636266555819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$enigma.coverage" NAME="enigma Coverage Results" MODIFIED="1635268976907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_hello.coverage" NAME="pytest for test.test_hello Coverage Results" MODIFIED="1636181716407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$testKivi.coverage" NAME="testKivi Coverage Results" MODIFIED="1581849779990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Enigma$testGuiQt.coverage" NAME="testGuiQt Coverage Results" MODIFIED="1634971986854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Enigma$testKivy.coverage" NAME="testKivy Coverage Results" MODIFIED="1581870552246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_plug_board.coverage" NAME="pytest for test.test_plug_board Coverage Results" MODIFIED="1636281390688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$run_enigma.coverage" NAME="run_enigma Coverage Results" MODIFIED="1636281887475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_rotor_move.coverage" NAME="pytest for test_enigma.test_rotor_move Coverage Results" MODIFIED="1636295972633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
   </component>
 </project>
