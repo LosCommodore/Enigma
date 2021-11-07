@@ -8,12 +8,8 @@ from typing import Iterable
 ALPHABET = tuple(chr(ord('a') + i) for i in range(26))
 
 
-def _letters2num(letters: Iterable[str]) -> int | list[int]:
-    num = [ALPHABET.index(k) for k in letters]
-    if len(num) == 1:
-        num = num[0]
-
-    return num
+def _letters2num(letters: Iterable[str]) -> list[int]:
+    return [ALPHABET.index(k) for k in letters]
 
 
 def _num2letter(num: int):
@@ -24,7 +20,7 @@ def _num2letter(num: int):
 class RotorSpec:
     name: str
     wiring: str
-    notches: tuple[str]
+    notches: tuple[str, ...]
     is_static: bool
 
     def __post_init__(self):
@@ -94,15 +90,15 @@ class Rotor:
 
 
 class PlugBoard:
-    def __init__(self, cables: tuple[str]):
+    def __init__(self, cables: tuple[str, ...]):
         self.cables = cables
 
     @property
-    def cables(self) -> tuple[str]:
+    def cables(self) -> tuple[str, ...]:
         return self._cables
 
     @cables.setter
-    def cables(self, cables: tuple[str]):
+    def cables(self, cables: tuple[str, ...]):
         self._cables = tuple(cables)
         self._mapping = list(range(1, len(ALPHABET)))
 
@@ -143,7 +139,7 @@ class Enigma:
         # calc Wiring
 
         routing = []  # --> names
-        char = [key]  # --> [0, 1, 10, 11, 21, 22, 17, 6, 5, 5]
+        char = key  # --> [0, 1, 10, 11, 21, 22, 17, 6, 5, 5]
         for scram in self.scramblers:
             routing.append(scram.__name)
             char.append(scram.route(char[-1]))
