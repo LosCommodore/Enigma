@@ -1,16 +1,29 @@
 import pytest
+
 import enigmatic
 
-import random
+
+def test_plug_board():
+    cables = ('bz','fg')
+
+    p = enigmatic.PlugBoard(tuple())
+    assert p.route(0) == 0
+    assert p.route(20) == 20
+
+    p.cables = cables
+    for cable in cables:
+        i,o = enigmatic._letters2num(cable)
+        assert p.route(i) == o
+        assert p.route(o) == i
 
 
 def test_unvalid_rotor_spec():
     with pytest.raises(Exception):
-        spec = enigmatic.RotorSpec("testRotor","ABC",(),False)
+        spec = enigmatic.RotorSpec("testRotor", "ABC", (), False)
 
 
 def test_create_rotor_spec():
-    spec = enigmatic.RotorSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(), ('q',),False)
+    spec = enigmatic.RotorSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(), ('q',), False)
     print(spec)
 
 #

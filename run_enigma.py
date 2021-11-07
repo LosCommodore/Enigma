@@ -6,7 +6,7 @@ console = Console(legacy_windows=False, color_system="truecolor", style="Black o
 console.size = (200, 50)
 console.record = True
 
-# Create Enimga
+# Assemble Enimga
 plugBoard = PlugBoard(('ab', 'uv'))
 
 rot_I = RotorSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(), ('q',), False)
@@ -22,19 +22,19 @@ r4 = Rotor(rot_ukw_b)
 enigma = Enigma()
 enigma.scramblers = [plugBoard, r3, r2, r1, r4]
 
-# Press Key:
-console.rule("[bold red]TEXT")
-text = 'hallodiesisteintestumzusehenobmeinpythonscriptdasgleicheergebnislieferthallodiesisteintestumzus' \
-       'ehenobmeinpythonscriptdasgleicheergebnisliefert'
-encoded = []
-for key in text:
+# Use Engima:
+console.rule("[bold red]START")
+
+input_text = 'hallodiesisteintestumzusehenobmeinpythonscriptdasgleicheergebnislieferthallodiesisteintestumzus' \
+             'ehenobmeinpythonscriptdasgleicheergebnisliefert'
+print("Output Text: ", input_text)
+
+output_text = []
+for key in input_text:
     char, routing = enigma.pressKey(key)
-    # print(char,routing)
-    encoded.append(chr(char[-1] + ord('a')))
-encoded = ''.join(encoded)  # List of Strings -> String
-print("Encoded Text: ", encoded)
-# charInv,routingInv = riddle.pressKey(lastChar)
+    output_text.append(chr(char[-1] + ord('a')))
 
-console.print(r1)
+output_text = ''.join(output_text)
+print("Output Text: ", output_text)
 
-print("ende")
+console.rule("[bold red]ENDE")

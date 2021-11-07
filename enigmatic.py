@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from rich.table import Table
 from rich.console import Group
 from rich.panel import Panel
-from typing import Iterable
+from typing import Iterable, Protocol
 
 ALPHABET = tuple(chr(ord('a') + i) for i in range(26))
 
@@ -14,6 +14,16 @@ def _letters2num(letters: Iterable[str]) -> list[int]:
 
 def _num2letter(num: int):
     return ALPHABET[num]
+
+
+class Scrambler(Protocol):
+    name: str
+
+    def route(self, letter: int) -> int:
+        """ Forward routing of a letter trouth the Scrambler """
+
+    def inv_route(self, character) -> int:
+        """ Backwarts routing of a letter trouth the Scrambler """
 
 
 @dataclass(frozen=True)
@@ -28,9 +38,10 @@ class RotorSpec:
             raise ValueError(r'Ungültige Rotorspezifikation, falsches Alphabet !')
 
 
-class Rotor:
+class Rotor(Scrambler):
     def __init__(self, spec: RotorSpec):
         self.spec = spec
+        self.name = spec.name
         self.rotation: int = 0
         self.ring_position: int = 0
 
@@ -89,9 +100,10 @@ class Rotor:
         return Panel(group, title=f"[red]Rotor: {self.spec.name}", expand=False)
 
 
-class PlugBoard:
+class PlugBoard(Scrambler):
     def __init__(self, cables: tuple[str, ...]):
         self.cables = cables
+        self.name = "Plugboard"
 
     @property
     def cables(self) -> tuple[str, ...]:
@@ -100,7 +112,7 @@ class PlugBoard:
     @cables.setter
     def cables(self, cables: tuple[str, ...]):
         self._cables = tuple(cables)
-        self._mapping = list(range(1, len(ALPHABET)))
+        self._mapping = list(range(len(ALPHABET)))
 
         for cable in self._cables:
             i, o = _letters2num(cable)
@@ -116,9 +128,6 @@ class PlugBoard:
     def __repr__(self):
         my_str = [f"Cables: {self.cables}"]
         return "\n".join(my_str)
-
-
-Scrambler: Rotor | PlugBoard
 
 
 class Enigma:
@@ -141,11 +150,11 @@ class Enigma:
         routing = []  # --> names
         char = key  # --> [0, 1, 10, 11, 21, 22, 17, 6, 5, 5]
         for scram in self.scramblers:
-            routing.append(scram.__name)
+            routing.append(scram.name)
             char.append(scram.route(char[-1]))
 
         for scram in self.scramblers[::-1][1:]:  # reverse + exclude last element (ukw)
-            routing.append(scram.__name)
+            routing.append(scram.name)
             char.append(scram.inv_route(char[-1]))
 
         return char, routing

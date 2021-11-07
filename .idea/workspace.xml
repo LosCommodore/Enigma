@@ -8,10 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="refactoring">
-      <change afterPath="$PROJECT_DIR$/py.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/enigmatic.py" beforeDir="false" afterPath="$PROJECT_DIR$/enigmatic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_enigma.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +59,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -168,19 +166,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.run_enigma" />
+      <item itemvalue="Python tests.pytest for test.test_create_rotor_spec" />
       <item itemvalue="Python tests.pytest for test.test_hello" />
       <item itemvalue="Python tests.pytest for test.test_rotor_symmetry" />
       <item itemvalue="Python tests.pytest for test.test_unvalid_rotor_spec" />
-      <item itemvalue="Python tests.pytest for test.test_create_rotor_spec" />
-      <item itemvalue="Python.run_enigma" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.run_enigma" />
-        <item itemvalue="Python tests.pytest for test.test_create_rotor_spec" />
         <item itemvalue="Python tests.pytest for test.test_unvalid_rotor_spec" />
         <item itemvalue="Python tests.pytest for test.test_rotor_symmetry" />
         <item itemvalue="Python tests.pytest for test.test_hello" />
+        <item itemvalue="Python tests.pytest for test.test_create_rotor_spec" />
+        <item itemvalue="Python.run_enigma" />
       </list>
     </recent_temporary>
   </component>
@@ -221,7 +219,12 @@
       <workItem from="1636226812888" duration="132000" />
       <workItem from="1636226963822" duration="172000" />
       <workItem from="1636227159972" duration="2851000" />
-      <workItem from="1636262582193" duration="4025000" />
+      <workItem from="1636262582193" duration="4111000" />
+      <workItem from="1636277890105" duration="714000" />
+      <workItem from="1636278633395" duration="29000" />
+      <workItem from="1636278678296" duration="209000" />
+      <workItem from="1636278905549" duration="236000" />
+      <workItem from="1636279156379" duration="451000" />
     </task>
     <task id="LOCAL-00001" summary="Pycharm">
       <created>1580660859595</created>
@@ -286,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636264023953</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="refactoring">
+      <created>1636266735046</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1636266735046</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
