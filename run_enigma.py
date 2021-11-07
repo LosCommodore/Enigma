@@ -1,5 +1,5 @@
-import enigma
-from enigma import Enigma,Rotor,Scrambler,PlugBoard
+import enigmatic
+from enigmatic import Enigma,Rotor,Scrambler,PlugBoard
 from rich.console import Console
 
 # console

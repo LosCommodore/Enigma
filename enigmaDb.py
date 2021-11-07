@@ -32,7 +32,7 @@ def createRotorsInDb(rotorInfo):
 
     newRotorNames = [x["name"] for x in rotorInfo]
     currentRotors = session.query(DRotor).all()
-    rotors2Delete = [x for x in currentRotors if x.name in newRotorNames]
+    rotors2Delete = [x for x in currentRotors if x.__name in newRotorNames]
     for x in rotors2Delete:
         session.delete(x)
 
