@@ -2,7 +2,7 @@ from enigmatic import Enigma, RotorSpec, Rotor, PlugBoard
 from rich.console import Console
 
 # console
-console = Console(legacy_windows=False, color_system="truecolor", style="Black on bright_white")
+console = Console(legacy_windows=False, color_system="truecolor")
 console.size = (200, 50)
 console.record = True
 
