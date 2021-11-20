@@ -1,9 +1,14 @@
+"""
+This module provides the functionality for simulating enigma machines
+"""
+
 import numpy as np
 from dataclasses import dataclass
 from rich.table import Table
 from rich.console import Group
 from rich.panel import Panel
 from typing import Iterable, Protocol
+from collections import deque
 
 ALPHABET = tuple(chr(ord('a') + i) for i in range(26))  # Alphabet of the engima machine(s)
 
@@ -38,18 +43,20 @@ class RotorSpec:
 
     def __post_init__(self):
         if sorted(self.wiring) != sorted(ALPHABET):
-            raise ValueError(r'Ungültige Rotorspezifikation, falsches Alphabet !')
+            raise ValueError(r'Invalid rotor specification, invalid alphabet !')
 
 
 class Rotor(Scrambler):
+    """A rotor or reflector for the enigma machine """
 
     def __init__(self, spec: RotorSpec):
         self.spec = spec
-        self.name:str = spec.name
-        self.rotation: int = 0
-        self.ring_position: int = 0
+        self.name: str = spec.name
+        self.ring_position: int = 1
 
         self._wiring = {k: v for k, v in zip(ALPHABET, self.spec.wiring)}
+
+        self.__rotation: int = 0  # property
 
         mapping = _letters2num(self.spec.wiring)
         self._mapping_rel = tuple(m - i for i, m in enumerate(mapping))
@@ -59,16 +66,21 @@ class Rotor(Scrambler):
     def rotation(self):
         return self.__rotation
 
+    @property
+    def total_rotation(self):
+        value = self.ring_position - 1 + self.rotation
+        return value % len(ALPHABET)
+
     @rotation.setter
     def rotation(self, value):
         self.__rotation = value % len(ALPHABET)
 
     def route(self, character: int) -> int:
-        rot = self.ring_position + self.rotation
+        rot = self.ring_position - 1 + self.rotation
         return (character + self._mapping_rel[(character + rot) % len(ALPHABET)]) % len(ALPHABET)
 
     def inv_route(self, character: int) -> int:
-        rot = self.ring_position + self.rotation
+        rot = self.ring_position - 1 + self.rotation
         return (character + self._mapping_rel_inv[(character + rot) % len(ALPHABET)]) % len(ALPHABET)
 
     def doesStep(self):
@@ -85,18 +97,24 @@ class Rotor(Scrambler):
 
     def __rich__(self):
         table = Table(padding=(0, 0))
+        table.add_column('Absolute')
         for letter in ALPHABET:
             table.add_column(letter.upper(), justify='center')
 
-        highlight = "[red bold]{}[/red bold]"
-        table.columns[self.rotation].header = highlight.format(table.columns[self.rotation].header)
-
-        row = [f"{m:+03}" for m in self._mapping_rel]
-        row[self.rotation] = highlight.format(row[self.rotation])
+        row = [f'Spec: wiring'] + list(self.spec.wiring)
         table.add_row(*row)
 
-        properties = (f"Name of Rotor: {self.spec.name}\n"
-                      f"RingPosition: {self.ring_position}\n"
+        rel = [f"{m:+03}" for m in self._mapping_rel]
+        row = [f'Spec: relative'] + rel
+        table.add_row(*row)
+
+        relative_rot = deque(rel)
+        relative_rot.rotate(self.total_rotation)
+        row = [f'Total rotation {self.total_rotation:+03}'] + list(relative_rot)
+        table.add_row(*row)
+
+        properties = (f"Name of rotor: {self.spec.name}\n"
+                      f"Ring position: {self.ring_position}\n"
                       f"Rotation: {self.rotation}\n"
                       f"Notches: {self.spec.notches}")
 

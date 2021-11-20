@@ -38,3 +38,4 @@ output_text = ''.join(output_text)
 print("Output Text: ", output_text)
 
 console.rule("[bold red]ENDE")
+console.print(enigma.scramblers[1])
