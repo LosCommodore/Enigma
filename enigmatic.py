@@ -83,7 +83,7 @@ class Rotor(Scrambler):
         rot = self.ring_position - 1 + self.rotation
         return (letter + self._mapping_rel_inv[(letter + rot) % len(ALPHABET)]) % len(ALPHABET)
 
-    def doesStep(self):
+    def does_step(self):
         return self.rotation in set(_letters2num(self.spec.notches))
 
     def __repr__(self):
@@ -156,6 +156,12 @@ class Enigma:
     def __init__(self, scramblers: list[Scrambler]):
         self.scramblers = scramblers
 
+        # Some Enigma machines, such as the Zählwerksmaschine A28 and the Enigma G, were driven by a gear mechanism
+        # with cog-wheels rather than by pawls and rachets. These machines do not suffer from the double stepping
+        # anomaly and behave exactly like the odometer of a car.
+        self.doube_step = True
+
+
     def _route_scramblers(self) -> Generator[Union[Scrambler.route, Scrambler.inv_route]]:
         for scrambler in self.scramblers:
             yield scrambler.route
@@ -182,11 +188,14 @@ class Enigma:
         return routing
 
     def rotate(self):
+        if not self.doube_step:
+            raise NotImplemented("Enigma currently has to be double-step")
+
         rotors = [x for x in self.scramblers if isinstance(x, Rotor) and not x.spec.is_static]
 
         do_rotate = [False] * len(rotors)
         do_rotate[0] = True  # first Rotor always rotates
-        for i, step in enumerate([s.doesStep() for s in rotors]):
+        for i, step in enumerate([s.does_step() for s in rotors]):
             if step:
                 do_rotate[i] = True
                 do_rotate[i + 1] = True
