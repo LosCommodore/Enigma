@@ -23,11 +23,11 @@ def test_plug_board():
 
 def test_unvalid_rotor_spec():
     with pytest.raises(Exception):
-        enigmatic.RotorSpec("testRotor", "ABC", (), False)
+        enigmatic.WheelSpec("testRotor", "ABC", (), False)
 
 
 def test_create_rotor_spec():
-    spec = enigmatic.RotorSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(), ('q',), False)
+    spec = enigmatic.WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(), ('q',), False)
     print(spec)
 
 
@@ -35,8 +35,8 @@ def test_rotor_move():
     print("")
 
     routing = 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower()
-    spec = enigmatic.RotorSpec('I', routing , ('q',), False)
-    rotor = enigmatic.Rotor(spec)
+    spec = enigmatic.WheelSpec('I', routing, ('q',), False)
+    rotor = enigmatic.Wheel(spec)
     len_alphabet = len(enigmatic.ALPHABET)
 
     for rot in range(len_alphabet * 2):
@@ -53,8 +53,8 @@ def test_rotor_symmetry():
     wiring = list(enigmatic.ALPHABET)
     random.shuffle(wiring)
     wiring = "".join(str(x) for x in wiring)
-    spec = enigmatic.RotorSpec("r1", wiring, (), False)
-    r = enigmatic.Rotor(spec)
+    spec = enigmatic.WheelSpec("r1", wiring, (), False)
+    r = enigmatic.Wheel(spec)
 
     for i,_ in enumerate(enigmatic.ALPHABET):
         letter_out = r.inv_route(r.route(i))

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from rich.table import Table
 from rich.console import Group
 from rich.panel import Panel
-from typing import Iterable, Protocol, Generator, Union
+from typing import Iterable, Protocol, Union
 from collections import deque
 
 ALPHABET = tuple(chr(ord('a') + i) for i in range(26))  # Alphabet of the engima machine(s)
@@ -35,21 +35,21 @@ class Scrambler(Protocol):
 
 
 @dataclass(frozen=True)
-class RotorSpec:
+class WheelSpec:
     name: str
     wiring: str
     notches: tuple[str, ...]
-    is_static: bool
+    is_rotor: bool  # rotor or reflector (does not move)
 
     def __post_init__(self):
         if sorted(self.wiring) != sorted(ALPHABET):
             raise ValueError(r'Invalid rotor specification, invalid alphabet !')
 
 
-class Rotor(Scrambler):
+class Wheel(Scrambler):
     """A rotor or reflector for the enigma machine """
 
-    def __init__(self, spec: RotorSpec):
+    def __init__(self, spec: WheelSpec):
         self.spec = spec
         self.name: str = spec.name
         self.ring_position: int = 1
@@ -86,7 +86,7 @@ class Rotor(Scrambler):
     def does_step(self):
         return self.rotation in set(_letters2num(self.spec.notches))
 
-    def __repr__(self):
+    def __str__(self):
         my_str = [f"Name of Rotor: {self.spec.name}",
                   f"Wiring: {self._wiring}",
                   f"RingPosition: {self.ring_position}",
@@ -152,6 +152,12 @@ class PlugBoard(Scrambler):
         return "\n".join(my_str)
 
 
+@dataclass(frozen=True)
+class EnigmaMemory:
+    key: str
+    routing: tuple[int, ...]
+
+
 class Enigma:
     def __init__(self, scramblers: list[Scrambler]):
         self.scramblers = scramblers
@@ -160,55 +166,60 @@ class Enigma:
         # with cog-wheels rather than by pawls and rachets. These machines do not suffer from the double stepping
         # anomaly and behave exactly like the odometer of a car.
         self.doube_step = True
+        self.__memory: list[EnigmaMemory] = []
 
+    @property
+    def memory(self):
+        return self.__memory
 
-    def _route_scramblers(self) -> Generator[Union[Scrambler.route, Scrambler.inv_route]]:
+    @property
+    def position(self):
+        pos = [_num2letter(x.rotation) for x in self.scramblers if isinstance(x, Wheel) and not x.spec.is_rotor]
+        return pos
+
+    def _route_scramblers(self) -> Union[Scrambler.route, Scrambler.inv_route]:
         for scrambler in self.scramblers:
             yield scrambler.route
 
         for scrambler in reversed(self.scramblers[:-1]):
             yield scrambler.inv_route
 
-    def pressKey(self, key: str) -> list[int]:
+    def press_key(self, key: str) -> str:
         if key not in ALPHABET:
             raise ValueError('Invalid letter')
 
-        key = _letters2num(key)[0]
-
-        # Whenever a key is pressed, the rightmost wheel makes a single step before the switch is activated and a
-        # lamp is turned on.
+        # Whenever a key is pressed, the wheels move before a lamp is turned on.
         self.rotate()
 
-        current_key = key
+        n_key = _letters2num(key)[0]
+        current_key = n_key
         routing = [current_key]
         for route in self._route_scramblers():
+            # noinspection PyArgumentList
             current_key = route(current_key)
             routing.append(current_key)
 
-        return routing
+        self.memory.append(EnigmaMemory(key, tuple(routing)))
+
+        return _num2letter(routing[-1])
 
     def rotate(self):
         if not self.doube_step:
             raise NotImplemented("Enigma currently has to be double-step")
 
-        rotors = [x for x in self.scramblers if isinstance(x, Rotor) and not x.spec.is_static]
+        rotors = [x for x in self.scramblers if isinstance(x, Wheel) and not x.spec.is_rotor]
 
-        do_rotate = [False] * len(rotors)
-        do_rotate[0] = True  # first Rotor always rotates
-        for i, step in enumerate([s.does_step() for s in rotors]):
-            if step:
-                do_rotate[i] = True
-                do_rotate[i + 1] = True
+        do_rotate = {rotors[0]}  # first Rotor always rotates
 
-        for rotor, step in zip(rotors, do_rotate):
-            rotor.rotation += step
+        for r1, r2 in zip(rotors, rotors[1:]):
+            if r1.does_step():
+                do_rotate.add(r1)
+                do_rotate.add(r2)
 
-    @property
-    def position(self):
-        pos = [_num2letter(x.rotation) for x in self.scramblers if isinstance(x, Rotor) and not x.spec.is_static]
-        return pos
+        for rotor in do_rotate:
+            rotor.rotation += 1
 
-    def __repr__(self):
+    def __str__(self):
         my_str = [f"Enigma, Pos: {self.position}"]
 
         return "\n".join(my_str)
