@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from rich.table import Table
 from rich.console import Group
 from rich.panel import Panel
-from typing import Iterable, Protocol
+from typing import Iterable, Protocol, Generator, Union
 from collections import deque
 
 ALPHABET = tuple(chr(ord('a') + i) for i in range(26))  # Alphabet of the engima machine(s)
@@ -30,7 +30,7 @@ class Scrambler(Protocol):
     def route(self, letter: int) -> int:
         """ Forward routing of a letter trouth the Scrambler """
 
-    def inv_route(self, character) -> int:
+    def inv_route(self, letter: int) -> int:
         """ Backwarts routing of a letter trouth the Scrambler """
 
 
@@ -79,9 +79,9 @@ class Rotor(Scrambler):
         rot = self.ring_position - 1 + self.rotation
         return (character + self._mapping_rel[(character + rot) % len(ALPHABET)]) % len(ALPHABET)
 
-    def inv_route(self, character: int) -> int:
+    def inv_route(self, letter: int) -> int:
         rot = self.ring_position - 1 + self.rotation
-        return (character + self._mapping_rel_inv[(character + rot) % len(ALPHABET)]) % len(ALPHABET)
+        return (letter + self._mapping_rel_inv[(letter + rot) % len(ALPHABET)]) % len(ALPHABET)
 
     def doesStep(self):
         return self.rotation in set(_letters2num(self.spec.notches))
@@ -144,8 +144,8 @@ class PlugBoard(Scrambler):
     def route(self, letter: int) -> int:
         return self._mapping[letter]
 
-    def inv_route(self, character):
-        return self._mapping[character]  # symmetrisches Mapping beim Plugboard: aus "c -> a" folgt "a -> c"
+    def inv_route(self, letter):
+        return self._mapping[letter]  # symmetrisches Mapping beim Plugboard: aus "c -> a" folgt "a -> c"
 
     def __repr__(self):
         my_str = [f"Cables: {self.cables}"]
@@ -153,33 +153,33 @@ class PlugBoard(Scrambler):
 
 
 class Enigma:
-    def __init__(self):
-        self.scramblers: list[Scrambler] = []
-        pass
+    def __init__(self, scramblers: list[Scrambler]):
+        self.scramblers = scramblers
 
-    def pressKey(self, key):
-        if isinstance(key, int):
-            key = str(key)
+    def _route_scramblers(self) -> Generator[Union[Scrambler.route, Scrambler.inv_route]]:
+        for scrambler in self.scramblers:
+            yield scrambler.route
 
-        assert key in ALPHABET, 'ungültiger Schlüssel!'
-        key = _letters2num(key)
+        for scrambler in reversed(self.scramblers[:-1]):
+            yield scrambler.inv_route
 
-        # rotate
+    def pressKey(self, key: str) -> list[int]:
+        if key not in ALPHABET:
+            raise ValueError('Invalid letter')
+
+        key = _letters2num(key)[0]
+
+        # Whenever a key is pressed, the rightmost wheel makes a single step before the switch is activated and a
+        # lamp is turned on.
         self.rotate()
 
-        # calc Wiring
+        current_key = key
+        routing = [current_key]
+        for route in self._route_scramblers():
+            current_key = route(current_key)
+            routing.append(current_key)
 
-        routing = []  # --> names
-        char = key  # --> [0, 1, 10, 11, 21, 22, 17, 6, 5, 5]
-        for scram in self.scramblers:
-            routing.append(scram.name)
-            char.append(scram.route(char[-1]))
-
-        for scram in self.scramblers[::-1][1:]:  # reverse + exclude last element (ukw)
-            routing.append(scram.name)
-            char.append(scram.inv_route(char[-1]))
-
-        return char, routing
+        return routing
 
     def rotate(self):
         rotors = [x for x in self.scramblers if isinstance(x, Rotor) and not x.spec.is_static]

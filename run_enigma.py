@@ -19,19 +19,19 @@ r2 = Rotor(rot_II)
 r3 = Rotor(rot_III)
 r4 = Rotor(rot_ukw_b)
 
-enigma = Enigma()
-enigma.scramblers = [plugBoard, r3, r2, r1, r4]
+enigma = Enigma([plugBoard, r3, r2, r1, r4])
 
 # Use Engima:
 console.rule("[bold red]START")
 
 input_text = 'hallodiesisteintestumzusehenobmeinpythonscriptdasgleicheergebnislieferthallodiesisteintestumzus' \
              'ehenobmeinpythonscriptdasgleicheergebnisliefert'
+
 print("Output Text: ", input_text)
 
 output_text = []
 for key in input_text:
-    char, routing = enigma.pressKey(key)
+    char = enigma.pressKey(key)
     output_text.append(chr(char[-1] + ord('a')))
 
 output_text = ''.join(output_text)
