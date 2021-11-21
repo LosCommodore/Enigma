@@ -27,15 +27,12 @@ console.rule("[bold red]START")
 input_text = 'hallodiesisteintestumzusehenobmeinpythonscriptdasgleicheergebnislieferthallodiesisteintestumzus' \
              'ehenobmeinpythonscriptdasgleicheergebnisliefert'
 
-print("Output Text: ", input_text)
+print("Input Text: ", input_text)
 
 output_text = []
 for key in input_text:
     char = enigma.press_key(key)
-    output_text.append(chr(char[-1] + ord('a')))
+    output_text.append(char)
 
 output_text = ''.join(output_text)
 print("Output Text: ", output_text)
-
-console.rule("[bold red]ENDE")
-console.print(enigma.scramblers[1])
