@@ -10,7 +10,7 @@ from rich.panel import Panel
 from typing import Iterable, Protocol, Union
 from collections import deque
 
-ALPHABET = tuple(chr(ord('a') + i) for i in range(26))  # Alphabet of the engima machine(s)
+ALPHABET = tuple(chr(ord('A') + i) for i in range(26))  # Alphabet of the engima machine(s)
 
 
 def _letters2num(letters: Iterable[str]) -> list[int]:
@@ -38,8 +38,8 @@ class Scrambler(Protocol):
 class WheelSpec:
     name: str
     wiring: str
-    notches: tuple[str, ...]
     is_rotor: bool  # rotor or reflector (does not move)
+    notches: tuple[str, ...]  = tuple()  # Übertragskerben
 
     def __post_init__(self):
         if sorted(self.wiring) != sorted(ALPHABET):
@@ -49,12 +49,12 @@ class WheelSpec:
 class Wheel(Scrambler):
     """A rotor or reflector for the enigma machine """
 
-    def __init__(self, spec: WheelSpec):
+    def __init__(self, spec: WheelSpec, ring_position: int = 1, rotation: str = "A"):
         self.name: str = spec.name
-        self.ring_position: int = 1
+        self.ring_position = ring_position
 
         self._spec = spec
-        self._rotation: int = 0
+        self._rotation = _letters2num(rotation)[0] - 1  # example: "B" => rotation=1
 
         mapping = _letters2num(self._spec.wiring)
         self._mapping_rel = tuple(m - i for i, m in enumerate(mapping))
@@ -157,7 +157,7 @@ class PlugBoard(Scrambler):
 @dataclass(frozen=True)
 class EnigmaMemory:
     key: str
-    routing: tuple[int, ...]
+    routing: list[str]
 
 
 class Enigma:
@@ -191,7 +191,7 @@ class Enigma:
 
     def press_key(self, key: str) -> str:
         if key not in ALPHABET:
-            raise ValueError('Invalid letter')
+            raise ValueError(f'Invalid letter: "{key}"')
 
         # Whenever a key is pressed, the wheels move before a lamp is turned on.
         self.rotate()
@@ -204,7 +204,7 @@ class Enigma:
             current_key = route(current_key)
             routing.append(current_key)
 
-        self.memory.append(EnigmaMemory(key, tuple(routing)))
+        self.memory.append(EnigmaMemory(key, [_num2letter(x) for x in routing]))
 
         return _num2letter(routing[-1])
 

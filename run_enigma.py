@@ -9,10 +9,10 @@ console.record = True
 # Assemble Enimga
 plugBoard = PlugBoard(('ab', 'uv'))
 
-rot_I = WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(), ('q',), False)
-rot_II = WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE'.lower(), ('e',), False)
-rot_III = WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO'.lower(), ('v',), False)
-rot_ukw_b = WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT'.lower(), tuple(), True)
+rot_I = WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(), ('q',), True)
+rot_II = WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE'.lower(), ('e',), True)
+rot_III = WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO'.lower(), ('v',), True)
+rot_ukw_b = WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT'.lower(), tuple(), False)
 
 r1 = Wheel(rot_I)
 r2 = Wheel(rot_II)
