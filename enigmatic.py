@@ -50,48 +50,50 @@ class Wheel(Scrambler):
     """A rotor or reflector for the enigma machine """
 
     def __init__(self, spec: WheelSpec):
-        self.spec = spec
         self.name: str = spec.name
         self.ring_position: int = 1
 
-        self._wiring = {k: v for k, v in zip(ALPHABET, self.spec.wiring)}
+        self._spec = spec
+        self._rotation: int = 0
 
-        self.__rotation: int = 0  # property
-
-        mapping = _letters2num(self.spec.wiring)
+        mapping = _letters2num(self._spec.wiring)
         self._mapping_rel = tuple(m - i for i, m in enumerate(mapping))
         self._mapping_rel_inv = tuple(m - i for i, m in enumerate(np.argsort(mapping)))
 
     @property
+    def spec(self):
+        return self._spec
+
+    @property
     def rotation(self):
-        return self.__rotation
+        return self._rotation
+
+    @rotation.setter
+    def rotation(self, value):
+        self._rotation = value % len(ALPHABET)
 
     @property
     def total_rotation(self):
         value = self.ring_position - 1 + self.rotation
         return value % len(ALPHABET)
 
-    @rotation.setter
-    def rotation(self, value):
-        self.__rotation = value % len(ALPHABET)
-
     def route(self, character: int) -> int:
-        rot = self.ring_position - 1 + self.rotation
+        rot = self.total_rotation
         return (character + self._mapping_rel[(character + rot) % len(ALPHABET)]) % len(ALPHABET)
 
     def inv_route(self, letter: int) -> int:
-        rot = self.ring_position - 1 + self.rotation
+        rot = self.total_rotation
         return (letter + self._mapping_rel_inv[(letter + rot) % len(ALPHABET)]) % len(ALPHABET)
 
     def does_step(self):
-        return self.rotation in set(_letters2num(self.spec.notches))
+        return self.rotation in set(_letters2num(self._spec.notches))
 
     def __str__(self):
-        my_str = [f"Name of Rotor: {self.spec.name}",
-                  f"Wiring: {self._wiring}",
+        my_str = [f"Name of Rotor: {self._spec.name}",
+                  f"Wiring: {self._spec.wiring}",
                   f"RingPosition: {self.ring_position}",
                   f"Rotation: {self.rotation}",
-                  f"Notches: {self.spec.notches}"]
+                  f"Notches: {self._spec.notches}"]
 
         return "\n".join(my_str)
 
@@ -101,7 +103,7 @@ class Wheel(Scrambler):
         for letter in ALPHABET:
             table.add_column(letter.upper(), justify='center')
 
-        row = [f'Spec: wiring'] + list(self.spec.wiring)
+        row = [f'Spec: wiring'] + list(self._spec.wiring)
         table.add_row(*row)
 
         rel = [f"{m:+03}" for m in self._mapping_rel]
@@ -113,13 +115,13 @@ class Wheel(Scrambler):
         row = [f'Total rotation {self.total_rotation:+03}'] + list(relative_rot)
         table.add_row(*row)
 
-        properties = (f"Name of rotor: {self.spec.name}\n"
+        properties = (f"Name of rotor: {self._spec.name}\n"
                       f"Ring position: {self.ring_position}\n"
                       f"Rotation: {self.rotation}\n"
-                      f"Notches: {self.spec.notches}")
+                      f"Notches: {self._spec.notches}")
 
         group = Group(Panel(properties, expand=False), table)
-        return Panel(group, title=f"[red]Rotor: {self.spec.name}", expand=False)
+        return Panel(group, title=f"[red]Rotor: {self._spec.name}", expand=False)
 
 
 class PlugBoard(Scrambler):
@@ -159,14 +161,17 @@ class EnigmaMemory:
 
 
 class Enigma:
-    def __init__(self, scramblers: list[Scrambler]):
+    def __init__(self, scramblers: list[Scrambler], max_memory: int = 100):
+        if len(set(scramblers)) != len(scramblers):
+            raise ValueError("All Scrambles have to be unique objects")
+
         self.scramblers = scramblers
 
         # Some Enigma machines, such as the Zählwerksmaschine A28 and the Enigma G, were driven by a gear mechanism
         # with cog-wheels rather than by pawls and rachets. These machines do not suffer from the double stepping
         # anomaly and behave exactly like the odometer of a car.
         self.doube_step = True
-        self.__memory: list[EnigmaMemory] = []
+        self.__memory: deque[EnigmaMemory] = deque([], maxlen=max_memory)
 
     @property
     def memory(self):

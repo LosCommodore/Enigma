@@ -7,6 +7,7 @@ from rich.console import Console
 console = Console(legacy_windows=False, color_system="truecolor", style="Black on bright_white")
 console.size = (200, 50)
 
+
 def test_plug_board():
     cables = ('bz', 'fg')
 
