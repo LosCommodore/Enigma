@@ -212,7 +212,7 @@ class Enigma:
         if not self.doube_step:
             raise NotImplemented("Enigma currently has to be double-step")
 
-        rotors = [x for x in self.scramblers if isinstance(x, Wheel) and not x.spec.is_rotor]
+        rotors = [x for x in self.scramblers if isinstance(x, Wheel) and x.spec.is_rotor]
 
         do_rotate = {rotors[0]}  # first Rotor always rotates
 
