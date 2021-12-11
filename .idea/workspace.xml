@@ -28,7 +28,6 @@
     <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/enigmatic.py" beforeDir="false" afterPath="$PROJECT_DIR$/enigmatic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_enigma.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_enigma.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +85,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -271,7 +270,11 @@
       <workItem from="1638604046157" duration="2094000" />
       <workItem from="1638685252496" duration="2932000" />
       <workItem from="1638694701297" duration="3841000" />
-      <workItem from="1638702182291" duration="3153000" />
+      <workItem from="1638702182291" duration="3410000" />
+      <workItem from="1638712640296" duration="10000" />
+      <workItem from="1638712661406" duration="10000" />
+      <workItem from="1638719169996" duration="3474000" />
+      <workItem from="1639211055309" duration="753000" />
     </task>
     <task id="LOCAL-00001" summary="Pycharm">
       <created>1580660859595</created>
@@ -420,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638688132593</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fixing">
+      <created>1638705614556</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1638705614556</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,7 +458,8 @@
     <MESSAGE value="Refactoring" />
     <MESSAGE value="refactoring" />
     <MESSAGE value="bugfix" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
+    <MESSAGE value="fixing" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing" />
   </component>
   <component name="WindowStateProjectService">
     <state x="509" y="237" key="#Notifications" timestamp="1638685288945">
@@ -459,6 +470,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="225" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1637403992386" />
+    <state x="575" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1639211350815">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="575" y="129" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1639211350815" />
     <state x="192" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1637485813327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -471,52 +486,67 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="550" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1637403886379" />
-    <state width="1493" height="354" key="GridCell.Tab.0.bottom" timestamp="1638705137675">
+    <state width="1493" height="229" key="GridCell.Tab.0.bottom" timestamp="1639211714434">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="354" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1638705137675" />
-    <state width="1493" height="354" key="GridCell.Tab.0.center" timestamp="1638705137675">
+    <state width="1493" height="229" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639211714434" />
+    <state width="1493" height="229" key="GridCell.Tab.0.center" timestamp="1639211714433">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="354" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1638705137675" />
-    <state width="1493" height="354" key="GridCell.Tab.0.left" timestamp="1638705137674">
+    <state width="1493" height="229" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1639211714433" />
+    <state width="1493" height="229" key="GridCell.Tab.0.left" timestamp="1639211714432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="354" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1638705137674" />
-    <state width="1493" height="354" key="GridCell.Tab.0.right" timestamp="1638705137675">
+    <state width="1493" height="229" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1639211714432" />
+    <state width="1493" height="229" key="GridCell.Tab.0.right" timestamp="1639211714433">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="354" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1638705137675" />
-    <state width="1493" height="354" key="GridCell.Tab.1.bottom" timestamp="1638705137555">
+    <state width="1493" height="229" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1639211714433" />
+    <state width="1493" height="229" key="GridCell.Tab.1.bottom" timestamp="1639211708618">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="354" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1638705137555" />
-    <state width="1493" height="354" key="GridCell.Tab.1.center" timestamp="1638705137555">
+    <state width="1493" height="229" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639211708618" />
+    <state width="1493" height="229" key="GridCell.Tab.1.center" timestamp="1639211708617">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="354" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1638705137555" />
-    <state width="1493" height="354" key="GridCell.Tab.1.left" timestamp="1638705137555">
+    <state width="1493" height="229" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1639211708617" />
+    <state width="1493" height="229" key="GridCell.Tab.1.left" timestamp="1639211708617">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="354" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1638705137555" />
-    <state width="1493" height="354" key="GridCell.Tab.1.right" timestamp="1638705137555">
+    <state width="1493" height="229" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1639211708617" />
+    <state width="1493" height="229" key="GridCell.Tab.1.right" timestamp="1639211708617">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="354" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1638705137555" />
-    <state x="279" y="58" key="SettingsEditor" timestamp="1637403890610">
+    <state width="1493" height="229" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1639211708617" />
+    <state x="279" y="58" key="SettingsEditor" timestamp="1639211452956">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="279" y="58" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1637403890610" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1638695196335">
+    <state x="279" y="58" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1639211452956" />
+    <state x="491" y="155" width="549" height="524" key="StructurePopup" timestamp="1639211643089">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1638695196335" />
+    <state x="491" y="155" width="549" height="524" key="StructurePopup/0.0.1536.824@0.0.1536.824" timestamp="1639211643089" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1639211361108">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1639211361108" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/test_enigma.py</url>
+          <line>105</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Enigma$test.coverage" NAME="test Coverage Results" MODIFIED="1636181481392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_create_rotor_spec.coverage" NAME="pytest for test.test_create_rotor_spec Coverage Results" MODIFIED="1636266123302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$testGuiQt.coverage" NAME="testGuiQt Coverage Results" MODIFIED="1634971986854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_type_message.coverage" NAME="pytest for test_enigma.test_type_message Coverage Results" MODIFIED="1638705137520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_type_message.coverage" NAME="pytest for test_enigma.test_type_message Coverage Results" MODIFIED="1639211706444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$enigmatic.coverage" NAME="enigmatic Coverage Results" MODIFIED="1638687667800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_enigma_py.coverage" NAME="pytest in test_enigma.py Coverage Results" MODIFIED="1638697028056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$enigma.coverage" NAME="enigma Coverage Results" MODIFIED="1635268976907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

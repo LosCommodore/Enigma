@@ -103,10 +103,7 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
 
     enigma = Enigma([plugBoard, r1, r2, r3, ukw])
 
-    console.print(r1)
-    console.print(r2)
-    console.print(r3)
-    console.print(ukw)
+    console.print(enigma)
 
     output_text = []
     message_pre = 'RTZ'

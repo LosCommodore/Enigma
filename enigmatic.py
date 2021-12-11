@@ -3,11 +3,13 @@ This module provides the functionality for simulating enigma machines
 """
 
 import numpy as np
+import abc
 from dataclasses import dataclass
+import rich
 from rich.table import Table
 from rich.console import Group
 from rich.panel import Panel
-from typing import Iterable, Protocol, Union
+from typing import Iterable, Union
 from collections import deque
 
 ALPHABET = tuple(chr(ord('A') + i) for i in range(26))  # Alphabet of the engima machine(s)
@@ -21,17 +23,24 @@ def _num2letter(num: int):
     return ALPHABET[num]
 
 
-class Scrambler(Protocol):
+class Scrambler(abc.ABC):
     """ A Scramber is any part which takes part in the encryption of the signal. For an Enigma machine these are the
     Rotors and the Plugboard """
 
     name: str
 
+    @abc.abstractmethod
     def route(self, letter: int) -> int:
         """ Forward routing of a letter trouth the Scrambler """
 
+    @abc.abstractmethod
     def inv_route(self, letter: int) -> int:
         """ Backwarts routing of a letter trouth the Scrambler """
+
+    def __rich_console__(self, console: rich.console.Console,
+                         options: rich.console.ConsoleOptions) -> rich.console.RenderResult:
+
+        yield self.__str__()
 
 
 @dataclass(frozen=True)
@@ -39,7 +48,7 @@ class WheelSpec:
     name: str
     wiring: str
     is_rotor: bool  # rotor or reflector (does not move)
-    notches: tuple[str, ...]  = tuple()  # Übertragskerben
+    notches: tuple[str, ...] = tuple()  # Übertragskerben
 
     def __post_init__(self):
         if sorted(self.wiring) != sorted(ALPHABET):
@@ -97,7 +106,8 @@ class Wheel(Scrambler):
 
         return "\n".join(my_str)
 
-    def __rich__(self):
+    def __rich_console__(self, console: rich.console.Console,
+                         options: rich.console.ConsoleOptions) -> rich.console.RenderResult:
         table = Table(padding=(0, 0))
         table.add_column('Absolute')
         for letter in ALPHABET:
@@ -121,7 +131,7 @@ class Wheel(Scrambler):
                       f"Notches: {self._spec.notches}")
 
         group = Group(Panel(properties, expand=False), table)
-        return Panel(group, title=f"[red]Rotor: {self._spec.name}", expand=False)
+        yield Panel(group, title=f"[red]Rotor: {self._spec.name}", expand=False)
 
 
 class PlugBoard(Scrambler):
@@ -152,6 +162,10 @@ class PlugBoard(Scrambler):
     def __repr__(self):
         my_str = [f"Cables: {self.cables}"]
         return "\n".join(my_str)
+
+    def __rich_console__(self, console: rich.console.Console,
+                         options: rich.console.ConsoleOptions) -> rich.console.RenderResult:
+        yield self.__str__()
 
 
 @dataclass(frozen=True)
@@ -228,3 +242,12 @@ class Enigma:
         my_str = [f"Enigma, Pos: {self.position}"]
 
         return "\n".join(my_str)
+
+    def __rich__(self):
+        table = Table()
+        table.add_column('Component')
+        table.add_column('Properties')
+        for s in self.scramblers:
+            table.add_row(s.name, s)
+
+        return table
