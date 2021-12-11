@@ -245,9 +245,40 @@ class Enigma:
 
     def __rich__(self):
         table = Table()
-        table.add_column('Component')
-        table.add_column('Properties')
-        for s in self.scramblers:
-            table.add_row(s.name, s)
+        if not self.memory:
+            table.add_column('Component')
+            table.add_column('Routing')
+            for s in self.scramblers:
+                table.add_row(s.name, s)
+        else:
+            table.add_column('Component')
+            table.add_column('Routing')
+
+            m = self.memory[-1]
+            input_nr = _letters2num(m.key)[0]
+            table.add_row("Alphabet", "".join(ALPHABET))
+            table.add_row("", " "*input_nr + "[green]↓")
+
+            scr = self.scramblers.copy()
+
+            scr += reversed(self.scramblers[:-1])
+            symbol = "[green]↓"
+
+            for s, routing, in zip(scr, _letters2num(m.routing)):
+                if type(s) == PlugBoard:
+                    table.add_row("Plugboard","".join(ALPHABET))
+
+                elif type(s) == Wheel:
+                    rot = deque(ALPHABET)
+                    # noinspection PyUnresolvedReferences
+                    rot.rotate(s.total_rotation)
+                    table.add_row(s.name, "".join(rot))
+
+                else:
+                    table.add_row(s.name, s)
+
+                table.add_row("", " " * routing + symbol)
+
+            table.add_row("Alphabet", "".join(ALPHABET))
 
         return table

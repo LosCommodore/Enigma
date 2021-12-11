@@ -103,8 +103,6 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
 
     enigma = Enigma([plugBoard, r1, r2, r3, ukw])
 
-    console.print(enigma)
-
     output_text = []
     message_pre = 'RTZ'
     translation_pre = 'EWG'
@@ -114,6 +112,7 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
 
     output_text = ''.join(output_text)
 
+    console.print(enigma)
     console.print(enigma.memory)
 
     assert output_text == translation_pre
