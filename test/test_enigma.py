@@ -1,6 +1,5 @@
 import pytest
 import enigmatic
-from enigmatic import WheelSpec, Wheel, PlugBoard, Enigma
 import random
 from rich.console import Console
 
@@ -78,7 +77,7 @@ def test_real_enigma():
     console.print(enigma.memory)
 
 
-def test_type_message():
+def test_type_wiki_message():
     message = """XYOWN LJPQH SVDWC LYXZQ FXHIU VWDJO BJNZX RCWEO TVNJC IONTF
 QNSXW ISXKH JDAGD JVAKU KVMJA JHSZQ QJHZO IAVZO WMSCK ASRDN
 XKKSR FHCXC MPJGX YIJCC KISYY SHETX VVOVD QLZYT NJXNU WKZRX
@@ -94,29 +93,13 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
 
     translation = translation.replace('\n', '').upper()
 
-    plugBoard = PlugBoard(('AD', 'CN', 'ET', 'FL', 'GI', 'JV', 'KZ', 'PU', 'QY', 'WX'))
-
-    # Enigma I
-    rot_I     = WheelSpec('I',     'EKMFLGDQVZNTOWYHXUSPAIBRCJ', True, ('Q',))
-    rot_II    = WheelSpec('II',    'AJDKSIRUXBLHWTMCQGZNPYFVOE', True, ('E',))
-    rot_III   = WheelSpec('III',   'BDFHJLCPRTXVZNYEIWGAKMUSQO', True, ('V',))
-    rot_IV    = WheelSpec('IV',    'ESOVPZJAYQUIRHXLNFTGKDCMWB', True, ('J',))
-    whl_etw   = WheelSpec('etw',   'ABCDEFGHIJKLMNOPQRSTUVWXYZ', False)
-    whl_ukw_b = WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT', False)
-
-    etw = Wheel(whl_etw)
-
     # Tagesschlüssel:
     # - Walzenlage: B I IV III
     # - Ringstellung 16 26 08
-
-    # Benutzer denkt sich eine zufällige Grundstellung aus:
-    r1 = Wheel(rot_I,  16, "Q")
-    r2 = Wheel(rot_IV, 26, "W")
-    r3 = Wheel(rot_III, 8, "E")
-    ukw = Wheel(whl_ukw_b)
-
-    enigma = Enigma([plugBoard, r1, r2, r3, ukw])
+    enigma = enigmatic.RealEnigma(['I', 'IV', 'III', 'ukw_b'])
+    enigma.plugboard.cables = ('AD', 'CN', 'ET', 'FL', 'GI', 'JV', 'KZ', 'PU', 'QY', 'WX')
+    enigma.wheel_rotations = "QWE"
+    enigma.ring_positions = [16, 26, 8]
 
     output_text = []
     message_pre = 'RTZ'
