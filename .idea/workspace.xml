@@ -281,7 +281,9 @@
       <workItem from="1638719169996" duration="3474000" />
       <workItem from="1639211055309" duration="6252000" />
       <workItem from="1639220341308" duration="1647000" />
-      <workItem from="1639226879461" duration="3285000" />
+      <workItem from="1639226879461" duration="3377000" />
+      <workItem from="1639240969752" duration="12000" />
+      <workItem from="1639241061845" duration="3571000" />
     </task>
     <task id="LOCAL-00001" summary="Pycharm">
       <created>1580660859595</created>
@@ -451,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639217313741</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="first korrekt message">
+      <created>1639230250958</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1639230250958</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,7 +490,8 @@
     <MESSAGE value="bugfix" />
     <MESSAGE value="fixing" />
     <MESSAGE value="rich" />
-    <option name="LAST_COMMIT_MESSAGE" value="rich" />
+    <MESSAGE value="first korrekt message" />
+    <option name="LAST_COMMIT_MESSAGE" value="first korrekt message" />
   </component>
   <component name="WindowStateProjectService">
     <state x="509" y="237" key="#Notifications" timestamp="1638685288945">
@@ -508,38 +518,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="550" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1637403886379" />
-    <state width="1493" height="328" key="GridCell.Tab.0.bottom" timestamp="1639230172080">
+    <state width="1493" height="593" key="GridCell.Tab.0.bottom" timestamp="1639230285700">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="328" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639230172080" />
-    <state width="1493" height="328" key="GridCell.Tab.0.center" timestamp="1639230172080">
+    <state width="1493" height="593" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639230285700" />
+    <state width="1493" height="593" key="GridCell.Tab.0.center" timestamp="1639230285699">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="328" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1639230172080" />
-    <state width="1493" height="328" key="GridCell.Tab.0.left" timestamp="1639230172080">
+    <state width="1493" height="593" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1639230285699" />
+    <state width="1493" height="593" key="GridCell.Tab.0.left" timestamp="1639230285699">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="328" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1639230172080" />
-    <state width="1493" height="328" key="GridCell.Tab.0.right" timestamp="1639230172080">
+    <state width="1493" height="593" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1639230285699" />
+    <state width="1493" height="593" key="GridCell.Tab.0.right" timestamp="1639230285700">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="328" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1639230172080" />
-    <state width="1493" height="328" key="GridCell.Tab.1.bottom" timestamp="1639230171968">
+    <state width="1493" height="593" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1639230285700" />
+    <state width="1493" height="593" key="GridCell.Tab.1.bottom" timestamp="1639230285700">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="328" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639230171968" />
-    <state width="1493" height="328" key="GridCell.Tab.1.center" timestamp="1639230171968">
+    <state width="1493" height="593" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639230285700" />
+    <state width="1493" height="593" key="GridCell.Tab.1.center" timestamp="1639230285700">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="328" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1639230171968" />
-    <state width="1493" height="328" key="GridCell.Tab.1.left" timestamp="1639230171968">
+    <state width="1493" height="593" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1639230285700" />
+    <state width="1493" height="593" key="GridCell.Tab.1.left" timestamp="1639230285700">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="328" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1639230171968" />
-    <state width="1493" height="328" key="GridCell.Tab.1.right" timestamp="1639230171968">
+    <state width="1493" height="593" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1639230285700" />
+    <state width="1493" height="593" key="GridCell.Tab.1.right" timestamp="1639230285700">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="328" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1639230171968" />
+    <state width="1493" height="593" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1639230285700" />
     <state x="279" y="58" key="SettingsEditor" timestamp="1639227659004">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -548,10 +558,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="491" y="155" width="549" height="524" key="StructurePopup/0.0.1536.824@0.0.1536.824" timestamp="1639228809124" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1639215700123">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1639242381079">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1639215700123" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1639242381079" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Enigma$test.coverage" NAME="test Coverage Results" MODIFIED="1636181481392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
@@ -562,7 +572,7 @@
     <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_enigma_py.coverage" NAME="pytest in test_enigma.py Coverage Results" MODIFIED="1638697028056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$enigma.coverage" NAME="enigma Coverage Results" MODIFIED="1635268976907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_unvalid_rotor_spec.coverage" NAME="pytest for test.test_unvalid_rotor_spec Coverage Results" MODIFIED="1636194631837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$run_enigma__1_.coverage" NAME="run_enigma (1) Coverage Results" MODIFIED="1639230171937" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$run_enigma__1_.coverage" NAME="run_enigma (1) Coverage Results" MODIFIED="1639244627941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_py.coverage" NAME="pytest in test.py Coverage Results" MODIFIED="1636282538402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$testKivy.coverage" NAME="testKivy Coverage Results" MODIFIED="1581870552246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_plug_board.coverage" NAME="pytest for test.test_plug_board Coverage Results" MODIFIED="1636281390688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />

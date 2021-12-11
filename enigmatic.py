@@ -251,3 +251,63 @@ class Enigma:
             table.add_row("Alphabet", "".join(ALPHABET))
 
             yield table
+
+
+class RealEnigma(Enigma):
+    def __init__(self, whl_specs: list[str]):
+        whls = [Wheel(WHEELS[x]) for x in whl_specs]
+        self.__plugboard = PlugBoard(tuple())
+        self.__wheels = whls
+
+        if not all([x.spec.is_rotor for x in whls[:-1]]):
+            raise ValueError("Real Enigma needs to have rotos for all but the last wheel")
+
+        if whls[-1].spec.is_rotor:
+            raise ValueError("Last Wheel has to be a stator for an Enigma3")
+
+        scramblers = [self.__plugboard, *whls]
+        enigma = super().__init__(scramblers)
+
+    @property
+    def plugboard(self) -> PlugBoard:
+        return self.__plugboard
+
+    @property
+    def wheels(self) -> list[Wheel]:
+        return self.__wheels
+
+    @property
+    def wheel_rotations(self):
+        rots = [_num2letter(x.rotation) for x in self.wheels]
+        return "".join(rots)
+
+    @wheel_rotations.setter
+    def wheel_rotations(self, rotations: str):
+
+        if len(rotations) != len(self.scramblers) - 1:
+            raise ValueError("Wrong number of positions")
+
+        for whl, rot in zip(self.wheels, rotations):
+            whl.rotation = rot
+
+    @property
+    def ring_positions(self) -> list[int]:
+        return [x.ring_position for x in self.wheels]
+
+    @ring_positions.setter
+    def ring_positions(self, pos: list[int]):
+
+        if len(pos) != len(self.scramblers) - 1:
+            raise ValueError("Wrong number of positions")
+
+        for whl, rot in zip(self.wheels, pos):
+            whl.ring_position = pos
+
+
+WHEELS = {'I': WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', True, ('Q',)),
+          'II': WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE', True, ('E',)),
+          'III': WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO', True, ('V',)),
+          'IV': WheelSpec('IV', 'ESOVPZJAYQUIRHXLNFTGKDCMWB', True, ('J',)),
+          'etw': WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', False),
+          'ukw_b': WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT', False)
+          }
