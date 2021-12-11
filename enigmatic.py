@@ -5,10 +5,8 @@ This module provides the functionality for simulating enigma machines
 import numpy as np
 import abc
 from dataclasses import dataclass
-import rich
+import rich.console
 from rich.table import Table
-from rich.console import Group
-from rich.panel import Panel
 from typing import Iterable, Union
 from collections import deque
 
@@ -39,7 +37,6 @@ class Scrambler(abc.ABC):
 
     def __rich_console__(self, console: rich.console.Console,
                          options: rich.console.ConsoleOptions) -> rich.console.RenderResult:
-
         yield self.__str__()
 
 
@@ -63,7 +60,7 @@ class Wheel(Scrambler):
         self.ring_position = ring_position
 
         self._spec = spec
-        self._rotation = _letters2num(rotation)[0] - 1  # example: "B" => rotation=1
+        self._rotation = _letters2num(rotation)[0]
 
         mapping = _letters2num(self._spec.wiring)
         self._mapping_rel = tuple(m - i for i, m in enumerate(mapping))
@@ -98,40 +95,9 @@ class Wheel(Scrambler):
         return self.rotation in set(_letters2num(self._spec.notches))
 
     def __str__(self):
-        my_str = [f"Name of Rotor: {self._spec.name}",
-                  f"Wiring: {self._spec.wiring}",
-                  f"RingPosition: {self.ring_position}",
-                  f"Rotation: {self.rotation}",
-                  f"Notches: {self._spec.notches}"]
+        my_str = f"Pos: {_num2letter(self.rotation)} Ring: {self.ring_position}  Wiring: {self._spec.wiring} Notch: {self._spec.notches}"
 
-        return "\n".join(my_str)
-
-    def __rich_console__(self, console: rich.console.Console,
-                         options: rich.console.ConsoleOptions) -> rich.console.RenderResult:
-        table = Table(padding=(0, 0))
-        table.add_column('Absolute')
-        for letter in ALPHABET:
-            table.add_column(letter.upper(), justify='center')
-
-        row = [f'Spec: wiring'] + list(self._spec.wiring)
-        table.add_row(*row)
-
-        rel = [f"{m:+03}" for m in self._mapping_rel]
-        row = [f'Spec: relative'] + rel
-        table.add_row(*row)
-
-        relative_rot = deque(rel)
-        relative_rot.rotate(self.total_rotation)
-        row = [f'Total rotation {self.total_rotation:+03}'] + list(relative_rot)
-        table.add_row(*row)
-
-        properties = (f"Name of rotor: {self._spec.name}\n"
-                      f"Ring position: {self.ring_position}\n"
-                      f"Rotation: {self.rotation}\n"
-                      f"Notches: {self._spec.notches}")
-
-        group = Group(Panel(properties, expand=False), table)
-        yield Panel(group, title=f"[red]Rotor: {self._spec.name}", expand=False)
+        return my_str
 
 
 class PlugBoard(Scrambler):
@@ -163,16 +129,6 @@ class PlugBoard(Scrambler):
         my_str = [f"Cables: {self.cables}"]
         return "\n".join(my_str)
 
-    def __rich_console__(self, console: rich.console.Console,
-                         options: rich.console.ConsoleOptions) -> rich.console.RenderResult:
-        yield self.__str__()
-
-
-@dataclass(frozen=True)
-class EnigmaMemory:
-    key: str
-    routing: list[str]
-
 
 class Enigma:
     def __init__(self, scramblers: list[Scrambler], max_memory: int = 100):
@@ -185,7 +141,7 @@ class Enigma:
         # with cog-wheels rather than by pawls and rachets. These machines do not suffer from the double stepping
         # anomaly and behave exactly like the odometer of a car.
         self.doube_step = True
-        self.__memory: deque[EnigmaMemory] = deque([], maxlen=max_memory)
+        self.__memory: deque[list[str]] = deque([], maxlen=max_memory)
 
     @property
     def memory(self):
@@ -218,7 +174,7 @@ class Enigma:
             current_key = route(current_key)
             routing.append(current_key)
 
-        self.memory.append(EnigmaMemory(key, [_num2letter(x) for x in routing]))
+        self.memory.append([_num2letter(x) for x in routing])
 
         return _num2letter(routing[-1])
 
@@ -243,37 +199,50 @@ class Enigma:
 
         return "\n".join(my_str)
 
-    def __rich__(self):
-        table = Table()
+    def __rich_console__(self, console: rich.console.Console,
+                         options: rich.console.ConsoleOptions) -> rich.console.RenderResult:
+
         if not self.memory:
+            table = Table()
             table.add_column('Component')
             table.add_column('Routing')
             for s in self.scramblers:
                 table.add_row(s.name, s)
+
+            yield table
         else:
+            table = Table()
+            table.add_column('Component')
+            table.add_column('State')
+
+            for s in self.scramblers:
+                table.add_row(s.name, s)
+
+            yield table
+
+            table = Table()
             table.add_column('Component')
             table.add_column('Routing')
 
             m = self.memory[-1]
-            input_nr = _letters2num(m.key)[0]
+            input_nr = _letters2num(m[0])[0]
             table.add_row("Alphabet", "".join(ALPHABET))
-            table.add_row("", " "*input_nr + "[green]↓")
+            table.add_row("", " " * input_nr + "[green]↓")
 
             scr = self.scramblers.copy()
 
             scr += reversed(self.scramblers[:-1])
             symbol = "[green]↓"
 
-            for s, routing, in zip(scr, _letters2num(m.routing)):
+            for s, routing, in zip(scr, _letters2num(m[1:])):
                 if type(s) == PlugBoard:
-                    table.add_row("Plugboard","".join(ALPHABET))
+                    table.add_row("Plugboard", "".join(ALPHABET))
 
                 elif type(s) == Wheel:
                     rot = deque(ALPHABET)
                     # noinspection PyUnresolvedReferences
-                    rot.rotate(s.total_rotation)
+                    rot.rotate(-1 * s.total_rotation)
                     table.add_row(s.name, "".join(rot))
-
                 else:
                     table.add_row(s.name, s)
 
@@ -281,4 +250,4 @@ class Enigma:
 
             table.add_row("Alphabet", "".join(ALPHABET))
 
-        return table
+            yield table
