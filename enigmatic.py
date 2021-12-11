@@ -284,11 +284,11 @@ class RealEnigma(Enigma):
     @wheel_rotations.setter
     def wheel_rotations(self, rotations: str):
 
-        if len(rotations) != len(self.scramblers) - 1:
+        if len(rotations) != len(self.wheels) - 1:
             raise ValueError("Wrong number of positions")
 
         for whl, rot in zip(self.wheels, rotations):
-            whl.rotation = rot
+            whl.rotation = _letters2num(rot)[0]
 
     @property
     def ring_positions(self) -> list[int]:
@@ -297,11 +297,11 @@ class RealEnigma(Enigma):
     @ring_positions.setter
     def ring_positions(self, pos: list[int]):
 
-        if len(pos) != len(self.scramblers) - 1:
+        if len(pos) != len(self.wheels) - 1:
             raise ValueError("Wrong number of positions")
 
         for whl, rot in zip(self.wheels, pos):
-            whl.ring_position = pos
+            whl.ring_position = rot
 
 
 WHEELS = {'I': WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', True, ('Q',)),

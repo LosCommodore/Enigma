@@ -63,6 +63,21 @@ def test_rotor_symmetry():
         assert i == letter_out
 
 
+def test_real_enigma():
+    enigma = enigmatic.RealEnigma(['I', 'II', 'III', 'ukw_b'])
+
+    input_text = "hallodiesisteintest".upper()
+    output_text = []
+    for key in input_text:
+        char = enigma.press_key(key)
+        output_text.append(char)
+
+    output_text = ''.join(output_text)
+    assert output_text == "MTNCZEVKHZUDSOACOEF"
+    console.print(enigma)
+    console.print(enigma.memory)
+
+
 def test_type_message():
     message = """XYOWN LJPQH SVDWC LYXZQ FXHIU VWDJO BJNZX RCWEO TVNJC IONTF
 QNSXW ISXKH JDAGD JVAKU KVMJA JHSZQ QJHZO IAVZO WMSCK ASRDN
