@@ -255,7 +255,7 @@ class Enigma:
 
 class RealEnigma(Enigma):
     def __init__(self, whl_specs: list[str]):
-        whls = [Wheel(WHEELS[x]) for x in whl_specs]
+        whls = [Wheel(WHEELS[x]) for x in reversed(whl_specs)]
         self.__plugboard = PlugBoard(tuple())
         self.__wheels = whls
 
@@ -277,30 +277,34 @@ class RealEnigma(Enigma):
         return self.__wheels
 
     @property
+    def rotors(self) -> list[Wheel]:
+        return self.__wheels[:-1]
+
+    @property
     def wheel_rotations(self):
-        rots = [_num2letter(x.rotation) for x in self.wheels]
+        rots = [_num2letter(x.rotation) for x in reversed(self.rotors)]
         return "".join(rots)
 
     @wheel_rotations.setter
     def wheel_rotations(self, rotations: str):
 
-        if len(rotations) != len(self.wheels) - 1:
+        if len(rotations) != len(self.rotors):
             raise ValueError("Wrong number of positions")
 
-        for whl, rot in zip(self.wheels, rotations):
+        for whl, rot in zip(reversed(self.rotors), rotations):
             whl.rotation = _letters2num(rot)[0]
 
     @property
     def ring_positions(self) -> list[int]:
-        return [x.ring_position for x in self.wheels]
+        return [x.ring_position for x in reversed(self.wheels)]
 
     @ring_positions.setter
     def ring_positions(self, pos: list[int]):
 
-        if len(pos) != len(self.wheels) - 1:
+        if len(pos) != len(self.rotors):
             raise ValueError("Wrong number of positions")
 
-        for whl, rot in zip(self.wheels, pos):
+        for whl, rot in zip(reversed(self.rotors), pos):
             whl.ring_position = rot
 
 

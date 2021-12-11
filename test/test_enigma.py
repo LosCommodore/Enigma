@@ -63,7 +63,7 @@ def test_rotor_symmetry():
 
 
 def test_real_enigma():
-    enigma = enigmatic.RealEnigma(['I', 'II', 'III', 'ukw_b'])
+    enigma = enigmatic.RealEnigma(['ukw_b', 'III', 'II', 'I'])
 
     input_text = "hallodiesisteintest".upper()
     output_text = []
@@ -96,8 +96,8 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
     # Tagesschlüssel:
     # - Walzenlage: B I IV III
     # - Ringstellung 16 26 08
-    enigma = enigmatic.RealEnigma(['I', 'IV', 'III', 'ukw_b'])
-    enigma.plugboard.cables = ('AD', 'CN', 'ET', 'FL', 'GI', 'JV', 'KZ', 'PU', 'QY', 'WX')
+    enigma = enigmatic.RealEnigma(['ukw_b', 'I', 'IV', 'III'])
+    #enigma.plugboard.cables = ('AD', 'CN', 'ET', 'FL', 'GI', 'JV', 'KZ', 'PU', 'QY', 'WX')
     enigma.wheel_rotations = "QWE"
     enigma.ring_positions = [16, 26, 8]
 

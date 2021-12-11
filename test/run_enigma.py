@@ -5,12 +5,13 @@ from rich.console import Console
 console = Console(legacy_windows=False, color_system="truecolor", style="Black on bright_white")
 console.size = (200, 50)
 
-enigma = RealEnigma(['I', 'II', 'III', 'ukw_b'])
-enigma.wheel_rotations = 'AAA'
+enigma = RealEnigma(['ukw_b', 'I', 'IV', 'III'])
+# enigma.plugboard.cables = ('AD', 'CN', 'ET', 'FL', 'GI', 'JV', 'KZ', 'PU', 'QY', 'WX')
+enigma.wheel_rotations = "QWE"
 enigma.ring_positions = [1, 1, 1]
 
 output_text = []
-for key in "hallodiesisteintest".upper():
+for key in "r".upper():
     char = enigma.press_key(key)
     output_text.append(char)
 
