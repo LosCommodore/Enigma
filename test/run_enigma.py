@@ -1,5 +1,8 @@
 from enigmatic import RealEnigma
 from rich.console import Console
+import rich.traceback
+
+rich.traceback.install(show_locals=True)
 
 # console
 console = Console(legacy_windows=False, color_system="truecolor", style="Black on bright_white")

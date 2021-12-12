@@ -25,7 +25,8 @@ class Scrambler(abc.ABC):
     """ A Scramber is any part which takes part in the encryption of the signal. For an Enigma machine these are the
     Rotors and the Plugboard """
 
-    name: str
+    def __init__(self, name):
+        self.name = ""
 
     @abc.abstractmethod
     def route(self, letter: int) -> int:
@@ -61,7 +62,7 @@ class Wheel(Scrambler):
     """A rotor or reflector for the enigma machine """
 
     def __init__(self, spec: WheelSpec, ring_position: int = 1, rotation: str = "A"):
-        self.name: str = spec.name
+        super().__init__(spec.name)
         self.ring_position = ring_position
 
         self._spec = spec
@@ -108,8 +109,8 @@ class Wheel(Scrambler):
 
 class PlugBoard(Scrambler):
     def __init__(self, cables: tuple[str, ...]):
+        super().__init__("Plugboard")
         self.cables = cables
-        self.name = "Plugboard"
 
     @property
     def cables(self) -> tuple[str, ...]:

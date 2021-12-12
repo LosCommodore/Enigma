@@ -52,7 +52,7 @@ def test_create_rotor_spec():
 def test_rotor_move():
     print("")
 
-    routing = 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower()
+    routing = 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'
     spec = enigmatic.WheelSpec('I', routing, True, ('q',))
     rotor = enigmatic.Wheel(spec)
     len_alphabet = len(enigmatic.ALPHABET)
