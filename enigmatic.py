@@ -80,7 +80,8 @@ class Wheel(Scrambler):
 
     @property
     def total_rotation(self):
-        value = self.ring_position - 1 + self.rotation
+        #  Wird der Ring um eine Position weiter gestellt, wird statt Position B im Sichtfenster der Walze ein A angezeigt.
+        value = self.rotation - (self.ring_position - 1)
         return value % len(ALPHABET)
 
     def route(self, character: int) -> int:
