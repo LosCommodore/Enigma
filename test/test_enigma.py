@@ -78,7 +78,12 @@ def test_real_enigma():
 
 
 def test_type_wiki_message():
-    message = """XYOWN LJPQH SVDWC LYXZQ FXHIU VWDJO BJNZX RCWEO TVNJC IONTF
+    """
+    messsage described in:
+    https://de.wikipedia.org/wiki/Enigma_(Maschine)
+    """
+
+    message = """LJPQH SVDWC LYXZQ FXHIU VWDJO BJNZX RCWEO TVNJC IONTF
 QNSXW ISXKH JDAGD JVAKU KVMJA JHSZQ QJHZO IAVZO WMSCK ASRDN
 XKKSR FHCXC MPJGX YIJCC KISYY SHETX VVOVD QLZYT NJXNU WKZRX
 UJFXM BDIBR VMJKR HTCUJ QPTEE IYNYN JBEAQ JCLMU ODFWM ARQCF
@@ -94,17 +99,20 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
     translation = translation.replace('\n', '').upper()
 
     # Tagesschlüssel:
-    # - Walzenlage: B I IV III
-    # - Ringstellung 16 26 08
+    # Tag UKW Walzenlage Ringstellung ---- Steckerverbindungen ----    Kenngruppen
+    #  31  B  I   IV III   16 26 08   AD CN ET FL GI JV KZ PU QY WX  dmr now wxy bev
+    #
+    # Die Kenngruppe hat keine kryptologische Bedeutung,[49] sie dient dem Empfänger der Nachricht nur dazu, zu erkennen, dass die Nachricht wirklich für ihn bestimmt ist und auch befugt entschlüsselt werden kann.
+
     enigma = enigmatic.RealEnigma(['ukw_b', 'I', 'IV', 'III'])
-    #enigma.plugboard.cables = ('AD', 'CN', 'ET', 'FL', 'GI', 'JV', 'KZ', 'PU', 'QY', 'WX')
+    enigma.plugboard.cables = ('AD', 'CN', 'ET', 'FL', 'GI', 'JV', 'KZ', 'PU', 'QY', 'WX')
     enigma.wheel_rotations = "QWE"
     enigma.ring_positions = [16, 26, 8]
 
     output_text = []
-    message_pre = 'RTZ'
+    message_key = 'RTZ'
     translation_pre = 'EWG'
-    for key in message_pre:
+    for key in message_key:
         char = enigma.press_key(key)
         output_text.append(char)
 
@@ -114,3 +122,20 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
     console.print(enigma.memory)
 
     assert output_text == translation_pre
+
+    # Spruchkopf wird offen übertragen
+    # Uhrzeit - Anzahl zeichen - Zufällige Wahl + Ergebnis
+    # Kopf: 2220 – 204 – QWE EWG -
+
+    enigma.wheel_rotations = message_key
+    output_text = []
+    for key in translation:
+        char = enigma.press_key(key)
+        output_text.append(char)
+
+    output_text = ''.join(output_text)
+
+    console.print(enigma.memory)
+
+    assert output_text == message
+
