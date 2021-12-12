@@ -48,8 +48,13 @@ class WheelSpec:
     notches: tuple[str, ...] = tuple()  # Übertragskerben
 
     def __post_init__(self):
+        self.__dict__["wiring"] = self.wiring.upper()
+
         if sorted(self.wiring) != sorted(ALPHABET):
-            raise ValueError(r'Invalid rotor specification, invalid alphabet !')
+            raise ValueError(r'Invalid wheel specification, invalid alphabet !')
+
+        if len(self.wiring) != 26:
+            raise ValueError(r'Invalid length for wheel specification')
 
 
 class Wheel(Scrambler):
@@ -112,7 +117,12 @@ class PlugBoard(Scrambler):
 
     @cables.setter
     def cables(self, cables: tuple[str, ...]):
-        self._cables = tuple(cables)
+        cables = tuple(c.upper() for c in cables)
+        used_letters = "".join(cables)
+        if not all(x in ALPHABET for x in used_letters):
+            raise ValueError("Invalid letters for cables")
+
+        self._cables = cables
         self._mapping = list(range(len(ALPHABET)))
 
         for cable in self._cables:

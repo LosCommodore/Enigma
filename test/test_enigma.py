@@ -9,22 +9,39 @@ console.size = (200, 50)
 
 
 def test_plug_board():
-    cables = ('bz', 'fg')
+    cables = ('BZ', 'FG')
+    p = enigmatic.PlugBoard(cables)
 
-    p = enigmatic.PlugBoard(tuple())
-    assert p.route(0) == 0
-    assert p.route(20) == 20
+    # scheck for symmetry
+    for x in enigmatic._letters2num(enigmatic.ALPHABET):
+        assert x == p.inv_route(p.route(x))
 
-    p.cables = cables
     for cable in cables:
         i, o = enigmatic._letters2num(cable)
         assert p.route(i) == o
         assert p.route(o) == i
 
 
-def test_unvalid_rotor_spec():
-    with pytest.raises(Exception):
-        enigmatic.WheelSpec("testRotor", "ABC", False)
+def test_rotor_spec():
+    ok_spec = "EKMFLGDQVZNTOWYHXUSPAIBRCJ"
+
+    # check ok
+    enigmatic.WheelSpec("test", ok_spec, False)
+
+    # check conversion to upper
+    w = enigmatic.WheelSpec("test", ok_spec.lower(), False)
+    assert w.wiring.isupper()
+
+    # check wrong letter
+    err_spec = list(ok_spec)
+    err_spec[4] = "^"
+    err_spec = str(err_spec)
+    with pytest.raises(ValueError):
+        enigmatic.WheelSpec("testRotor", err_spec, False)
+
+    # wrong length
+    with pytest.raises(ValueError):
+        enigmatic.WheelSpec("testRotor", ok_spec[:-1], False)
 
 
 def test_create_rotor_spec():
