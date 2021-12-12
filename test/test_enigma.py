@@ -82,14 +82,7 @@ def test_rotor_symmetry():
 def test_real_enigma():
     enigma = enigmatic.RealEnigma(['ukw_b', 'III', 'II', 'I'])
 
-    input_text = "hallodiesisteintest".upper()
-    output_text = []
-    for key in input_text:
-        char = enigma.press_key(key)
-        output_text.append(char)
-
-    output_text = ''.join(output_text)
-    assert output_text == "MTNCZEVKHZUDSOACOEF"
+    assert enigma.type("hallodiesisteintest") == "MTNCZEVKHZUDSOACOEF"
     console.print(enigma)
     console.print(enigma.memory)
 
@@ -126,17 +119,9 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
     enigma.wheel_rotations = "QWE"
     enigma.ring_positions = [16, 26, 8]
 
-    output_text = []
     message_key = 'RTZ'
     translation_pre = 'EWG'
-    for key in message_key:
-        char = enigma.press_key(key)
-        output_text.append(char)
-
-    output_text = ''.join(output_text)
-
-    console.print(enigma)
-    console.print(enigma.memory)
+    output_text = enigma.type(message_key)
 
     assert output_text == translation_pre
 
@@ -145,14 +130,6 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
     # Kopf: 2220 – 204 – QWE EWG -
 
     enigma.wheel_rotations = message_key
-    output_text = []
-    for key in translation:
-        char = enigma.press_key(key)
-        output_text.append(char)
-
-    output_text = ''.join(output_text)
-
-    console.print(enigma.memory)
-
+    output_text = enigma.type(translation)
     assert output_text == message
 

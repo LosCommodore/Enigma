@@ -10,12 +10,8 @@ enigma = RealEnigma(['ukw_b', 'III', 'II', 'I'])
 enigma.wheel_rotations = "AAA"
 enigma.ring_positions = [1, 1, 5]
 
-output_text = []
-for key in "hallodiesisteinTest".upper():
-    char = enigma.press_key(key)
-    output_text.append(char)
+output_text = enigma.type("hallodiesisteinTest")
 
-output_text = ''.join(output_text)
 print(output_text)
 console.print(enigma)
 console.print(enigma.memory)
