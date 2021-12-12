@@ -1,3 +1,4 @@
+import time
 import pytest
 import enigmatic
 import random
@@ -49,6 +50,18 @@ def test_create_rotor_spec():
     print(spec)
 
 
+def test_rotor_symmetry():
+    wiring = list(enigmatic.ALPHABET)
+    random.shuffle(wiring)
+    wiring = "".join(str(x) for x in wiring)
+    spec = enigmatic.WheelSpec("r1", wiring, False)
+    r = enigmatic.Wheel(spec)
+
+    for i, _ in enumerate(enigmatic.ALPHABET):
+        letter_out = r.inv_route(r.route(i))
+        assert i == letter_out
+
+
 def test_rotor_move():
     print("")
 
@@ -67,16 +80,35 @@ def test_rotor_move():
             assert o == enigmatic._letters2num(expected_letter)[0] + rot
 
 
-def test_rotor_symmetry():
-    wiring = list(enigmatic.ALPHABET)
-    random.shuffle(wiring)
-    wiring = "".join(str(x) for x in wiring)
-    spec = enigmatic.WheelSpec("r1", wiring, False)
-    r = enigmatic.Wheel(spec)
+def test_double_step():
+    # „Royal Flags Wave Kings Above“
+    # https://de.wikipedia.org/wiki/Enigma_(Maschine)#Anomalie
 
-    for i, _ in enumerate(enigmatic.ALPHABET):
-        letter_out = r.inv_route(r.route(i))
-        assert i == letter_out
+    enigma = enigmatic.RealEnigma(['ukw_b', 'I', 'II', 'III'])
+    enigma.wheel_rotations = "ADU"
+
+    enigma.type("x")
+    assert enigma.wheel_rotations == "ADV"
+
+    enigma.type("x")
+    assert enigma.wheel_rotations == "AEW"
+
+    enigma.type("x")
+    assert enigma.wheel_rotations == "BFX"
+
+
+def test_enigma_period():
+    # https://de.wikipedia.org/wiki/Enigma_(Maschine)#Schl%C3%BCsselraum
+    # Period = 26*25*26 = 16.900 Walzenstellungen
+    enigma = enigmatic.RealEnigma(['ukw_b', 'I', 'II', 'III'])
+
+    t = time.perf_counter()
+    text = enigma.type("x" * 3 * 16900)
+    dt = time.perf_counter() - t
+
+    print(f"elapsed time: {dt}")
+
+    assert text[:16900] == text[16900:2*16900] == text[2*16900:]
 
 
 def test_real_enigma():
