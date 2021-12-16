@@ -45,7 +45,6 @@ class Scrambler(abc.ABC):
 class WheelSpec:
     name: str
     wiring: str
-    is_rotor: bool  # rotor or reflector (does not move)
     notches: tuple[str, ...] = tuple()  # Übertragskerben
 
     def __post_init__(self):
@@ -56,6 +55,10 @@ class WheelSpec:
 
         if len(self.wiring) != 26:
             raise ValueError(r'Invalid length for wheel specification')
+
+    @property
+    def is_rotor(self) -> bool:
+        return len(self.notches) > 0
 
 
 class Wheel(Scrambler):
@@ -142,7 +145,7 @@ class PlugBoard(Scrambler):
         return "\n".join(my_str)
 
 
-class Enigma:
+class GeneralEnigma:
     def __init__(self, scramblers: list[Scrambler], max_memory: int = 100):
         if len(set(scramblers)) != len(scramblers):
             raise ValueError("All Scrambles have to be unique objects")
@@ -161,7 +164,7 @@ class Enigma:
 
     @property
     def position(self):
-        pos = [_num2letter(x.rotation) for x in self.scramblers if isinstance(x, Wheel) and not x.spec.is_rotor]
+        pos = [_num2letter(x.rotation) for x in self.scramblers if isinstance(x, Wheel) and x.spec.is_rotor]
         return pos
 
     def _route_scramblers(self) -> Union[Scrambler.route, Scrambler.inv_route]:
@@ -271,7 +274,7 @@ class Enigma:
             yield table
 
 
-class RealEnigma(Enigma):
+class Enigma(GeneralEnigma):
     def __init__(self, whl_specs: list[str]):
         whls = [Wheel(WHEELS[x]) for x in reversed(whl_specs)]
         self.__plugboard = PlugBoard(tuple())
@@ -326,10 +329,10 @@ class RealEnigma(Enigma):
             whl.ring_position = rot
 
 
-WHEELS = {'I': WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', True, ('Q',)),
-          'II': WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE', True, ('E',)),
-          'III': WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO', True, ('V',)),
-          'IV': WheelSpec('IV', 'ESOVPZJAYQUIRHXLNFTGKDCMWB', True, ('J',)),
-          'etw': WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', False),
-          'ukw_b': WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT', False)
+WHEELS = {'I': WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', ('Q',)),
+          'II': WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE', ('E',)),
+          'III': WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO', ('V',)),
+          'IV': WheelSpec('IV', 'ESOVPZJAYQUIRHXLNFTGKDCMWB', ('J',)),
+          'etw': WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
+          'ukw_b': WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT')
           }

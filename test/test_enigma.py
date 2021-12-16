@@ -27,10 +27,10 @@ def test_rotor_spec():
     ok_spec = "EKMFLGDQVZNTOWYHXUSPAIBRCJ"
 
     # check ok
-    enigmatic.WheelSpec("test", ok_spec, False)
+    enigmatic.WheelSpec("test", ok_spec)
 
     # check conversion to upper
-    w = enigmatic.WheelSpec("test", ok_spec.lower(), False)
+    w = enigmatic.WheelSpec("test", ok_spec.lower())
     assert w.wiring.isupper()
 
     # check wrong letter
@@ -38,15 +38,15 @@ def test_rotor_spec():
     err_spec[4] = "^"
     err_spec = str(err_spec)
     with pytest.raises(ValueError):
-        enigmatic.WheelSpec("testRotor", err_spec, False)
+        enigmatic.WheelSpec("testRotor", err_spec)
 
     # wrong length
     with pytest.raises(ValueError):
-        enigmatic.WheelSpec("testRotor", ok_spec[:-1], False)
+        enigmatic.WheelSpec("testRotor", ok_spec[:-1])
 
 
 def test_create_rotor_spec():
-    spec = enigmatic.WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(), True, ('q',))
+    spec = enigmatic.WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(), ('q',))
     print(spec)
 
 
@@ -54,7 +54,7 @@ def test_rotor_symmetry():
     wiring = list(enigmatic.ALPHABET)
     random.shuffle(wiring)
     wiring = "".join(str(x) for x in wiring)
-    spec = enigmatic.WheelSpec("r1", wiring, False)
+    spec = enigmatic.WheelSpec("r1", wiring)
     r = enigmatic.Wheel(spec)
 
     for i, _ in enumerate(enigmatic.ALPHABET):
@@ -66,7 +66,7 @@ def test_rotor_move():
     print("")
 
     routing = 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'
-    spec = enigmatic.WheelSpec('I', routing, True, ('q',))
+    spec = enigmatic.WheelSpec('I', routing, ('q',))
     rotor = enigmatic.Wheel(spec)
     len_alphabet = len(enigmatic.ALPHABET)
 
@@ -84,7 +84,7 @@ def test_double_step():
     # „Royal Flags Wave Kings Above“
     # https://de.wikipedia.org/wiki/Enigma_(Maschine)#Anomalie
 
-    enigma = enigmatic.RealEnigma(['ukw_b', 'I', 'II', 'III'])
+    enigma = enigmatic.Enigma(['ukw_b', 'I', 'II', 'III'])
     enigma.wheel_rotations = "ADU"
 
     enigma.type("x")
@@ -100,7 +100,7 @@ def test_double_step():
 def test_enigma_period():
     # https://de.wikipedia.org/wiki/Enigma_(Maschine)#Schl%C3%BCsselraum
     # Period = 26*25*26 = 16.900 Walzenstellungen
-    enigma = enigmatic.RealEnigma(['ukw_b', 'I', 'II', 'III'])
+    enigma = enigmatic.Enigma(['ukw_b', 'I', 'II', 'III'])
 
     t = time.perf_counter()
     text = enigma.type("x" * 3 * 16900)
@@ -112,7 +112,7 @@ def test_enigma_period():
 
 
 def test_real_enigma():
-    enigma = enigmatic.RealEnigma(['ukw_b', 'III', 'II', 'I'])
+    enigma = enigmatic.Enigma(['ukw_b', 'III', 'II', 'I'])
 
     assert enigma.type("hallodiesisteintest") == "MTNCZEVKHZUDSOACOEF"
     console.print(enigma)
@@ -146,7 +146,7 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
     #
     # Die Kenngruppe hat keine kryptologische Bedeutung,[49] sie dient dem Empfänger der Nachricht nur dazu, zu erkennen, dass die Nachricht wirklich für ihn bestimmt ist und auch befugt entschlüsselt werden kann.
 
-    enigma = enigmatic.RealEnigma(['ukw_b', 'I', 'IV', 'III'])
+    enigma = enigmatic.Enigma(['ukw_b', 'I', 'IV', 'III'])
     enigma.plugboard.cables = ('AD', 'CN', 'ET', 'FL', 'GI', 'JV', 'KZ', 'PU', 'QY', 'WX')
     enigma.wheel_rotations = "QWE"
     enigma.ring_positions = [16, 26, 8]
@@ -164,4 +164,3 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
     enigma.wheel_rotations = message_key
     output_text = enigma.type(translation)
     assert output_text == message
-
