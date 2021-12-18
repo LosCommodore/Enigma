@@ -23,7 +23,7 @@ def test_plug_board():
         assert p.route(o) == i
 
 
-def test_rotor_spec():
+def test_wheel_spec_constructor():
     ok_spec = "EKMFLGDQVZNTOWYHXUSPAIBRCJ"
 
     # check ok
@@ -45,11 +45,6 @@ def test_rotor_spec():
         enigmatic.WheelSpec("testRotor", ok_spec[:-1])
 
 
-def test_create_rotor_spec():
-    spec = enigmatic.WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.lower(), ('q',))
-    print(spec)
-
-
 def test_rotor_symmetry():
     wiring = list(enigmatic.ALPHABET)
     random.shuffle(wiring)
@@ -62,48 +57,35 @@ def test_rotor_symmetry():
         assert i == letter_out
 
 
-def test_rotor_move():
-    print("")
-
-    routing = 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'
-    spec = enigmatic.WheelSpec('I', routing, ('q',))
-    rotor = enigmatic.Wheel(spec)
-    len_alphabet = len(enigmatic.ALPHABET)
-
-    for rot in range(len_alphabet * 2):
-        rotor.rotation = rot
-        console.print(rotor)
-
-        for i in range(len_alphabet):
-            o = rotor.route(i)
-            expected_letter = routing[(i + rot) % len_alphabet]
-            assert o == enigmatic._letters2num(expected_letter)[0] + rot
-
-
 def test_double_step():
-    # „Royal Flags Wave Kings Above“
-    # https://de.wikipedia.org/wiki/Enigma_(Maschine)#Anomalie
+    """ Test the double step feature
+    „Royal Flags Wave Kings Above“
+    https://de.wikipedia.org/wiki/Enigma_(Maschine)#Anomalie
+    """
 
     enigma = enigmatic.Enigma(['ukw_b', 'I', 'II', 'III'])
     enigma.wheel_rotations = "ADU"
 
-    enigma.type("x")
+    enigma.write("x")
     assert enigma.wheel_rotations == "ADV"
 
-    enigma.type("x")
+    enigma.write("x")
     assert enigma.wheel_rotations == "AEW"
 
-    enigma.type("x")
+    enigma.write("x")
     assert enigma.wheel_rotations == "BFX"
 
 
 def test_enigma_period():
-    # https://de.wikipedia.org/wiki/Enigma_(Maschine)#Schl%C3%BCsselraum
-    # Period = 26*25*26 = 16.900 Walzenstellungen
+    """
+    https://de.wikipedia.org/wiki/Enigma_(Maschine)#Schl%C3%BCsselraum
+    Period = 26*25*26 = 16.900 Walzenstellungen
+    """
+
     enigma = enigmatic.Enigma(['ukw_b', 'I', 'II', 'III'])
 
     t = time.perf_counter()
-    text = enigma.type("x" * 3 * 16900)
+    text = enigma.write("x" * 3 * 16900)
     dt = time.perf_counter() - t
 
     print(f"elapsed time: {dt}")
@@ -111,10 +93,10 @@ def test_enigma_period():
     assert text[:16900] == text[16900:2*16900] == text[2*16900:]
 
 
-def test_real_enigma():
+def test_enigma_typing():
     enigma = enigmatic.Enigma(['ukw_b', 'III', 'II', 'I'])
 
-    assert enigma.type("hallodiesisteintest") == "MTNCZEVKHZUDSOACOEF"
+    assert enigma.write("hallodiesisteintest") == "MTNCZEVKHZUDSOACOEF"
     console.print(enigma)
     console.print(enigma.memory)
 
@@ -129,16 +111,12 @@ def test_type_wiki_message():
 QNSXW ISXKH JDAGD JVAKU KVMJA JHSZQ QJHZO IAVZO WMSCK ASRDN
 XKKSR FHCXC MPJGX YIJCC KISYY SHETX VVOVD QLZYT NJXNU WKZRX
 UJFXM BDIBR VMJKR HTCUJ QPTEE IYNYN JBEAQ JCLMU ODFWM ARQCF
-OBWN"""
-
-    message = message.replace(' ', '').replace('\n', '')
+OBWN""".replace(' ', '').replace('\n', '')
 
     translation = """dasoberkommandoderwehrmaqtgibtbekanntxaachenxaache
 nxistgerettetxdurqgebuendelteneinsatzderhilfskraef
 tekonntediebedrohungabgewendetunddierettungderstad
 tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
-
-    translation = translation.replace('\n', '').upper()
 
     # Tagesschlüssel:
     # Tag UKW Walzenlage Ringstellung ---- Steckerverbindungen ----    Kenngruppen
@@ -152,15 +130,11 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
     enigma.ring_positions = [16, 26, 8]
 
     message_key = 'RTZ'
-    translation_pre = 'EWG'
-    output_text = enigma.type(message_key)
-
-    assert output_text == translation_pre
+    assert enigma.write(message_key) == 'EWG'
 
     # Spruchkopf wird offen übertragen
     # Uhrzeit - Anzahl zeichen - Zufällige Wahl + Ergebnis
     # Kopf: 2220 – 204 – QWE EWG -
 
     enigma.wheel_rotations = message_key
-    output_text = enigma.type(translation)
-    assert output_text == message
+    assert enigma.write(translation) == message

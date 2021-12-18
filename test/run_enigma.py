@@ -13,7 +13,7 @@ enigma = Enigma(['ukw_b', 'III', 'II', 'I'])
 enigma.wheel_rotations = "AAA"
 enigma.ring_positions = [1, 1, 5]
 
-output_text = enigma.type("hallodiesisteinTest")
+output_text = enigma.write("hallodiesisteinTest")
 
 print(output_text)
 console.print(enigma)

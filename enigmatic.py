@@ -209,8 +209,9 @@ class GeneralEnigma:
         for rotor in do_rotate:
             rotor.rotation += 1
 
-    def type(self, text: str) -> str:
-        input_text = text.replace('\n', '').upper()
+    def write(self, text: str) -> str:
+        input_text = text.upper().replace(' ', '').replace('\n', '')
+
         output_text = [self.press_key(key) for key in input_text]
 
         return "".join(output_text)
