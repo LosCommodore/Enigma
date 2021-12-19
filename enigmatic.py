@@ -1,7 +1,7 @@
 """
 This module provides the functionality for simulating enigma machines
 """
-
+import enum
 import numpy as np
 import abc
 from dataclasses import dataclass
@@ -275,9 +275,17 @@ class GeneralEnigma:
             yield table
 
 
+@enum.unique
+class EnigmaVersion(enum.Enum):
+    CUSTOM = enum.auto()
+    M3 = enum.auto()
+    M4 = enum.auto()
+
+
 class Enigma(GeneralEnigma):
-    def __init__(self, whl_specs: list[str]):
+    def __init__(self, version: EnigmaVersion, whl_specs: list[str]):
         whls = [Wheel(WHEELS[x]) for x in reversed(whl_specs)]
+        self.__version = version
         self.__plugboard = PlugBoard(tuple())
         self.__wheels = whls
 
@@ -292,6 +300,10 @@ class Enigma(GeneralEnigma):
 
         scramblers = [self.__plugboard, *whls]
         enigma = super().__init__(scramblers)
+
+    @property
+    def version(self):
+        return self.__version
 
     @property
     def plugboard(self) -> PlugBoard:
