@@ -165,28 +165,21 @@ class Enigma:
     def __init__(self, whl_specs: list[Union[str, WheelSpec]], max_memory=100):
         self.__plugboard = PlugBoard(tuple())
 
-        wheels = []
-        for whl in whl_specs:
-            if isinstance(whl, WheelSpec):
-                wheels.append(whl)
-            elif isinstance(whl, str):
-                wheels.append(Wheel(WHEEL_SPECS[whl]))
+        self.__wheels: list[Wheel] = []
+        for spec in whl_specs:
+            if isinstance(spec, WheelSpec):
+                self.__wheels.append(Wheel(spec))
+            elif isinstance(spec, str):
+                self.__wheels.append(Wheel(WHEEL_SPECS[spec]))
 
-        if wheels[0].spec.is_rotor:
-            raise ValueError("Last Wheel has to be a stator for an enigma machine")
+        if self.__wheels[0].spec.is_rotor:
+            raise ValueError("Die first wheel has to be a stator for an enigma machine")
 
-        idx_is_rotor = np.where(np.array([x.spec.is_rotor for x in wheels]))
+        idx_is_rotor = np.where(np.array([x.spec.is_rotor for x in self.__wheels]))
         rotors_in_block = np.all(np.diff(idx_is_rotor) == 1)
 
         if not rotors_in_block:
             raise ValueError("No stators are allowed in between rotors")
-
-        self.__wheels = wheels
-
-        # Some Enigma machines, such as the Zählwerksmaschine A28 and the Enigma G, were driven by a gear mechanism
-        # with cog-wheels rather than by pawls and rachets. These machines do not suffer from the double stepping
-        # anomaly and behave exactly like the odometer of a car.
-        self.doube_step = True
 
         self.__memory: deque[list[str]] = deque([], maxlen=max_memory)
 
