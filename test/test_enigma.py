@@ -1,7 +1,7 @@
 import time
 import pytest
 import enigmatic
-from enigmatic import Enigma, EnigmaVersion
+from enigmatic import Enigma
 import random
 from rich.console import Console
 
@@ -64,7 +64,7 @@ def test_double_step():
     https://de.wikipedia.org/wiki/Enigma_(Maschine)#Anomalie
     """
 
-    enigma = Enigma(EnigmaVersion.M3, ['ukw_b', 'I', 'II', 'III'])
+    enigma = Enigma('M3', ['ukw_b', 'I', 'II', 'III'])
     enigma.wheel_rotations = "ADU"
 
     enigma.write("x")
@@ -83,7 +83,7 @@ def test_enigma_period():
     Period = 26*25*26 = 16.900 Walzenstellungen
     """
 
-    enigma = Enigma(EnigmaVersion.M3, ['ukw_b', 'I', 'II', 'III'])
+    enigma = Enigma('M3', ['ukw_b', 'I', 'II', 'III'])
 
     t = time.perf_counter()
     text = enigma.write("x" * 3 * 16900)
@@ -95,7 +95,7 @@ def test_enigma_period():
 
 
 def test_enigma_typing():
-    enigma = Enigma(EnigmaVersion.M3, ['ukw_b', 'III', 'II', 'I'])
+    enigma = Enigma('M3', ['ukw_b', 'III', 'II', 'I'])
 
     assert enigma.write("hallodiesisteintest") == "MTNCZEVKHZUDSOACOEF"
     console.print(enigma)
@@ -125,7 +125,7 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
     #
     # Die Kenngruppe hat keine kryptologische Bedeutung,[49] sie dient dem Empfänger der Nachricht nur dazu, zu erkennen, dass die Nachricht wirklich für ihn bestimmt ist und auch befugt entschlüsselt werden kann.
 
-    enigma = Enigma(EnigmaVersion.M3, ['ukw_b', 'I', 'IV', 'III'])
+    enigma = Enigma('M3', ['ukw_b', 'I', 'IV', 'III'])
     enigma.plugboard.cables = ('AD', 'CN', 'ET', 'FL', 'GI', 'JV', 'KZ', 'PU', 'QY', 'WX')
     enigma.wheel_rotations = "QWE"
     enigma.ring_positions = [16, 26, 8]

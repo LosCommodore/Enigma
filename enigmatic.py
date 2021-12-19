@@ -275,19 +275,31 @@ class GeneralEnigma:
             yield table
 
 
-@enum.unique
-class EnigmaVersion(enum.Enum):
-    CUSTOM = enum.auto()
-    M3 = enum.auto()
-    M4 = enum.auto()
+@dataclass(frozen=True)
+class EnigmaSpec:
+    name: str
+    num_rotors: int
+    num_stators: int
 
 
 class Enigma(GeneralEnigma):
-    def __init__(self, version: EnigmaVersion, whl_specs: list[str]):
-        whls = [Wheel(WHEELS[x]) for x in reversed(whl_specs)]
-        self.__version = version
-        self.__plugboard = PlugBoard(tuple())
+    def __init__(self, spec: Union[str, EnigmaSpec], whl_specs: list[Union[str, WheelSpec]]):
+        if isinstance(spec, EnigmaSpec):
+            self.__spec = EnigmaSpec
+        elif isinstance(spec, str):
+            self.__spec = ENIGMA_TYPES[spec]
+        else:
+            raise ValueError("Invalid type for enigma specification")
+
+        whls = []
+        for whl in reversed(whl_specs):
+            if isinstance(spec, WheelSpec):
+                whls.append(whl)
+            elif isinstance(spec, str):
+                whls.append(Wheel(WHEEL_SPECS[whl]))
+
         self.__wheels = whls
+        self.__plugboard = PlugBoard(tuple())
 
         if whls[-1].spec.is_rotor:
             raise ValueError("Last Wheel has to be a stator for an enigma machine")
@@ -302,8 +314,8 @@ class Enigma(GeneralEnigma):
         enigma = super().__init__(scramblers)
 
     @property
-    def version(self):
-        return self.__version
+    def spec(self):
+        return self.__spec
 
     @property
     def plugboard(self) -> PlugBoard:
@@ -345,10 +357,14 @@ class Enigma(GeneralEnigma):
             whl.ring_position = rot
 
 
-WHEELS = {'I': WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', ('Q',)),
-          'II': WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE', ('E',)),
-          'III': WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO', ('V',)),
-          'IV': WheelSpec('IV', 'ESOVPZJAYQUIRHXLNFTGKDCMWB', ('J',)),
-          'etw': WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
-          'ukw_b': WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT')
-          }
+WHEEL_SPECS = {'I': WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', ('Q',)),
+               'II': WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE', ('E',)),
+               'III': WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO', ('V',)),
+               'IV': WheelSpec('IV', 'ESOVPZJAYQUIRHXLNFTGKDCMWB', ('J',)),
+               'etw': WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
+               'ukw_b': WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT')
+               }
+
+
+ENIGMA_TYPES = {'M3': EnigmaSpec('M3', 3, 1),
+                'M4': EnigmaSpec('M4', 4, 1)}
