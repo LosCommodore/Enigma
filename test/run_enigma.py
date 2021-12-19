@@ -10,8 +10,8 @@ console.size = (200, 50)
 
 enigma = Enigma(['ukw_b', 'ukw_b', 'III', 'II', 'I'])
 # enigma.plugboard.cables = ('AD', 'CN', 'ET', 'FL', 'GI', 'JV', 'KZ', 'PU', 'QY', 'WX')
-enigma.wheel_rotations = "AABA"
-enigma.ring_positions = [1, 1, 5]
+enigma.wheel_rotations = "*AABA"
+enigma.ring_positions = "****E"
 
 output_text = enigma.write("hallodiesisteinTest")
 

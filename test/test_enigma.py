@@ -65,16 +65,16 @@ def test_double_step():
     """
 
     enigma = Enigma(['ukw_b', 'I', 'II', 'III'])
-    enigma.wheel_rotations = "ADU"
+    enigma.wheel_rotations = "*ADU"
 
     enigma.write("x")
-    assert enigma.wheel_rotations == "ADV"
+    assert enigma.wheel_rotations == "AADV"
 
     enigma.write("x")
-    assert enigma.wheel_rotations == "AEW"
+    assert enigma.wheel_rotations == "AAEW"
 
     enigma.write("x")
-    assert enigma.wheel_rotations == "BFX"
+    assert enigma.wheel_rotations == "ABFX"
 
 
 def test_enigma_period():
@@ -127,8 +127,8 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
 
     enigma = Enigma(['ukw_b', 'I', 'IV', 'III'])
     enigma.plugboard.cables = ('AD', 'CN', 'ET', 'FL', 'GI', 'JV', 'KZ', 'PU', 'QY', 'WX')
-    enigma.wheel_rotations = "QWE"
-    enigma.ring_positions = [16, 26, 8]
+    enigma.wheel_rotations = "*QWE"
+    enigma.ring_positions = [1, 16, 26, 8]
 
     message_key = 'RTZ'
     assert enigma.write(message_key) == 'EWG'
@@ -137,5 +137,5 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
     # Uhrzeit - Anzahl zeichen - Zufällige Wahl + Ergebnis
     # Kopf: 2220 – 204 – QWE EWG -
 
-    enigma.wheel_rotations = message_key
+    enigma.wheel_rotations = "*" + message_key
     assert enigma.write(translation) == message

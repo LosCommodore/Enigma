@@ -65,6 +65,7 @@ class Wheel(Scrambler):
 
     def __init__(self, spec: WheelSpec, ring_position: int = 1, rotation: str = "A"):
         super().__init__(spec.name)
+        self.__ring_position = 1
         self.ring_position = ring_position
 
         self._spec = spec
@@ -73,6 +74,22 @@ class Wheel(Scrambler):
         mapping = _letters2num(self._spec.wiring)
         self._mapping_rel = tuple(m - i for i, m in enumerate(mapping))
         self._mapping_rel_inv = tuple(m - i for i, m in enumerate(np.argsort(mapping)))
+
+    @property
+    def ring_position(self):
+        return self.__ring_position
+
+    @ring_position.setter
+    def ring_position(self, value: Union[int, str]):
+        if type(value) == int:
+            if not 1 <= value <= len(ALPHABET):
+                raise ValueError("Invalid ring position")
+            self.__ring_position = value
+        elif type(value) == str:
+            if value != "*":
+                self.__ring_position = _letters2num(value)[0]
+        else:
+            raise ValueError("Invalid ring position")
 
     @property
     def spec(self):
@@ -195,29 +212,32 @@ class Enigma:
     def wheel_rotations(self):
         """ All wheel_rotations, slow rotor first """
 
-        rots = [_num2letter(x.rotation) for x in self.rotors]
+        rots = [_num2letter(x.rotation) for x in self.wheels]
         return "".join(rots)
 
     @wheel_rotations.setter
     def wheel_rotations(self, rotations: str):
+        """ Set the rotations for all wheels.
+        Use "*" to skip a wheel """
 
-        if len(rotations) > len(self.wheels):
-            raise ValueError("Too many rotations")
+        if len(rotations) != len(self.wheels):
+            raise ValueError("Wrong number of roations!")
 
-        for whl, rot in zip(reversed(self.wheels), reversed(rotations)):
-            whl.rotation = _letters2num(rot)[0]
+        for whl, rot in zip(self.wheels, rotations):
+            if rot != "*":
+                whl.rotation = _letters2num(rot)[0]
 
     @property
     def ring_positions(self) -> list[int]:
         return [x.ring_position for x in self.wheels]
 
     @ring_positions.setter
-    def ring_positions(self, pos: list[int]):
+    def ring_positions(self, pos: Union[list[int], str]):
 
-        if len(pos) > len(self.wheels):
-            raise ValueError("Too many ring_positions")
+        if len(pos) != len(self.wheels):
+            raise ValueError("Wrong number of ring_positions")
 
-        for whl, rot in zip(self.rotors, pos):
+        for whl, rot in zip(self.wheels, pos):
             whl.ring_position = rot
 
     def _route_scramblers(self) -> Union[Scrambler.route, Scrambler.inv_route]:
