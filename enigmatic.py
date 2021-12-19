@@ -87,7 +87,7 @@ class Wheel(Scrambler):
             self.__ring_position = value
         elif type(value) == str:
             if value != "*":
-                self.__ring_position = _letters2num(value)[0]
+                self.__ring_position = _letters2num(value)[0] + 1
         else:
             raise ValueError("Invalid ring position")
 
@@ -127,7 +127,7 @@ class Wheel(Scrambler):
 
 
 class PlugBoard(Scrambler):
-    def __init__(self, cables: tuple[str, ...]):
+    def __init__(self, cables: Union[tuple[str, ...], str]):
         super().__init__("Plugboard")
         self.cables = cables
 
@@ -136,8 +136,12 @@ class PlugBoard(Scrambler):
         return self._cables
 
     @cables.setter
-    def cables(self, cables: tuple[str, ...]):
-        cables = tuple(c.upper() for c in cables)
+    def cables(self, cables: Union[tuple[str, ...], str]):
+        if type(cables) == str:
+            cables = tuple(cables.upper().split(" "))
+        else:
+            cables = tuple(c.upper() for c in cables)
+
         used_letters = "".join(cables)
         if not all(x in ALPHABET for x in used_letters):
             raise ValueError("Invalid letters for cables")
@@ -353,6 +357,8 @@ WHEEL_SPECS = {spec.name: spec for spec in [
     WheelSpec('VIII', 'FKQHTLXOCBJSPDZRAMEWNIUYGV', ('Z', 'M')),
     WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
     WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT'),
+    WheelSpec('ukw_bruno', 'ENKQAUYWJICOPBLMDXZVFTHRGS'),   # == reflector b thin
+    WheelSpec('ukw_caesar', 'RDOBJNTKVEHMLFCWZAXGYIPSUQ'),  # == reflector c thin
     WheelSpec('beta', 'LEYJVCNIXWPBQMDRTAKZGFUHOS'),
     WheelSpec('gamma', 'FSOKANUERHMBTIYCWLQPZXVGJD'),
 ]}
