@@ -148,23 +148,23 @@ class Enigma:
     def __init__(self, whl_specs: list[Union[str, WheelSpec]], max_memory=100):
         self.__plugboard = PlugBoard(tuple())
 
-        whls = []
-        for whl in reversed(whl_specs):
+        wheels = []
+        for whl in whl_specs:
             if isinstance(whl, WheelSpec):
-                whls.append(whl)
+                wheels.append(whl)
             elif isinstance(whl, str):
-                whls.append(Wheel(WHEEL_SPECS[whl]))
+                wheels.append(Wheel(WHEEL_SPECS[whl]))
 
-        if whls[-1].spec.is_rotor:
+        if wheels[0].spec.is_rotor:
             raise ValueError("Last Wheel has to be a stator for an enigma machine")
 
-        idx_is_rotor = np.where(np.array([x.spec.is_rotor for x in whls]))
+        idx_is_rotor = np.where(np.array([x.spec.is_rotor for x in wheels]))
         rotors_in_block = np.all(np.diff(idx_is_rotor) == 1)
 
         if not rotors_in_block:
             raise ValueError("No stators are allowed in between rotors")
 
-        self.scramblers = [self.__plugboard, *whls]
+        self.__wheels = wheels
 
         # Some Enigma machines, such as the Zählwerksmaschine A28 and the Enigma G, were driven by a gear mechanism
         # with cog-wheels rather than by pawls and rachets. These machines do not suffer from the double stepping
@@ -182,25 +182,20 @@ class Enigma:
         return self.__plugboard
 
     @property
-    def position(self):  # TODO: remove property ?
-        pos = [_num2letter(x.rotation) for x in self.scramblers if isinstance(x, Wheel) and x.spec.is_rotor]
-        return pos
-
-    @property
     def wheels(self) -> list[Wheel]:
-        """ All wheels in order of the signal flow (wheel rotor first)"""
-        return [x for x in self.scramblers if isinstance(x, Wheel)]
+        """ All wheels, slow rotor first """
+        return self.__wheels.copy()
 
     @property
     def rotors(self) -> list[Wheel]:
-        """ All rotors in order of the signal flow (fast rotor first) """
+        """ All rotors, slow rotor first """
         return [x for x in self.wheels if x.spec.is_rotor]
 
     @property
     def wheel_rotations(self):
-        """ All wheel_rotations, flow rotor first """
+        """ All wheel_rotations, slow rotor first """
 
-        rots = [_num2letter(x.rotation) for x in reversed(self.rotors)]
+        rots = [_num2letter(x.rotation) for x in self.rotors]
         return "".join(rots)
 
     @wheel_rotations.setter
@@ -209,12 +204,12 @@ class Enigma:
         if len(rotations) > len(self.wheels):
             raise ValueError("Too many rotations")
 
-        for whl, rot in zip(self.wheels, reversed(rotations)):
+        for whl, rot in zip(reversed(self.wheels), reversed(rotations)):
             whl.rotation = _letters2num(rot)[0]
 
     @property
     def ring_positions(self) -> list[int]:
-        return [x.ring_position for x in reversed(self.wheels)]
+        return [x.ring_position for x in self.wheels]
 
     @ring_positions.setter
     def ring_positions(self, pos: list[int]):
@@ -222,15 +217,19 @@ class Enigma:
         if len(pos) > len(self.wheels):
             raise ValueError("Too many ring_positions")
 
-        for whl, rot in zip(self.rotors, reversed(pos)):
+        for whl, rot in zip(self.rotors, pos):
             whl.ring_position = rot
 
     def _route_scramblers(self) -> Union[Scrambler.route, Scrambler.inv_route]:
-        for scrambler in self.scramblers:
-            yield scrambler.route
+        yield self.__plugboard.route
 
-        for scrambler in reversed(self.scramblers[:-1]):
-            yield scrambler.inv_route
+        for wheel in reversed(self.wheels):
+            yield wheel.route
+
+        for wheel in self.wheels[1:]:
+            yield wheel.inv_route
+
+        yield self.__plugboard.inv_route
 
     def press_key(self, key: str) -> str:
         if key not in ALPHABET:
@@ -252,10 +251,7 @@ class Enigma:
         return _num2letter(routing[-1])
 
     def rotate(self):
-        if not self.doube_step:
-            raise NotImplemented("Enigma currently has to be double-step")
-
-        rotors = [x for x in self.scramblers if isinstance(x, Wheel) and x.spec.is_rotor]
+        rotors = list(reversed(self.rotors))
 
         do_rotate = {rotors[0]}  # first Rotor always rotates
 
@@ -275,7 +271,7 @@ class Enigma:
         return "".join(output_text)
 
     def __str__(self):
-        my_str = [f"Enigma, Pos: {self.position}"]
+        my_str = [f"Enigma, Pos: {self.wheel_rotations}"]
 
         return "\n".join(my_str)
 
@@ -286,7 +282,7 @@ class Enigma:
             table = Table()
             table.add_column('Component')
             table.add_column('Routing')
-            for s in self.scramblers:
+            for s in self.wheels:
                 table.add_row(s.name, s)
 
             yield table
@@ -295,7 +291,7 @@ class Enigma:
             table.add_column('Component')
             table.add_column('State')
 
-            for s in self.scramblers:
+            for s in self.wheels:
                 table.add_row(s.name, s)
 
             yield table
@@ -309,9 +305,9 @@ class Enigma:
             table.add_row("Alphabet", "".join(ALPHABET))
             table.add_row("", " " * input_nr + "[green]↓")
 
-            scr = self.scramblers.copy()
+            scr = self.wheels.copy()
 
-            scr += reversed(self.scramblers[:-1])
+            scr += reversed(self.wheels[:-1])
             symbol = "[green]↓"
 
             for s, routing, in zip(scr, _letters2num(m[1:])):
