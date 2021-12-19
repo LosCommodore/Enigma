@@ -1,4 +1,4 @@
-from enigmatic import Enigma, EnigmaType
+from enigmatic import Enigma
 from rich.console import Console
 import rich.traceback
 

@@ -29,7 +29,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/enigmatic.py" beforeDir="false" afterPath="$PROJECT_DIR$/enigmatic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/run_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/run_enigma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_enigma.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,7 +286,8 @@
       <workItem from="1639813839162" duration="3292000" />
       <workItem from="1639856999713" duration="4277000" />
       <workItem from="1639897534871" duration="3998000" />
-      <workItem from="1639905420246" duration="2540000" />
+      <workItem from="1639905420246" duration="4472000" />
+      <workItem from="1639911142203" duration="1086000" />
     </task>
     <task id="LOCAL-00001" summary="Pycharm">
       <created>1580660859595</created>
@@ -569,7 +569,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639901543144</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Enigma specs">
+      <created>1639910395027</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1639910395027</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,7 +615,8 @@
     <MESSAGE value="refactoring" />
     <MESSAGE value="Enigma M4" />
     <MESSAGE value="copy to protect list" />
-    <option name="LAST_COMMIT_MESSAGE" value="copy to protect list" />
+    <MESSAGE value="Enigma specs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enigma specs" />
   </component>
   <component name="WindowStateProjectService">
     <state x="509" y="237" key="#Notifications" timestamp="1638685288945">
@@ -643,38 +651,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="550" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1637403886379" />
-    <state width="1493" height="235" key="GridCell.Tab.0.bottom" timestamp="1639901566008">
+    <state width="1493" height="38" key="GridCell.Tab.0.bottom" timestamp="1639910697760">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639901566008" />
-    <state width="1493" height="235" key="GridCell.Tab.0.center" timestamp="1639901566008">
+    <state width="1493" height="38" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639910697760" />
+    <state width="1493" height="38" key="GridCell.Tab.0.center" timestamp="1639910697760">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1639901566008" />
-    <state width="1493" height="235" key="GridCell.Tab.0.left" timestamp="1639901566008">
+    <state width="1493" height="38" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1639910697760" />
+    <state width="1493" height="38" key="GridCell.Tab.0.left" timestamp="1639910697760">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1639901566008" />
-    <state width="1493" height="235" key="GridCell.Tab.0.right" timestamp="1639901566008">
+    <state width="1493" height="38" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1639910697760" />
+    <state width="1493" height="38" key="GridCell.Tab.0.right" timestamp="1639910697760">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="235" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1639901566008" />
-    <state width="1493" height="168" key="GridCell.Tab.1.bottom" timestamp="1639861313655">
+    <state width="1493" height="38" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1639910697760" />
+    <state width="1493" height="276" key="GridCell.Tab.1.bottom" timestamp="1639910697753">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="168" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639861313655" />
-    <state width="1493" height="168" key="GridCell.Tab.1.center" timestamp="1639861313655">
+    <state width="1493" height="276" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639910697753" />
+    <state width="1493" height="276" key="GridCell.Tab.1.center" timestamp="1639910697753">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="168" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1639861313655" />
-    <state width="1493" height="168" key="GridCell.Tab.1.left" timestamp="1639861313655">
+    <state width="1493" height="276" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1639910697753" />
+    <state width="1493" height="276" key="GridCell.Tab.1.left" timestamp="1639910697753">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="168" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1639861313655" />
-    <state width="1493" height="168" key="GridCell.Tab.1.right" timestamp="1639861313655">
+    <state width="1493" height="276" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1639910697753" />
+    <state width="1493" height="276" key="GridCell.Tab.1.right" timestamp="1639910697753">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="168" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1639861313655" />
+    <state width="1493" height="276" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1639910697753" />
     <state x="279" y="58" key="SettingsEditor" timestamp="1639227659004">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -683,21 +691,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="491" y="155" width="549" height="524" key="StructurePopup/0.0.1536.824@0.0.1536.824" timestamp="1639905479951" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1639900341834">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1639909513884">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1639900341834" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/enigmatic.py</url>
-          <line>346</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1639909513884" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Enigma$test.coverage" NAME="test Coverage Results" MODIFIED="1636181481392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
@@ -706,7 +703,7 @@
     <SUITE FILE_PATH="coverage/Enigma$testGuiQt.coverage" NAME="testGuiQt Coverage Results" MODIFIED="1634971986854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_type_message.coverage" NAME="pytest for test_enigma.test_type_message Coverage Results" MODIFIED="1639246493020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$enigmatic.coverage" NAME="enigmatic Coverage Results" MODIFIED="1638687667800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_enigma_py.coverage" NAME="pytest in test_enigma.py Coverage Results" MODIFIED="1639900981781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_enigma_py.coverage" NAME="pytest in test_enigma.py Coverage Results" MODIFIED="1639912126423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_rotor_spec.coverage" NAME="pytest for test_enigma.test_rotor_spec Coverage Results" MODIFIED="1639302146089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$enigma.coverage" NAME="enigma Coverage Results" MODIFIED="1635268976907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_unvalid_rotor_spec.coverage" NAME="pytest for test.test_unvalid_rotor_spec Coverage Results" MODIFIED="1636194631837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />

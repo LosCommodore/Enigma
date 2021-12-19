@@ -1,7 +1,6 @@
 """
 This module provides the functionality for simulating enigma machines
 """
-import enum
 import numpy as np
 import abc
 from dataclasses import dataclass
@@ -163,9 +162,48 @@ class GeneralEnigma:
         return self.__memory
 
     @property
-    def position(self):
+    def position(self):  # TODO: remove property ?
         pos = [_num2letter(x.rotation) for x in self.scramblers if isinstance(x, Wheel) and x.spec.is_rotor]
         return pos
+
+    @property
+    def wheels(self) -> list[Wheel]:
+        """ All wheels in order of the signal flow (wheel rotor first)"""
+        return [x for x in self.scramblers if isinstance(x, Wheel)]
+
+    @property
+    def rotors(self) -> list[Wheel]:
+        """ All rotors in order of the signal flow (fast rotor first) """
+        return [x for x in self.wheels if x.spec.is_rotor]
+
+    @property
+    def wheel_rotations(self):
+        """ All wheel_rotations, flow rotor first """
+
+        rots = [_num2letter(x.rotation) for x in reversed(self.rotors)]
+        return "".join(rots)
+
+    @wheel_rotations.setter
+    def wheel_rotations(self, rotations: str):
+
+        if len(rotations) > len(self.wheels):
+            raise ValueError("Too many rotations")
+
+        for whl, rot in zip(self.wheels, reversed(rotations)):
+            whl.rotation = _letters2num(rot)[0]
+
+    @property
+    def ring_positions(self) -> list[int]:
+        return [x.ring_position for x in reversed(self.wheels)]
+
+    @ring_positions.setter
+    def ring_positions(self, pos: list[int]):
+
+        if len(pos) > len(self.wheels):
+            raise ValueError("Too many ring_positions")
+
+        for whl, rot in zip(self.rotors, reversed(pos)):
+            whl.ring_position = rot
 
     def _route_scramblers(self) -> Union[Scrambler.route, Scrambler.inv_route]:
         for scrambler in self.scramblers:
@@ -320,41 +358,6 @@ class Enigma(GeneralEnigma):
     @property
     def plugboard(self) -> PlugBoard:
         return self.__plugboard
-
-    @property
-    def wheels(self) -> list[Wheel]:
-        return self.__wheels.copy()
-
-    @property
-    def rotors(self) -> list[Wheel]:
-        return self.__wheels[:-1].copy()
-
-    @property
-    def wheel_rotations(self):
-        rots = [_num2letter(x.rotation) for x in reversed(self.rotors)]
-        return "".join(rots)
-
-    @wheel_rotations.setter
-    def wheel_rotations(self, rotations: str):
-
-        if len(rotations) > len(self.wheels):
-            raise ValueError("Too many rotations")
-
-        for whl, rot in zip(self.wheels, reversed(rotations)):
-            whl.rotation = _letters2num(rot)[0]
-
-    @property
-    def ring_positions(self) -> list[int]:
-        return [x.ring_position for x in reversed(self.wheels)]
-
-    @ring_positions.setter
-    def ring_positions(self, pos: list[int]):
-
-        if len(pos) > len(self.wheels):
-            raise ValueError("Too many ring_positions")
-
-        for whl, rot in zip(self.rotors, reversed(pos)):
-            whl.ring_position = rot
 
 
 WHEEL_SPECS = {'I': WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', ('Q',)),
