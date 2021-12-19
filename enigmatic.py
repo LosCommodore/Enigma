@@ -63,7 +63,7 @@ class WheelSpec:
 class Wheel(Scrambler):
     """A rotor or reflector for the enigma machine """
 
-    def __init__(self, spec: WheelSpec, ring_position: int = 1, rotation: str = "A"):
+    def __init__(self, spec: WheelSpec, ring_position: Union[int, str] = 1, rotation: str = "A"):
         super().__init__(spec.name)
         self.__ring_position = 1
         self.ring_position = ring_position
@@ -342,10 +342,17 @@ class Enigma:
             yield table
 
 
-WHEEL_SPECS = {'I': WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', ('Q',)),
-               'II': WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE', ('E',)),
-               'III': WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO', ('V',)),
-               'IV': WheelSpec('IV', 'ESOVPZJAYQUIRHXLNFTGKDCMWB', ('J',)),
-               'etw': WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
-               'ukw_b': WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT')
-               }
+WHEEL_SPECS = {spec.name: spec for spec in [
+    WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', ('Q',)),
+    WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE', ('E',)),
+    WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO', ('V',)),
+    WheelSpec('IV', 'ESOVPZJAYQUIRHXLNFTGKDCMWB', ('J',)),
+    WheelSpec('V', 'VZBRGITYUPSDNHLXAWMJQOFECK', ('Z',)),
+    WheelSpec('VI', 'JPGVOUMFYQBENHZRDKASXLICTW', ('Z', 'M')),
+    WheelSpec('VII', 'NZJHGRCXMYSWBOUFAIVLPEKQDT', ('Z', 'M')),
+    WheelSpec('VIII', 'FKQHTLXOCBJSPDZRAMEWNIUYGV', ('Z', 'M')),
+    WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
+    WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT'),
+    WheelSpec('beta', 'LEYJVCNIXWPBQMDRTAKZGFUHOS'),
+    WheelSpec('gamma', 'FSOKANUERHMBTIYCWLQPZXVGJD'),
+]}
