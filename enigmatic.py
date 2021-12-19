@@ -281,11 +281,14 @@ class Enigma(GeneralEnigma):
         self.__plugboard = PlugBoard(tuple())
         self.__wheels = whls
 
-        if not all([x.spec.is_rotor for x in whls[:-1]]):
-            raise ValueError("Real Enigma needs to have rotos for all but the last wheel")
-
         if whls[-1].spec.is_rotor:
-            raise ValueError("Last Wheel has to be a stator for an Enigma3")
+            raise ValueError("Last Wheel has to be a stator for an enigma machine")
+
+        idx_is_rotor = np.where(np.array([x.spec.is_rotor for x in whls]))
+        rotors_in_block = np.all(np.diff(idx_is_rotor) == 1)
+
+        if not rotors_in_block:
+            raise ValueError("No stators are allowed in between rotors")
 
         scramblers = [self.__plugboard, *whls]
         enigma = super().__init__(scramblers)
@@ -310,10 +313,10 @@ class Enigma(GeneralEnigma):
     @wheel_rotations.setter
     def wheel_rotations(self, rotations: str):
 
-        if len(rotations) != len(self.rotors):
-            raise ValueError("Wrong number of positions")
+        if len(rotations) > len(self.wheels):
+            raise ValueError("Too many rotations")
 
-        for whl, rot in zip(reversed(self.rotors), rotations):
+        for whl, rot in zip(self.wheels, reversed(rotations)):
             whl.rotation = _letters2num(rot)[0]
 
     @property
@@ -323,10 +326,10 @@ class Enigma(GeneralEnigma):
     @ring_positions.setter
     def ring_positions(self, pos: list[int]):
 
-        if len(pos) != len(self.rotors):
-            raise ValueError("Wrong number of positions")
+        if len(pos) > len(self.wheels):
+            raise ValueError("Too many ring_positions")
 
-        for whl, rot in zip(reversed(self.rotors), pos):
+        for whl, rot in zip(self.rotors, reversed(pos)):
             whl.ring_position = rot
 
 
