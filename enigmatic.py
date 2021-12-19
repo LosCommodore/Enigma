@@ -311,11 +311,11 @@ class Enigma(GeneralEnigma):
 
     @property
     def wheels(self) -> list[Wheel]:
-        return self.__wheels
+        return self.__wheels.copy()
 
     @property
     def rotors(self) -> list[Wheel]:
-        return self.__wheels[:-1]
+        return self.__wheels[:-1].copy()
 
     @property
     def wheel_rotations(self):
