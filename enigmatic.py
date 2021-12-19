@@ -144,22 +144,42 @@ class PlugBoard(Scrambler):
         return "\n".join(my_str)
 
 
-class GeneralEnigma:
-    def __init__(self, scramblers: list[Scrambler], max_memory: int = 100):
-        if len(set(scramblers)) != len(scramblers):
-            raise ValueError("All Scrambles have to be unique objects")
+class Enigma:
+    def __init__(self, whl_specs: list[Union[str, WheelSpec]], max_memory=100):
+        self.__plugboard = PlugBoard(tuple())
 
-        self.scramblers = scramblers
+        whls = []
+        for whl in reversed(whl_specs):
+            if isinstance(whl, WheelSpec):
+                whls.append(whl)
+            elif isinstance(whl, str):
+                whls.append(Wheel(WHEEL_SPECS[whl]))
+
+        if whls[-1].spec.is_rotor:
+            raise ValueError("Last Wheel has to be a stator for an enigma machine")
+
+        idx_is_rotor = np.where(np.array([x.spec.is_rotor for x in whls]))
+        rotors_in_block = np.all(np.diff(idx_is_rotor) == 1)
+
+        if not rotors_in_block:
+            raise ValueError("No stators are allowed in between rotors")
+
+        self.scramblers = [self.__plugboard, *whls]
 
         # Some Enigma machines, such as the Zählwerksmaschine A28 and the Enigma G, were driven by a gear mechanism
         # with cog-wheels rather than by pawls and rachets. These machines do not suffer from the double stepping
         # anomaly and behave exactly like the odometer of a car.
         self.doube_step = True
+
         self.__memory: deque[list[str]] = deque([], maxlen=max_memory)
 
     @property
     def memory(self):
         return self.__memory
+
+    @property
+    def plugboard(self) -> PlugBoard:
+        return self.__plugboard
 
     @property
     def position(self):  # TODO: remove property ?
@@ -313,53 +333,6 @@ class GeneralEnigma:
             yield table
 
 
-@dataclass(frozen=True)
-class EnigmaSpec:
-    name: str
-    num_rotors: int
-    num_stators: int
-
-
-class Enigma(GeneralEnigma):
-    def __init__(self, spec: Union[str, EnigmaSpec], whl_specs: list[Union[str, WheelSpec]]):
-        if isinstance(spec, EnigmaSpec):
-            self.__spec = EnigmaSpec
-        elif isinstance(spec, str):
-            self.__spec = ENIGMA_TYPES[spec]
-        else:
-            raise ValueError("Invalid type for enigma specification")
-
-        whls = []
-        for whl in reversed(whl_specs):
-            if isinstance(spec, WheelSpec):
-                whls.append(whl)
-            elif isinstance(spec, str):
-                whls.append(Wheel(WHEEL_SPECS[whl]))
-
-        self.__wheels = whls
-        self.__plugboard = PlugBoard(tuple())
-
-        if whls[-1].spec.is_rotor:
-            raise ValueError("Last Wheel has to be a stator for an enigma machine")
-
-        idx_is_rotor = np.where(np.array([x.spec.is_rotor for x in whls]))
-        rotors_in_block = np.all(np.diff(idx_is_rotor) == 1)
-
-        if not rotors_in_block:
-            raise ValueError("No stators are allowed in between rotors")
-
-        scramblers = [self.__plugboard, *whls]
-        enigma = super().__init__(scramblers)
-
-    @property
-    def spec(self):
-        return self.__spec
-
-    @property
-    def plugboard(self) -> PlugBoard:
-        return self.__plugboard
-
-
 WHEEL_SPECS = {'I': WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', ('Q',)),
                'II': WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE', ('E',)),
                'III': WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO', ('V',)),
@@ -367,7 +340,3 @@ WHEEL_SPECS = {'I': WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', ('Q',)),
                'etw': WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
                'ukw_b': WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT')
                }
-
-
-ENIGMA_TYPES = {'M3': EnigmaSpec('M3', 3, 1),
-                'M4': EnigmaSpec('M4', 4, 1)}
