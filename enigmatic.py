@@ -44,7 +44,7 @@ class Scrambler(abc.ABC):
 class WheelSpec:
     name: str
     wiring: str
-    notches: tuple[str, ...] = tuple()  # Übertragskerben
+    notches: str  # Übertragskerben
 
     def __post_init__(self):
         self.__dict__["wiring"] = self.wiring.upper()
@@ -254,6 +254,7 @@ class Enigma:
 
         # Whenever a key is pressed, the wheels move before a lamp is turned on.
         self.rotate()
+        print(self)
 
         n_key = _letters2num(key)[0]
         current_key = n_key
@@ -288,12 +289,12 @@ class Enigma:
         return "".join(output_text)
 
     def __str__(self):
-        my_str = [f"Enigma, Pos: {self.wheel_rotations}"]
+        my_str = f"Enigma -> Pos: {self.wheel_rotations}, Wheels: {[x.spec.name for x in self.wheels]} Ring: {self.ring_positions}, Plugboard: {self.plugboard.cables}"
 
-        return "\n".join(my_str)
+        return my_str
 
-    def __rich_console__(self, console: rich.console.Console,
-                         options: rich.console.ConsoleOptions) -> rich.console.RenderResult:
+    def print_full(self, console: rich.console.Console,
+                   options: rich.console.ConsoleOptions) -> rich.console.RenderResult:
 
         if not self.memory:
             table = Table()
@@ -347,18 +348,18 @@ class Enigma:
 
 
 WHEEL_SPECS = {spec.name: spec for spec in [
-    WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', ('Q',)),
-    WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE', ('E',)),
-    WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO', ('V',)),
-    WheelSpec('IV', 'ESOVPZJAYQUIRHXLNFTGKDCMWB', ('J',)),
-    WheelSpec('V', 'VZBRGITYUPSDNHLXAWMJQOFECK', ('Z',)),
-    WheelSpec('VI', 'JPGVOUMFYQBENHZRDKASXLICTW', ('Z', 'M')),
-    WheelSpec('VII', 'NZJHGRCXMYSWBOUFAIVLPEKQDT', ('Z', 'M')),
-    WheelSpec('VIII', 'FKQHTLXOCBJSPDZRAMEWNIUYGV', ('Z', 'M')),
-    WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
-    WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT'),
-    WheelSpec('ukw_bruno', 'ENKQAUYWJICOPBLMDXZVFTHRGS'),   # == reflector b thin
-    WheelSpec('ukw_caesar', 'RDOBJNTKVEHMLFCWZAXGYIPSUQ'),  # == reflector c thin
-    WheelSpec('beta', 'LEYJVCNIXWPBQMDRTAKZGFUHOS'),
-    WheelSpec('gamma', 'FSOKANUERHMBTIYCWLQPZXVGJD'),
+    WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', 'Q'),
+    WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE', 'E'),
+    WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO', 'V'),
+    WheelSpec('IV', 'ESOVPZJAYQUIRHXLNFTGKDCMWB', 'J'),
+    WheelSpec('V', 'VZBRGITYUPSDNHLXAWMJQOFECK', 'Z'),
+    WheelSpec('VI', 'JPGVOUMFYQBENHZRDKASXLICTW', 'ZM'),
+    WheelSpec('VII', 'NZJHGRCXMYSWBOUFAIVLPEKQDT', 'ZM'),
+    WheelSpec('VIII', 'FKQHTLXOCBJSPDZRAMEWNIUYGV', 'ZM'),
+    WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', ''),
+    WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT', ''),
+    WheelSpec('ukw_bruno', 'ENKQAUYWJICOPBLMDXZVFTHRGS', ''),  # == reflector b thin
+    WheelSpec('ukw_caesar', 'RDOBJNTKVEHMLFCWZAXGYIPSUQ', ''),  # == reflector c thin
+    WheelSpec('beta', 'LEYJVCNIXWPBQMDRTAKZGFUHOS', ''),
+    WheelSpec('gamma', 'FSOKANUERHMBTIYCWLQPZXVGJD', ''),
 ]}

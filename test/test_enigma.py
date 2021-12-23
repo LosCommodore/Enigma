@@ -1,4 +1,3 @@
-import time
 import pytest
 import enigmatic
 from enigmatic import Enigma
@@ -28,10 +27,10 @@ def test_wheel_spec_constructor():
     ok_spec = "EKMFLGDQVZNTOWYHXUSPAIBRCJ"
 
     # check ok
-    enigmatic.WheelSpec("test", ok_spec)
+    enigmatic.WheelSpec("test", ok_spec, '')
 
     # check conversion to upper
-    w = enigmatic.WheelSpec("test", ok_spec.lower())
+    w = enigmatic.WheelSpec("test", ok_spec.lower(), '')
     assert w.wiring.isupper()
 
     # check wrong letter
@@ -39,18 +38,18 @@ def test_wheel_spec_constructor():
     err_spec[4] = "^"
     err_spec = str(err_spec)
     with pytest.raises(ValueError):
-        enigmatic.WheelSpec("testRotor", err_spec)
+        enigmatic.WheelSpec("testRotor", err_spec, '')
 
     # wrong length
     with pytest.raises(ValueError):
-        enigmatic.WheelSpec("testRotor", ok_spec[:-1])
+        enigmatic.WheelSpec("testRotor", ok_spec[:-1], '')
 
 
 def test_rotor_symmetry():
     wiring = list(enigmatic.ALPHABET)
     random.shuffle(wiring)
     wiring = "".join(str(x) for x in wiring)
-    spec = enigmatic.WheelSpec("r1", wiring)
+    spec = enigmatic.WheelSpec("r1", wiring, '')
     r = enigmatic.Wheel(spec)
 
     for i, _ in enumerate(enigmatic.ALPHABET):
@@ -77,21 +76,30 @@ def test_double_step():
     assert enigma.wheel_rotations == "ABFX"
 
 
-def test_enigma_period():
+@pytest.mark.parametrize(
+    "wheels,expected_period",
+    [(['ukw_b', 'III', 'II', 'I'], 26*25*26),
+     (['ukw_b', 'III', 'II', 'VI'], (26*25*26) / 2)])
+def test_enigma_period(wheels, expected_period):
     """
     https://de.wikipedia.org/wiki/Enigma_(Maschine)#Schl%C3%BCsselraum
     Period = 26*25*26 = 16.900 Walzenstellungen
+
+    https://en.wikipedia.org/wiki/Cryptanalysis_of_the_Enigma
+    The alphabet rings of rotors VI, VII and VIII contained two notches which, despite shortening the period of the substitution alphabet, made decryption more difficult.
     """
 
-    enigma = Enigma(['ukw_b', 'I', 'II', 'III'])
+    enigma = Enigma(wheels)
 
-    t = time.perf_counter()
-    text = enigma.write("x" * 3 * 16900)
-    dt = time.perf_counter() - t
+    input_text = [enigmatic._num2letter(random.randrange(0, len(enigmatic.ALPHABET))) for _ in range(expected_period)]
+    input_text = "".join(input_text)
 
-    print(f"elapsed time: {dt}")
+    text = []
+    for _ in range(3):
+        assert enigma.wheel_rotations == "AAAA"
+        text.append(enigma.write(input_text))
 
-    assert text[:16900] == text[16900:2*16900] == text[2*16900:]
+    assert text[0] == text[1] == text[2]
 
 
 def test_enigma_typing():
