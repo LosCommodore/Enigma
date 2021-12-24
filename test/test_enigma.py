@@ -3,6 +3,7 @@ import enigmatic
 from enigmatic import Enigma
 import random
 from rich.console import Console
+from collections import Counter
 
 # console
 console = Console(legacy_windows=False, color_system="truecolor", style="Black on bright_white")
@@ -64,22 +65,22 @@ def test_double_step():
     """
 
     enigma = Enigma(['ukw_b', 'I', 'II', 'III'])
-    enigma.wheel_rotations = "*ADU"
+    enigma.wheel_positions = "*ADU"
 
     enigma.write("x")
-    assert enigma.wheel_rotations == "AADV"
+    assert enigma.wheel_positions == "AADV"
 
     enigma.write("x")
-    assert enigma.wheel_rotations == "AAEW"
+    assert enigma.wheel_positions == "AAEW"
 
     enigma.write("x")
-    assert enigma.wheel_rotations == "ABFX"
+    assert enigma.wheel_positions == "ABFX"
 
 
 @pytest.mark.parametrize(
     "wheels,expected_period",
     [(['ukw_b', 'III', 'II', 'I'], 26*25*26),
-     (['ukw_b', 'III', 'II', 'VI'], (26*25*26) / 2)])
+     (['ukw_b', 'III', 'II', 'VI'], 26**3 - 9126)])
 def test_enigma_period(wheels, expected_period):
     """
     https://de.wikipedia.org/wiki/Enigma_(Maschine)#Schl%C3%BCsselraum
@@ -94,10 +95,22 @@ def test_enigma_period(wheels, expected_period):
     input_text = [enigmatic._num2letter(random.randrange(0, len(enigmatic.ALPHABET))) for _ in range(expected_period)]
     input_text = "".join(input_text)
 
+    possible_states = set(x+y+z for x in enigmatic.ALPHABET for y in enigmatic.ALPHABET for z in enigmatic.ALPHABET)
+
     text = []
     for _ in range(3):
-        assert enigma.wheel_rotations == "AAAA"
-        text.append(enigma.write(input_text))
+        assert enigma.wheel_positions == "AAAA"
+
+        states = []
+        msg = []
+        for t in input_text:
+            states.append(enigma.wheel_positions[1:])
+            m = enigma.write(t)
+            msg.append(m)
+
+        text.append("".join(msg))
+        missed_states = possible_states - set(states)
+        assert len(missed_states) == 26**3 - expected_period
 
     assert text[0] == text[1] == text[2]
 
@@ -135,7 +148,7 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
 
     enigma = Enigma(['ukw_b', 'I', 'IV', 'III'])
     enigma.plugboard.cables = "AD CN ET FL GI JV KZ PU QY WX"
-    enigma.wheel_rotations = "*QWE"
+    enigma.wheel_positions = "*QWE"
     enigma.ring_positions = [1, 16, 26, 8]
 
     message_key = 'RTZ'
@@ -145,7 +158,7 @@ tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
     # Uhrzeit - Anzahl zeichen - Zufällige Wahl + Ergebnis
     # Kopf: 2220 – 204 – QWE EWG -
 
-    enigma.wheel_rotations = "*" + message_key
+    enigma.wheel_positions = "*" + message_key
     assert enigma.write(translation) == message
 
 
@@ -154,7 +167,7 @@ def test_M4_message():
 
     enigma = Enigma(['ukw_caesar', 'beta', 'V', 'VI', 'VIII'])
     enigma.plugboard.cables = "AE BF CM DQ HU JN LX PR SZ VW"
-    enigma.wheel_rotations = "*NAEM"
+    enigma.wheel_positions = "*NAEM"
     enigma.ring_positions = "*EPEL"
 
     msg_key = enigma.write("QEOB")
@@ -162,7 +175,7 @@ def test_M4_message():
 
     assert msg_key == "CDSZ"
 
-    enigma.wheel_rotations = "*" + msg_key
+    enigma.wheel_positions = "*" + msg_key
 
     cypher_text = """LANO TCTO UARB BFPM HPHG CZXT DYGA HGUF XGEW KBLK GJWL QXXT
        GPJJ AVTO CKZF SLPP QIHZ FXOE BWII EKFZ LCLO AQJU LJOY HSSM BBGW HZAN

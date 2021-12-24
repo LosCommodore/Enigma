@@ -206,14 +206,14 @@ class Enigma:
         return [x for x in self.wheels if x.spec.is_rotor]
 
     @property
-    def wheel_rotations(self):
+    def wheel_positions(self):
         """ All wheel_rotations, slow rotor first """
 
         rots = [_num2letter(x.rotation) for x in self.wheels]
         return "".join(rots)
 
-    @wheel_rotations.setter
-    def wheel_rotations(self, rotations: str):
+    @wheel_positions.setter
+    def wheel_positions(self, rotations: str):
         """ Set the rotations for all wheels.
         Use "*" to skip a wheel """
 
@@ -248,13 +248,12 @@ class Enigma:
 
         yield self.__plugboard.inv_route
 
-    def press_key(self, key: str) -> str:
+    def _press_key(self, key: str) -> str:
         if key not in ALPHABET:
             raise ValueError(f'Invalid letter: "{key}"')
 
         # Whenever a key is pressed, the wheels move before a lamp is turned on.
         self.rotate()
-        print(self)
 
         n_key = _letters2num(key)[0]
         current_key = n_key
@@ -284,12 +283,12 @@ class Enigma:
     def write(self, text: str) -> str:
         input_text = text.upper().replace(' ', '').replace('\n', '')
 
-        output_text = [self.press_key(key) for key in input_text]
+        output_text = [self._press_key(key) for key in input_text]
 
         return "".join(output_text)
 
     def __str__(self):
-        my_str = f"Enigma -> Pos: {self.wheel_rotations}, Wheels: {[x.spec.name for x in self.wheels]} Ring: {self.ring_positions}, Plugboard: {self.plugboard.cables}"
+        my_str = f"Enigma -> Pos: {self.wheel_positions}, Wheels: {[x.spec.name for x in self.wheels]} Ring: {self.ring_positions}, Plugboard: {self.plugboard.cables}"
 
         return my_str
 

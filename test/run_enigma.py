@@ -11,7 +11,7 @@ console.size = (200, 50)
 
 enigma = Enigma(['ukw_caesar', 'beta', 'V', 'VI', 'VIII'])
 enigma.plugboard.cables = "AE BF CM DQ HU JN LX PR SZ VW"
-enigma.wheel_rotations = "*SCHL"
+enigma.wheel_positions = "*SCHL"
 enigma.ring_positions = "*AAEL"
 
 cypher_text = """TAWZZYNZGGMICVLSADLQFDFKHDGZLSEEMDFFBQLYISEIWKDONDWJWETKZOWWYLTYII
