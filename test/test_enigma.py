@@ -3,6 +3,7 @@ import enigmatic
 from enigmatic import Enigma
 import random
 from rich.console import Console
+import plotext as plt
 from collections import Counter
 
 # console
@@ -80,7 +81,7 @@ def test_double_step():
 @pytest.mark.parametrize(
     "wheels,expected_period",
     [(['ukw_b', 'III', 'II', 'I'], 26*25*26),
-     (['ukw_b', 'III', 'II', 'VI'], 26**3 - 9126)])
+     (['ukw_b', 'III', 'II', 'VI'], 8450)])
 def test_enigma_period(wheels, expected_period):
     """
     https://de.wikipedia.org/wiki/Enigma_(Maschine)#Schl%C3%BCsselraum
@@ -89,30 +90,50 @@ def test_enigma_period(wheels, expected_period):
     https://en.wikipedia.org/wiki/Cryptanalysis_of_the_Enigma
     The alphabet rings of rotors VI, VII and VIII contained two notches which, despite shortening the period of the substitution alphabet, made decryption more difficult.
     """
+    print("\n")
+    console.rule(f"Testing the period of the enigma", align="left")
+    console.print(f"{wheels=}\n{expected_period=}")
+    print("\n")
 
     enigma = Enigma(wheels)
 
-    input_text = [enigmatic._num2letter(random.randrange(0, len(enigmatic.ALPHABET))) for _ in range(expected_period)]
-    input_text = "".join(input_text)
+    input_text = "x" * expected_period * 3
 
-    possible_states = set(x+y+z for x in enigmatic.ALPHABET for y in enigmatic.ALPHABET for z in enigmatic.ALPHABET)
+    possible_states = set(x+y+z
+                          for x in enigmatic.ALPHABET
+                          for y in enigmatic.ALPHABET
+                          for z in enigmatic.ALPHABET)
 
-    text = []
-    for _ in range(3):
-        assert enigma.wheel_positions == "AAAA"
+    states = []
+    msg = []
+    for t in input_text:
+        states.append(enigma.wheel_positions[1:])
+        m = enigma.write(t)
+        msg.append(m)
 
-        states = []
-        msg = []
-        for t in input_text:
-            states.append(enigma.wheel_positions[1:])
-            m = enigma.write(t)
-            msg.append(m)
+    text = "".join(msg)
 
-        text.append("".join(msg))
-        missed_states = possible_states - set(states)
-        assert len(missed_states) == 26**3 - expected_period
+    state_counter = Counter(states)
+    missed_states = possible_states - set(states)
 
-    assert text[0] == text[1] == text[2]
+    count = list(Counter(states).values())
+    bins = len(set(count))
+    if bins == 1:
+        console.print(f"[bold]All used states (same rotor position) where reached {count[0]} times")
+    else:
+        plt.clear_plot()
+        plt.title("Number times the same rotor position was reached")
+        plt.hist(count, bins,xside=[1,2])
+        plt.show()
+
+    for period in range(1, len(text)):
+        if text == (text[period:] + text[:period]):
+            break
+    else:
+        raise Exception("No period found!")
+
+    assert expected_period == len(possible_states) - len(missed_states)
+    assert period == expected_period
 
 
 def test_enigma_typing():
