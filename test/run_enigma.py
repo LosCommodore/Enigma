@@ -1,7 +1,6 @@
 from enigmatic import Enigma
 from rich.console import Console
 import rich.traceback
-from collections import Counter
 
 rich.traceback.install(show_locals=True)
 

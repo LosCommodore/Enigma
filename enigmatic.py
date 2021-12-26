@@ -138,7 +138,7 @@ class PlugBoard(Scrambler):
     @cables.setter
     def cables(self, cables: Union[tuple[str, ...], str]):
         if type(cables) == str:
-            cables = tuple(cables.upper().split(" "))
+            cables = cables.upper().split(" ") if cables else ()
         else:
             cables = tuple(c.upper() for c in cables)
 
@@ -166,8 +166,14 @@ class PlugBoard(Scrambler):
 
 
 class Enigma:
-    def __init__(self, whl_specs: list[Union[str, WheelSpec]], max_memory=100):
-        self.__plugboard = PlugBoard(tuple())
+    def __init__(self,
+                 whl_specs: list[Union[str, WheelSpec]],
+                 max_memory=100,
+                 plugs="",
+                 wheel_positions="",
+                 ring_positions=()):
+
+        self.__plugboard = PlugBoard(plugs)
 
         self.__wheels: list[Wheel] = []
         for spec in whl_specs:
@@ -184,6 +190,12 @@ class Enigma:
 
         if not rotors_in_block:
             raise ValueError("No stators are allowed in between rotors")
+
+        if wheel_positions:
+            self.wheel_positions = wheel_positions
+
+        if ring_positions:
+            self.ring_positions = ring_positions
 
         self.__memory: deque[list[str]] = deque([], maxlen=max_memory)
 
@@ -286,6 +298,15 @@ class Enigma:
         output_text = [self._press_key(key) for key in input_text]
 
         return "".join(output_text)
+
+    def __repr__(self):
+        params = dict(whl_specs=[w.spec.name for w in self.wheels],
+                      plugs=self.__plugboard.cables,
+                      wheel_positions=self.wheel_positions,
+                      ring_positions=self.ring_positions,
+                      )
+
+        return f"Enigma(**{repr(params)})"
 
     def __str__(self):
         my_str = f"Enigma -> Pos: {self.wheel_positions}, Wheels: {[x.spec.name for x in self.wheels]} Ring: {self.ring_positions}, Plugboard: {self.plugboard.cables}"

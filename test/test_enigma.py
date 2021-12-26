@@ -3,6 +3,7 @@ import enigmatic
 from enigmatic import Enigma
 import random
 from rich.console import Console
+from rich.table import Table
 import plotext as plt
 from collections import Counter
 
@@ -97,7 +98,7 @@ def test_enigma_period(wheels, expected_period):
 
     enigma = Enigma(wheels)
 
-    input_text = "x" * expected_period * 3
+    input_text = "X" * expected_period * 3
 
     possible_states = set(x+y+z
                           for x in enigmatic.ALPHABET
@@ -113,18 +114,43 @@ def test_enigma_period(wheels, expected_period):
 
     text = "".join(msg)
 
+    assert "X" not in text
+
     state_counter = Counter(states)
     missed_states = possible_states - set(states)
 
     count = list(Counter(states).values())
+    count += [0] * len(missed_states)
+
     bins = len(set(count))
     if bins == 1:
         console.print(f"[bold]All used states (same rotor position) where reached {count[0]} times")
     else:
         plt.clear_plot()
         plt.title("Number times the same rotor position was reached")
-        plt.hist(count, bins,xside=[1,2])
+        plt.hist(count, bins, xside=[1, 2])
         plt.show()
+
+    states_as_num = [enigmatic._letters2num(s) for s in states]
+
+    r1, r2, r3 = list(zip(*states_as_num))
+    h1 = Counter(r1)
+    h2 = Counter(r2)
+    h3 = Counter(r3)
+    v1 = [h1[x] if x in h1 else 0 for x in range(26)]
+    v2 = [h2[x] if x in h2 else 0 for x in range(26)]
+    v3 = [h3[x] if x in h3 else 0 for x in range(26)]
+
+    print("\n\n")
+    table = Table(title="Num Rotor is in a certain position")
+    table.add_column("Rotor_nr")
+    for i in enigmatic.ALPHABET:
+        table.add_column(i)
+
+    for i, v in enumerate([v1, v2, v3]):
+        table.add_row(str(i), *[str(u) for u in v])
+
+    console.print(table)
 
     for period in range(1, len(text)):
         if text == (text[period:] + text[:period]):
@@ -217,3 +243,17 @@ def test_M4_message():
     console.print(output_text)
 
     assert output_text == plain_text
+
+
+def test_repr_Enigma():
+    enigma = Enigma(['ukw_caesar', 'beta', 'V', 'VI', 'VIII'])
+    enigma.plugboard.cables = "AE BF CM DQ HU JN LX PR SZ VW"
+    enigma.wheel_positions = "*NAEM"
+    enigma.ring_positions = "*EPEL"
+
+    print("\n")
+    console.print(enigma)
+
+    print(repr(enigma))
+    enigma_copy = eval(repr(enigma))
+    assert isinstance(enigma_copy, Enigma)
