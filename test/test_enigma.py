@@ -172,81 +172,6 @@ def test_enigma_typing():
     console.print(enigma.memory)
 
 
-def test_M3_wiki_message():
-    """
-    messsage described in:
-    https://de.wikipedia.org/wiki/Enigma_(Maschine)
-    """
-
-    message = """LJPQH SVDWC LYXZQ FXHIU VWDJO BJNZX RCWEO TVNJC IONTF
-QNSXW ISXKH JDAGD JVAKU KVMJA JHSZQ QJHZO IAVZO WMSCK ASRDN
-XKKSR FHCXC MPJGX YIJCC KISYY SHETX VVOVD QLZYT NJXNU WKZRX
-UJFXM BDIBR VMJKR HTCUJ QPTEE IYNYN JBEAQ JCLMU ODFWM ARQCF
-OBWN""".replace(' ', '').replace('\n', '')
-
-    translation = """dasoberkommandoderwehrmaqtgibtbekanntxaachenxaache
-nxistgerettetxdurqgebuendelteneinsatzderhilfskraef
-tekonntediebedrohungabgewendetunddierettungderstad
-tgegenxeinsxaqtxnullxnullxuhrsiqergestelltwerdenx"""
-
-    # Tagesschlüssel:
-    # Tag UKW Walzenlage Ringstellung ---- Steckerverbindungen ----    Kenngruppen
-    #  31  B  I   IV III   16 26 08   AD CN ET FL GI JV KZ PU QY WX  dmr now wxy bev
-    #
-    # Die Kenngruppe hat keine kryptologische Bedeutung,[49] sie dient dem Empfänger der Nachricht nur dazu, zu erkennen, dass die Nachricht wirklich für ihn bestimmt ist und auch befugt entschlüsselt werden kann.
-
-    enigma = Enigma(['ukw_b', 'I', 'IV', 'III'])
-    enigma.plugboard.cables = "AD CN ET FL GI JV KZ PU QY WX"
-    enigma.wheel_positions = "*QWE"
-    enigma.ring_positions = [1, 16, 26, 8]
-
-    message_key = 'RTZ'
-    assert enigma.write(message_key) == 'EWG'
-
-    # Spruchkopf wird offen übertragen
-    # Uhrzeit - Anzahl zeichen - Zufällige Wahl + Ergebnis
-    # Kopf: 2220 – 204 – QWE EWG -
-
-    enigma.wheel_positions = "*" + message_key
-    assert enigma.write(translation) == message
-
-
-def test_M4_message():
-    """ https://www.cryptomuseum.com/crypto/enigma/msg/p1030681.htm """
-
-    enigma = Enigma(['ukw_caesar', 'beta', 'V', 'VI', 'VIII'])
-    enigma.plugboard.cables = "AE BF CM DQ HU JN LX PR SZ VW"
-    enigma.wheel_positions = "*NAEM"
-    enigma.ring_positions = "*EPEL"
-
-    msg_key = enigma.write("QEOB")
-    print(f"msg_key: {msg_key}")
-
-    assert msg_key == "CDSZ"
-
-    enigma.wheel_positions = "*" + msg_key
-
-    cypher_text = """LANO TCTO UARB BFPM HPHG CZXT DYGA HGUF XGEW KBLK GJWL QXXT
-       GPJJ AVTO CKZF SLPP QIHZ FXOE BWII EKFZ LCLO AQJU LJOY HSSM BBGW HZAN
-       VOII PYRB RTDJ QDJJ OQKC XWDN BBTY VXLY TAPG VEAT XSON PNYN QFUD BBHH
-       VWEP YEYD OHNL XKZD NWRH DUWU JUMW WVII WZXI VIUQ DRHY MNCY EFUA PNHO
-       TKHK GDNP SAKN UAGH JZSM JBMH VTRE QEDG XHLZ WIFU SKDQ VELN MIMI THBH
-       DBWV HDFY HJOQ IHOR TDJD BWXE MEAY XGYQ XOHF DMYU XXNO JAZR SGHP LWML
-       RECW WUTL RTTV LBHY OORG LGOW UXNX HMHY FAAC QEKT HSJW"""
-
-    plain_text = """KRKRALLEXXFOLGENDESISTSOFORTBEKANNTZUGEBENXXICHHABEFOLGELNBEBEFEHLERH
-   ALTENXXJANSTERLEDESBISHERIGXNREICHSMARSCHALLSJGOERINGJSETZTDERFUEHRER
-   SIEYHVRRGRZSSADMIRALYALSSEINENNACHFOLGEREINXSCHRIFTLSCHEVOLLMACHTUNTE
-   RWEGSXABSOFORTSOLLENSIESAEMTLICHEMASSNAHMENVERFUEGENYDIESICHAUSDERGEG
-   ENWAERTIGENLAGEERGEBENXGEZXREICHSLEITEIKKTULPEKKJBORMANNJXXOBXDXMMMDU
-   RNHFKSTXKOMXADMXUUUBOOIEXKP""".replace(' ', '').replace('\n', '')
-
-    output_text = enigma.write(cypher_text)
-    console.print(output_text)
-
-    assert output_text == plain_text
-
-
 def load_testdata(schema):
     source = Path(r"test_messages")
     data = []
@@ -269,7 +194,7 @@ def pytest_generate_tests(metafunc):
             break
 
 
-def test_yaml(data_tests):
+def test_enigma_messages(data_tests):
     enigma = Enigma(**data_tests['enigma'])
     console.print("\n")
     console.print(enigma)
@@ -277,7 +202,7 @@ def test_yaml(data_tests):
     input = data_tests['input'].replace(' ', '').replace('\n', '')
     output = enigma.write(input)
 
-    expected_output = data_tests['output'].replace(' ', '').replace('\n', '')
+    expected_output = data_tests['output'].replace(' ', '').replace('\n', '').upper()
 
     assert output == expected_output
 
