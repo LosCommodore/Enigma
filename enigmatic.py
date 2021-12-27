@@ -300,7 +300,7 @@ class Enigma:
         return "".join(output_text)
 
     def __repr__(self):
-        params = dict(whl_specs=[w.spec.name for w in self.wheels],
+        params = dict(wheel_specs=[w.spec.name for w in self.wheels],
                       plugs=self.__plugboard.cables,
                       wheel_positions=self.wheel_positions,
                       ring_positions=self.ring_positions,
