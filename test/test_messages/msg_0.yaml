@@ -1,4 +1,6 @@
 ---
+# https://www.cryptomuseum.com/crypto/enigma/msg/p1030681.htm
+id: Message from Doenitz - 1 May 1945
 enigma: 
   wheel_specs: 
     - ukw_caesar
@@ -9,7 +11,6 @@ enigma:
   wheel_positions: "*CDSZ"
   plugs: AE BF CM DQ HU JN LX PR SZ VW
   ring_positions: "*EPEL"
-
 input: >
     LANO TCTO UARB BFPM HPHG CZXT DYGA HGUF XGEW KBLK GJWL QXXT
     GPJJ AVTO CKZF SLPP QIHZ FXOE BWII EKFZ LCLO AQJU LJOY HSSM BBGW HZAN

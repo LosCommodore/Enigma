@@ -4,6 +4,7 @@ from enigmatic import Enigma
 import random
 from rich.console import Console
 from rich.table import Table
+from pathlib import Path
 import plotext as plt
 import yaml
 from collections import Counter
@@ -82,7 +83,7 @@ def test_double_step():
 
 @pytest.mark.parametrize(
     "wheels,expected_period",
-    [(['ukw_b', 'III', 'II', 'I'], 26*25*26),
+    [(['ukw_b', 'III', 'II', 'I'], 26 * 25 * 26),
      (['ukw_b', 'III', 'II', 'VI'], 8450)])
 def test_enigma_period(wheels, expected_period):
     """
@@ -101,7 +102,7 @@ def test_enigma_period(wheels, expected_period):
 
     input_text = "X" * expected_period * 3
 
-    possible_states = set(x+y+z
+    possible_states = set(x + y + z
                           for x in enigmatic.ALPHABET
                           for y in enigmatic.ALPHABET
                           for z in enigmatic.ALPHABET)
@@ -246,15 +247,37 @@ def test_M4_message():
     assert output_text == plain_text
 
 
-def test_yaml():
-    with open(r"C:\Users\ChLan\PyProjects\Enigma\test\test_messages\msg0.yaml", "r") as stream:
-        data = yaml.safe_load(stream)
+def load_testdata(schema):
+    source = Path(r"test_messages")
+    data = []
+    id = []
+    for f in source.glob(f"{schema}*.yaml"):
+        with open(f, "r") as stream:
+            y = yaml.safe_load(stream)
+            id.append(y['id'])
+            data.append(y)
 
-    enigma = Enigma(**data['enigma'])
-    input = data['input'].replace(' ', '').replace('\n', '')
+    return data, id
+
+
+def pytest_generate_tests(metafunc):
+    for fixture in metafunc.fixturenames:
+        if fixture.startswith("data_"):
+            schema = "".removeprefix("data_")
+            tests, ids = load_testdata(schema)
+            metafunc.parametrize(fixture, tests, ids=ids)
+            break
+
+
+def test_yaml(data_tests):
+    enigma = Enigma(**data_tests['enigma'])
+    console.print("\n")
+    console.print(enigma)
+
+    input = data_tests['input'].replace(' ', '').replace('\n', '')
     output = enigma.write(input)
 
-    expected_output = data['output'].replace(' ', '').replace('\n', '')
+    expected_output = data_tests['output'].replace(' ', '').replace('\n', '')
 
     assert output == expected_output
 
