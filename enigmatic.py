@@ -167,7 +167,7 @@ class PlugBoard(Scrambler):
 
 class Enigma:
     def __init__(self,
-                 whl_specs: list[Union[str, WheelSpec]],
+                 wheel_specs: list[Union[str, WheelSpec]],
                  max_memory=100,
                  plugs="",
                  wheel_positions="",
@@ -176,7 +176,7 @@ class Enigma:
         self.__plugboard = PlugBoard(plugs)
 
         self.__wheels: list[Wheel] = []
-        for spec in whl_specs:
+        for spec in wheel_specs:
             if isinstance(spec, WheelSpec):
                 self.__wheels.append(Wheel(spec))
             elif isinstance(spec, str):

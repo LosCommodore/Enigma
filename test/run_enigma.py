@@ -1,12 +1,19 @@
 from enigmatic import Enigma
 from rich.console import Console
 import rich.traceback
+import yaml
 
 rich.traceback.install(show_locals=True)
 
 # console
 console = Console(legacy_windows=False, color_system="truecolor", style="Black on bright_white")
 console.size = (200, 50)
+print = console.print
+
+with open(r"C:\Users\ChLan\PyProjects\Enigma\test\test_messages\msg0.yaml", "r") as stream:
+    x = yaml.safe_load(stream)
+
+enigma = Enigma(**x['enigma'])
 
 enigma = Enigma(['ukw_caesar', 'beta', 'V', 'VI', 'VIII'])
 enigma.plugboard.cables = "AE BF CM DQ HU JN LX PR SZ VW"

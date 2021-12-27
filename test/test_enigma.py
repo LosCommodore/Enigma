@@ -5,6 +5,7 @@ import random
 from rich.console import Console
 from rich.table import Table
 import plotext as plt
+import yaml
 from collections import Counter
 
 # console
@@ -243,6 +244,19 @@ def test_M4_message():
     console.print(output_text)
 
     assert output_text == plain_text
+
+
+def test_yaml():
+    with open(r"C:\Users\ChLan\PyProjects\Enigma\test\test_messages\msg0.yaml", "r") as stream:
+        data = yaml.safe_load(stream)
+
+    enigma = Enigma(**data['enigma'])
+    input = data['input'].replace(' ', '').replace('\n', '')
+    output = enigma.write(input)
+
+    expected_output = data['output'].replace(' ', '').replace('\n', '')
+
+    assert output == expected_output
 
 
 def test_repr_Enigma():
