@@ -1,7 +1,7 @@
 import pytest
 
 import enigmatic
-from enigmatic.enigmatic import Enigma
+from enigmatic.enigma import Enigma
 from enigmatic.pugboard import PlugBoard
 from enigmatic.wheel import Wheel, WheelSpec
 import random
@@ -71,7 +71,7 @@ def test_double_step():
     https://de.wikipedia.org/wiki/Enigma_(Maschine)#Anomalie
     """
 
-    enigma = Enigma(['ukw_b', 'I', 'II', 'III'])
+    enigma = Enigma.assemble(['ukw_b', 'I', 'II', 'III'])
     enigma.wheel_positions = "*ADU"
 
     enigma.write("x")
@@ -101,7 +101,7 @@ def test_enigma_period(wheels, expected_period):
     console.print(f"{wheels=}\n{expected_period=}")
     print("\n")
 
-    enigma = Enigma(wheels)
+    enigma = Enigma.assemble(wheels)
 
     input_text = "X" * expected_period * 3
 
@@ -168,7 +168,7 @@ def test_enigma_period(wheels, expected_period):
 
 
 def test_enigma_typing():
-    enigma = Enigma(['ukw_b', 'III', 'II', 'I'])
+    enigma = Enigma.assemble(['ukw_b', 'III', 'II', 'I'])
 
     assert enigma.write("hallodiesisteintest") == "MTNCZEVKHZUDSOACOEF"
     console.print(enigma)
@@ -198,7 +198,7 @@ def pytest_generate_tests(metafunc):
 
 
 def test_enigma_messages(data_tests):
-    enigma = Enigma(**data_tests['enigma'])
+    enigma = Enigma.assemble(**data_tests['enigma'])
     console.print("\n")
     console.print(enigma)
 
@@ -211,7 +211,7 @@ def test_enigma_messages(data_tests):
 
 
 def test_repr_Enigma():
-    enigma = Enigma(['ukw_caesar', 'beta', 'V', 'VI', 'VIII'])
+    enigma = Enigma.assemble(['ukw_caesar', 'beta', 'V', 'VI', 'VIII'])
     enigma.plugboard.cables = "AE BF CM DQ HU JN LX PR SZ VW"
     enigma.wheel_positions = "*NAEM"
     enigma.ring_positions = "*EPEL"

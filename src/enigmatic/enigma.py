@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy as np
 import rich.console
 from rich.table import Table
@@ -7,54 +9,62 @@ from collections import deque
 from enigmatic import ALPHABET, _letters2num, _num2letter, Scrambler
 from enigmatic.pugboard import PlugBoard
 from enigmatic.wheel import WheelSpec, Wheel, WHEEL_SPECS
+import msgspec
+from msgspec import field
 
 
-class Enigma:
-    def __init__(self,
-                 wheel_specs: list[Union[str, WheelSpec]],
-                 max_memory=100,
-                 plugs="",
-                 wheel_positions="",
-                 ring_positions=()):
+class Enigma(msgspec.Struct):
+    _wheels: list[Wheel]
+    plugboard: PlugBoard = field(default_factory=lambda: PlugBoard(""))
+    _memory: deque[list[str]] = field(default_factory=deque)
 
-        self.__plugboard = PlugBoard(plugs)
+    @classmethod
+    def assemble(
+            cls,
+            wheel_specs: list[str | WheelSpec] = "",
+            max_memory: int = 100,
+            plugs: str = "",
+            wheel_positions: str = "",
+            ring_positions=()
+    ) -> Enigma:
 
-        self.__wheels: list[Wheel] = []
+        wheels = []
         for spec in wheel_specs:
             if isinstance(spec, WheelSpec):
-                self.__wheels.append(Wheel(spec))
+                wheels.append(Wheel(spec))
             elif isinstance(spec, str):
-                self.__wheels.append(Wheel(WHEEL_SPECS[spec]))
+                wheels.append(Wheel(WHEEL_SPECS[spec]))
 
-        if self.__wheels[0].spec.is_rotor:
+        if wheels[0].spec.is_rotor:
             raise ValueError("Die first wheel has to be a stator for an enigma machine")
 
-        idx_is_rotor = np.where(np.array([x.spec.is_rotor for x in self.__wheels]))
+        idx_is_rotor = np.where(np.array([x.spec.is_rotor for x in wheels]))
         rotors_in_block = np.all(np.diff(idx_is_rotor) == 1)
 
         if not rotors_in_block:
             raise ValueError("No stators are allowed in between rotors")
 
+        enigma = Enigma(
+            _wheels=wheels,
+            plugboard=PlugBoard(plugs),
+            _memory=deque([], maxlen=max_memory),
+        )
         if wheel_positions:
-            self.wheel_positions = wheel_positions
+            enigma.wheel_positions = wheel_positions
 
         if ring_positions:
-            self.ring_positions = ring_positions
+            enigma.ring_positions = ring_positions
 
-        self.__memory: deque[list[str]] = deque([], maxlen=max_memory)
+        return enigma
 
     @property
     def memory(self):
-        return self.__memory
-
-    @property
-    def plugboard(self) -> PlugBoard:
-        return self.__plugboard
+        return self._memory
 
     @property
     def wheels(self) -> list[Wheel]:
         """ All wheels, slow rotor first """
-        return self.__wheels.copy()
+        return self._wheels.copy()
 
     @property
     def rotors(self) -> list[Wheel]:
@@ -94,7 +104,7 @@ class Enigma:
             whl.ring_position = rot
 
     def _route_scramblers(self) -> Union[Scrambler.route, Scrambler.inv_route]:
-        yield self.__plugboard.route
+        yield self.plugboard.route
 
         for wheel in reversed(self.wheels):
             yield wheel.route
@@ -102,7 +112,7 @@ class Enigma:
         for wheel in self.wheels[1:]:
             yield wheel.inv_route
 
-        yield self.__plugboard.inv_route
+        yield self.plugboard.inv_route
 
     def _press_key(self, key: str) -> str:
         if key not in ALPHABET:
@@ -145,7 +155,7 @@ class Enigma:
 
     def __repr__(self):
         params = dict(wheel_specs=[w.spec.name for w in self.wheels],
-                      plugs=self.__plugboard.cables,
+                      plugs=self.plugboard.cables,
                       wheel_positions=self.wheel_positions,
                       ring_positions=self.ring_positions,
                       )
@@ -157,8 +167,7 @@ class Enigma:
 
         return my_str
 
-    def print_full(self, console: rich.console.Console,
-                   options: rich.console.ConsoleOptions) -> rich.console.RenderResult:
+    def print_full(self) -> rich.console.RenderResult:
 
         if not self.memory:
             table = Table()

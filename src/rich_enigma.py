@@ -1,12 +1,8 @@
 import random
-from time import sleep
 
 import rich.text
 from rich.console import Console
 from rich.table import Table
-from rich.live import Live
-from rich.layout import Layout
-from typing import Any
 
 console = Console(legacy_windows=False, color_system="truecolor", style="Black on bright_white")
 console.size = (200, 50)
