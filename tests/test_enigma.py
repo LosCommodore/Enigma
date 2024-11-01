@@ -1,6 +1,9 @@
 import pytest
-from src.enigmatic import enigmatic
-from src.enigmatic.enigmatic import Enigma
+
+import enigmatic
+from enigmatic.enigmatic import Enigma
+from enigmatic.pugboard import PlugBoard
+from enigmatic.wheel import Wheel, WheelSpec
 import random
 from rich.console import Console
 from rich.table import Table
@@ -16,7 +19,7 @@ console.size = (200, 50)
 
 def test_plug_board():
     cables = ('BZ', 'FG')
-    p = enigmatic.PlugBoard(cables)
+    p = PlugBoard(cables)
 
     # scheck for symmetry
     for x in enigmatic._letters2num(enigmatic.ALPHABET):
@@ -32,10 +35,10 @@ def test_wheel_spec_constructor():
     ok_spec = "EKMFLGDQVZNTOWYHXUSPAIBRCJ"
 
     # check ok
-    enigmatic.WheelSpec("test", ok_spec, '')
+    WheelSpec("test", ok_spec, '')
 
     # check conversion to upper
-    w = enigmatic.WheelSpec("test", ok_spec.lower(), '')
+    w = WheelSpec("test", ok_spec.lower(), '')
     assert w.wiring.isupper()
 
     # check wrong letter
@@ -43,19 +46,19 @@ def test_wheel_spec_constructor():
     err_spec[4] = "^"
     err_spec = str(err_spec)
     with pytest.raises(ValueError):
-        enigmatic.WheelSpec("testRotor", err_spec, '')
+        WheelSpec("testRotor", err_spec, '')
 
     # wrong length
     with pytest.raises(ValueError):
-        enigmatic.WheelSpec("testRotor", ok_spec[:-1], '')
+        WheelSpec("testRotor", ok_spec[:-1], '')
 
 
 def test_rotor_symmetry():
     wiring = list(enigmatic.ALPHABET)
     random.shuffle(wiring)
     wiring = "".join(str(x) for x in wiring)
-    spec = enigmatic.WheelSpec("r1", wiring, '')
-    r = enigmatic.Wheel(spec)
+    spec = WheelSpec("r1", wiring, '')
+    r = Wheel(spec)
 
     for i, _ in enumerate(enigmatic.ALPHABET):
         letter_out = r.inv_route(r.route(i))
@@ -64,7 +67,7 @@ def test_rotor_symmetry():
 
 def test_double_step():
     """ Test the double step feature
-    „Royal Flags Wave Kings Above“
+    „Royal Flags Wave Kings Above
     https://de.wikipedia.org/wiki/Enigma_(Maschine)#Anomalie
     """
 
@@ -128,10 +131,10 @@ def test_enigma_period(wheels, expected_period):
     if bins == 1:
         console.print(f"[bold]All used states (same rotor position) where reached {count[0]} times")
     else:
-        #plt.clear_figure()
+        # plt.clear_figure()
         plt.title("Number times the same rotor position was reached")
-#        plt.hist(count, bins, xside=[1, 2])
-#        plt.show()
+    #        plt.hist(count, bins, xside=[1, 2])
+    #        plt.show()
 
     states_as_num = [enigmatic._letters2num(s) for s in states]
 
