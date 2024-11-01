@@ -49,7 +49,7 @@ def createRotorsInDb(rotorInfo):
 def readRotorCsv():
     rotors = []
     infos = []
-    with open(r'.\data\rotorDetails.csv', 'r') as csvfile:
+    with open(r'../../../data/rotorDetails.csv', 'r') as csvfile:
         csv2dbMapping = {"Rotor #": "name",
                          "wiring": "wiring",
                          "Date Introduced": "dateIntroduced"}

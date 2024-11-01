@@ -1,6 +1,6 @@
 import pytest
-import enigmatic
-from enigmatic import Enigma
+from src.enigmatic import enigmatic
+from src.enigmatic.enigmatic import Enigma
 import random
 from rich.console import Console
 from rich.table import Table
@@ -128,10 +128,10 @@ def test_enigma_period(wheels, expected_period):
     if bins == 1:
         console.print(f"[bold]All used states (same rotor position) where reached {count[0]} times")
     else:
-        plt.clear_plot()
+        #plt.clear_figure()
         plt.title("Number times the same rotor position was reached")
-        plt.hist(count, bins, xside=[1, 2])
-        plt.show()
+#        plt.hist(count, bins, xside=[1, 2])
+#        plt.show()
 
     states_as_num = [enigmatic._letters2num(s) for s in states]
 
