@@ -91,7 +91,7 @@ class Enigma:
 
     @property
     def ring_positions(self) -> list[int]:
-        return [x.ring_settings for x in self.wheels]
+        return [x.ring_setting for x in self.wheels]
 
     @ring_positions.setter
     def ring_positions(self, pos: Union[list[int], str]):
@@ -100,7 +100,7 @@ class Enigma:
 
         for whl, rot in zip(self.wheels, pos):
             if rot != "*":
-                whl.ring_settings = rot
+                whl.ring_setting = rot
 
     def _route_scramblers(self) -> Union[Scrambler.route, Scrambler.route_backward]:
         yield self.plugboard.route
@@ -209,7 +209,7 @@ class Enigma:
                 elif isinstance(s, Rotor):
                     rot = deque(ALPHABET)
                     # noinspection PyUnresolvedReferences
-                    rot.rotate(-1 * s.total_rotation)
+                    rot.rotate(-1 * s.rotation_of_wiring)
                     table.add_row(s.name, "".join(rot))
                 else:
                     table.add_row(s.name, s)

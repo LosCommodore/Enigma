@@ -70,42 +70,56 @@ class Rotor(Scrambler):
     spec: RotorSpec = field(on_setattr=frozen)
 
     position: int = field(default=0, converter=lambda x: x % len(ALPHABET))
-    """ Visible position in the enigma machine as number (A=0) """
+    """ Visible position of the rotor in the enigma machine as number (A=0) """
 
-    ring_settings: int = field(default=1, converter=_ring_settings_converter)
+    ring_setting: int = field(default=1, converter=_ring_settings_converter)
     """ Changing the position of the ring will change 
     the position of the notch and alphabet, relative to the internal wiring. This setting is called the ring setting
 
     ring_setings is 1-indexed -> 1==A 
     """
 
-    _relative_mapping: list[int] = field(init=False, repr=False)
-    _relative_mapping_backwards: list[int] = field(init=False, repr=False)
+    _relative_rotation: list[int] = field(init=False, repr=False)
+    _relative_rotation_backward: list[int] = field(init=False, repr=False)
 
     def __attrs_post_init__(self):
         mapping = _letters_to_numbers(self.spec.wiring)
         sorted_mapping = np.argsort(mapping).tolist()
 
-        self._relative_mapping = [m - i for i, m in enumerate(mapping)]
-        self._relative_mapping_backwards = [m - i for i, m in enumerate(sorted_mapping)]
+        self._relative_rotation = [m - i for i, m in enumerate(mapping)]
+        self._relative_rotation_backward = [m - i for i, m in enumerate(sorted_mapping)]
 
-    def route(self, character: int) -> int:
-        rot = self.total_rotation
-        return (character + self._relative_mapping[(character + rot) % len(ALPHABET)]) % len(ALPHABET)
+    def route(self, letter: int) -> int:
+        """
+        Routing logic (example):
+                 ↓
+                ABCDEFG   - letter = 1
+              ABCDEFG     - Rotation of wiring = 2
+                 ↓        - Input rotation = 3 (D)
+                 └─────┐  - relative rotation
+                    output_rotation
+        """
+        input_rotation = (self.rotation_of_wiring + letter) % len(ALPHABET)
+        output_rotation = letter + self._relative_rotation[input_rotation]
+
+        return output_rotation % len(ALPHABET)
 
     def route_backward(self, letter: int) -> int:
-        rot = self.total_rotation
-        return (letter + self._relative_mapping_backwards[(letter + rot) % len(ALPHABET)]) % len(ALPHABET)
+        input_rotation = (self.rotation_of_wiring + letter) % len(ALPHABET)
+        output_rotation = letter + self._relative_rotation_backward[input_rotation]
+
+        return output_rotation % len(ALPHABET)
 
     @property
-    def total_rotation(self):
-        value = self.position - (self.ring_settings - 1)
-        return value % len(ALPHABET)
+    def rotation_of_wiring(self) -> int:
+        """The rotation of the wiring of the rotor is offset by the ring_settings"""
+        rotation = self.position - (self.ring_setting - 1)
+        return rotation % len(ALPHABET)
 
-    def does_step(self):
+    def does_step(self) -> bool:
         return self.position in set(_letters_to_numbers(self.spec.notches))
 
     def __str__(self):
-        my_str = f"Pos: {_num2letter(self.position)} Ring: {self.ring_settings}  Wiring: {self.spec.wiring} Notch: {self.spec.notches}"
+        my_str = f"Pos: {_num2letter(self.position)} Ring: {self.ring_setting}  Wiring: {self.spec.wiring} Notch: {self.spec.notches}"
 
         return my_str
