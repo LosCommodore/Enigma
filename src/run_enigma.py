@@ -1,4 +1,4 @@
-from src.enigmatic.enigma import Enigma
+from enigmatic.enigma import Enigma
 from rich.console import Console
 import rich.traceback
 import yaml
@@ -18,7 +18,7 @@ with open(THIS_DIR.parent / r"tests\test_messages\msg_0.yaml", "r") as stream:
     x = yaml.safe_load(stream)
 
 enigma = Enigma.assemble(wheel_specs=['ukw_caesar', 'beta', 'V', 'VI', 'VIII'])
-enigma.plugboard.cables = "AE BF CM DQ HU JN LX PR SZ VW"
+enigma.plugboard.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
 enigma.wheel_positions = "*SCHL"
 enigma.ring_positions = "*AAEL"
 
