@@ -6,8 +6,8 @@ from rich.table import Table
 from typing import Union
 from collections import deque
 
-from enigmatic import ALPHABET, _letters2num, _num2letter, Scrambler
-from enigmatic.pugboard import PlugBoard
+from enigmatic import ALPHABET, _letters_to_numbers, _num2letter, Scrambler
+from enigmatic.plugboard import PlugBoard
 from enigmatic.wheel import WheelSpec, Wheel, WHEEL_SPECS
 import msgspec
 from msgspec import field
@@ -88,7 +88,7 @@ class Enigma(msgspec.Struct):
 
         for whl, rot in zip(self.wheels, rotations):
             if rot != "*":
-                whl.rotation = _letters2num(rot)[0]
+                whl.rotation = _letters_to_numbers(rot)[0]
 
     @property
     def ring_positions(self) -> list[int]:
@@ -103,16 +103,16 @@ class Enigma(msgspec.Struct):
         for whl, rot in zip(self.wheels, pos):
             whl.ring_position = rot
 
-    def _route_scramblers(self) -> Union[Scrambler.route, Scrambler.inv_route]:
+    def _route_scramblers(self) -> Union[Scrambler.route, Scrambler.route_backward]:
         yield self.plugboard.route
 
         for wheel in reversed(self.wheels):
             yield wheel.route
 
         for wheel in self.wheels[1:]:
-            yield wheel.inv_route
+            yield wheel.route_backward
 
-        yield self.plugboard.inv_route
+        yield self.plugboard.route_backward
 
     def _press_key(self, key: str) -> str:
         if key not in ALPHABET:
@@ -121,7 +121,7 @@ class Enigma(msgspec.Struct):
         # Whenever a key is pressed, the wheels move before a lamp is turned on.
         self.rotate()
 
-        n_key = _letters2num(key)[0]
+        n_key = _letters_to_numbers(key)[0]
         current_key = n_key
         routing = [current_key]
         for route in self._route_scramblers():
@@ -192,7 +192,7 @@ class Enigma(msgspec.Struct):
             table.add_column('Routing')
 
             m = self.memory[-1]
-            input_nr = _letters2num(m[0])[0]
+            input_nr = _letters_to_numbers(m[0])[0]
             table.add_row("Alphabet", "".join(ALPHABET))
             table.add_row("", " " * input_nr + "[green]↓")
 
@@ -201,7 +201,7 @@ class Enigma(msgspec.Struct):
             scr += reversed(self.wheels[:-1])
             symbol = "[green]↓"
 
-            for s, routing, in zip(scr, _letters2num(m[1:])):
+            for s, routing, in zip(scr, _letters_to_numbers(m[1:])):
                 if type(s) == PlugBoard:
                     table.add_row("Plugboard", "".join(ALPHABET))
 

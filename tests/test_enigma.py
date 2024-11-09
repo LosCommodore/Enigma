@@ -22,11 +22,11 @@ def test_plug_board():
     p = PlugBoard(cables)
 
     # scheck for symmetry
-    for x in enigmatic._letters2num(enigmatic.ALPHABET):
-        assert x == p.inv_route(p.route(x))
+    for x in enigmatic._letters_to_numbers(enigmatic.ALPHABET):
+        assert x == p.route_backward(p.route(x))
 
     for cable in cables:
-        i, o = enigmatic._letters2num(cable)
+        i, o = enigmatic._letters_to_numbers(cable)
         assert p.route(i) == o
         assert p.route(o) == i
 
@@ -61,7 +61,7 @@ def test_rotor_symmetry():
     r = Wheel(spec)
 
     for i, _ in enumerate(enigmatic.ALPHABET):
-        letter_out = r.inv_route(r.route(i))
+        letter_out = r.route_backward(r.route(i))
         assert i == letter_out
 
 
@@ -136,7 +136,7 @@ def test_enigma_period(wheels, expected_period):
     #        plt.hist(count, bins, xside=[1, 2])
     #        plt.show()
 
-    states_as_num = [enigmatic._letters2num(s) for s in states]
+    states_as_num = [enigmatic._letters_to_numbers(s) for s in states]
 
     r1, r2, r3 = list(zip(*states_as_num))
     h1 = Counter(r1)
