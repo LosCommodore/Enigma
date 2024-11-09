@@ -101,7 +101,8 @@ class Enigma(msgspec.Struct):
             raise ValueError("Wrong number of ring_positions")
 
         for whl, rot in zip(self.wheels, pos):
-            whl.ring_position = rot
+            if rot != "*":
+                whl.ring_position = rot
 
     def _route_scramblers(self) -> Union[Scrambler.route, Scrambler.route_backward]:
         yield self.plugboard.route
@@ -135,16 +136,15 @@ class Enigma(msgspec.Struct):
 
     def rotate(self):
         rotors = list(reversed(self.rotors))
+        do_rotate = {0} # first Rotor always rotates
 
-        do_rotate = {rotors[0]}  # first Rotor always rotates
-
-        for r1, r2 in zip(rotors, rotors[1:]):
+        for i, (r1, r2) in enumerate(zip(rotors, rotors[1:])):
             if r1.does_step():
-                do_rotate.add(r1)
-                do_rotate.add(r2)
+                do_rotate.add(i)
+                do_rotate.add(i+1)
 
-        for rotor in do_rotate:
-            rotor.rotation += 1
+        for i in do_rotate:
+            rotors[i].rotation += 1
 
     def write(self, text: str) -> str:
         input_text = text.upper().replace(' ', '').replace('\n', '')

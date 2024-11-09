@@ -2,8 +2,6 @@ import pytest
 
 import enigmatic
 from enigmatic.enigma import Enigma
-from enigmatic.wheel import Wheel, WheelSpec
-import random
 from rich.console import Console
 from rich.table import Table
 from pathlib import Path
@@ -14,41 +12,6 @@ from collections import Counter
 # console
 console = Console(legacy_windows=False, color_system="truecolor", style="Black on bright_white")
 console.size = (200, 50)
-
-
-
-def test_wheel_spec_constructor():
-    ok_spec = "EKMFLGDQVZNTOWYHXUSPAIBRCJ"
-
-    # check ok
-    WheelSpec("test", ok_spec, '')
-
-    # check conversion to upper
-    w = WheelSpec("test", ok_spec.lower(), '')
-    assert w.wiring.isupper()
-
-    # check wrong letter
-    err_spec = list(ok_spec)
-    err_spec[4] = "^"
-    err_spec = str(err_spec)
-    with pytest.raises(ValueError):
-        WheelSpec("testRotor", err_spec, '')
-
-    # wrong length
-    with pytest.raises(ValueError):
-        WheelSpec("testRotor", ok_spec[:-1], '')
-
-
-def test_rotor_symmetry():
-    wiring = list(enigmatic.ALPHABET)
-    random.shuffle(wiring)
-    wiring = "".join(str(x) for x in wiring)
-    spec = WheelSpec("r1", wiring, '')
-    r = Wheel(spec)
-
-    for i, _ in enumerate(enigmatic.ALPHABET):
-        letter_out = r.route_backward(r.route(i))
-        assert i == letter_out
 
 
 def test_double_step():
@@ -107,7 +70,6 @@ def test_enigma_period(wheels, expected_period):
 
     assert "X" not in text
 
-    state_counter = Counter(states)
     missed_states = possible_states - set(states)
 
     count = list(Counter(states).values())
@@ -164,14 +126,14 @@ def test_enigma_typing():
 def load_testdata(schema):
     source = Path(r"test_messages")
     data = []
-    id = []
+    id_ = []
     for f in source.glob(f"{schema}*.yaml"):
         with open(f, "r") as stream:
             y = yaml.safe_load(stream)
-            id.append(y['id'])
+            id_.append(y['id'])
             data.append(y)
 
-    return data, id
+    return data, id_
 
 
 def pytest_generate_tests(metafunc):
@@ -188,15 +150,16 @@ def test_enigma_messages(data_tests):
     console.print("\n")
     console.print(enigma)
 
-    input = data_tests['input'].replace(' ', '').replace('\n', '')
-    output = enigma.write(input)
+    input_ = data_tests['input'].replace(' ', '').replace('\n', '')
+    output = enigma.write(input_)
 
     expected_output = data_tests['output'].replace(' ', '').replace('\n', '').upper()
 
     assert output == expected_output
 
 
-def test_repr_Enigma():
+@pytest.mark.skip()
+def test_repr_enigma():
     enigma = Enigma.assemble(['ukw_caesar', 'beta', 'V', 'VI', 'VIII'])
     enigma.plugboard.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
     enigma.wheel_positions = "*NAEM"

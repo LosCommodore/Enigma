@@ -28,11 +28,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="refactoring">
-      <change afterPath="$PROJECT_DIR$/tests/plugboard/test_plugboard.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_wheel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dmypy.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmatic/new_wheel.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmatic/plugboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/plugboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmatic/wheel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/wheel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/plugboard/test_plugboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_plugboard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_enigma.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,10 +101,16 @@
     "Python tests.Doctest via pytest in plugboard.py.executor": "Run",
     "Python tests.pytest for test_enigma.test_enigma_messages.executor": "Debug",
     "Python tests.pytest for test_enigma.test_plug_board.executor": "Run",
+    "Python tests.pytest for test_plugboard.test_beep_trough_cables.executor": "Run",
+    "Python tests.pytest for test_plugboard.test_check_cables.executor": "Run",
     "Python tests.pytest for test_plugboard.test_plug_board.executor": "Run",
     "Python tests.pytest for test_plugboard.test_symmetry.executor": "Run",
+    "Python tests.pytest for test_wheel.test_rotor_symmetry.executor": "Run",
+    "Python tests.pytest for test_wheel.test_wheel_spec_create.executor": "Run",
+    "Python tests.pytest for test_wheel.test_wrong_wheel_spec.executor": "Run",
     "Python tests.pytest in test_enigma.py.executor": "Run",
     "Python tests.pytest in test_plugboard.py.executor": "Run",
+    "Python tests.pytest in test_wheel.py.executor": "Run",
     "Python tests.pytest in tests.executor": "Run",
     "Python.dummy.executor": "Run",
     "Python.new_wheel.executor": "Run",
@@ -141,14 +147,15 @@
       <recent name="C:\Users\ChLan\PyProjects\Enigma\test\test_messages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ChLan\PyProjects\Enigma\tests" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\src" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\src\snippets\db" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\src\enigmatic" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for test_plugboard.test_check_cables">
-    <configuration name="pytest for test_enigma.test_plug_board" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest for test_wheel.test_rotor_symmetry">
+    <configuration name="pytest for test_wheel.test_rotor_symmetry" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -162,17 +169,17 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_enigma.test_plug_board&quot;" />
+      <option name="_new_target" value="&quot;test_wheel.test_rotor_symmetry&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_plugboard.test_check_cables" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_wheel.test_wheel_spec_create" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/plugboard" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -180,17 +187,17 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_plugboard.test_check_cables&quot;" />
+      <option name="_new_target" value="&quot;test_wheel.test_wheel_spec_create&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_plugboard.test_plug_board" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_wheel.test_wrong_wheel_spec" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/plugboard" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -198,17 +205,17 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_plugboard.test_plug_board&quot;" />
+      <option name="_new_target" value="&quot;test_wheel.test_wrong_wheel_spec&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_plugboard.test_symmetry" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_enigma.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/plugboard" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -216,17 +223,17 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_plugboard.test_symmetry&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_enigma.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_plugboard.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_wheel.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/plugboard" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -234,17 +241,17 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/plugboard/test_plugboard.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_wheel.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for test_plugboard.test_check_cables" />
-        <item itemvalue="Python tests.pytest for test_plugboard.test_symmetry" />
-        <item itemvalue="Python tests.pytest for test_plugboard.test_plug_board" />
-        <item itemvalue="Python tests.pytest in test_plugboard.py" />
-        <item itemvalue="Python tests.pytest for test_enigma.test_plug_board" />
+        <item itemvalue="Python tests.pytest for test_wheel.test_rotor_symmetry" />
+        <item itemvalue="Python tests.pytest in test_wheel.py" />
+        <item itemvalue="Python tests.pytest for test_wheel.test_wheel_spec_create" />
+        <item itemvalue="Python tests.pytest for test_wheel.test_wrong_wheel_spec" />
+        <item itemvalue="Python tests.pytest in test_enigma.py" />
       </list>
     </recent_temporary>
   </component>
@@ -382,7 +389,8 @@
       <workItem from="1731003696532" duration="10026000" />
       <workItem from="1731083228277" duration="5702000" />
       <workItem from="1731092936176" duration="5864000" />
-      <workItem from="1731134700064" duration="5917000" />
+      <workItem from="1731134700064" duration="6341000" />
+      <workItem from="1731143912125" duration="869000" />
     </task>
     <task id="LOCAL-00008" summary="refactoring">
       <created>1636264018142</created>
@@ -727,7 +735,7 @@
       <option name="project" value="LOCAL" />
       <updated>1640611471540</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -785,50 +793,56 @@
     <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_enigma_period.coverage" NAME="pytest for test_enigma.test_enigma_period Coverage Results" MODIFIED="1640541025539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_create_rotor_spec.coverage" NAME="pytest for test.test_create_rotor_spec Coverage Results" MODIFIED="1636266123302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$testKivi.coverage" NAME="testKivi Coverage Results" MODIFIED="1581849779990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_yaml__1_.coverage" NAME="pytest for test_enigma.test_yaml (1) Coverage Results" MODIFIED="1640609441436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$testGuiQt.coverage" NAME="testGuiQt Coverage Results" MODIFIED="1634971986854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_hello.coverage" NAME="pytest for test.test_hello Coverage Results" MODIFIED="1636181716407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_wheel_test_wheel_spec_create.coverage" NAME="pytest for test_wheel.test_wheel_spec_create Coverage Results" MODIFIED="1731144564132" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_enigma_period__2_.coverage" NAME="pytest for test_enigma.test_enigma_period (2) Coverage Results" MODIFIED="1640418623112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$wheel.coverage" NAME="wheel Coverage Results" MODIFIED="1731097511378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/enigmatic" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_unvalid_rotor_spec.coverage" NAME="pytest for test.test_unvalid_rotor_spec Coverage Results" MODIFIED="1636194631837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_wheel_test_wrong_wheel_spec.coverage" NAME="pytest for test_wheel.test_wrong_wheel_spec Coverage Results" MODIFIED="1731144516143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_double_step.coverage" NAME="pytest for test_enigma.test_double_step Coverage Results" MODIFIED="1639928309014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_real_enigma.coverage" NAME="pytest for test_enigma.test_real_enigma Coverage Results" MODIFIED="1639311480841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma.coverage" NAME="pytest for test_enigma Coverage Results" MODIFIED="1640368048867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$new_wheel.coverage" NAME="new_wheel Coverage Results" MODIFIED="1731135753150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/enigmatic" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1730471933436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_py.coverage" NAME="pytest in test.py Coverage Results" MODIFIED="1636282538402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_plugboard_test_check_cables.coverage" NAME="pytest for test_plugboard.test_check_cables Coverage Results" MODIFIED="1731141004359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/plugboard" />
     <SUITE FILE_PATH="coverage/Enigma$run_enigma__1_.coverage" NAME="run_enigma (1) Coverage Results" MODIFIED="1730632984615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_enigma_messages.coverage" NAME="pytest for test_enigma.test_enigma_messages Coverage Results" MODIFIED="1730450721529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$rich_enigma.coverage" NAME="rich_enigma Coverage Results" MODIFIED="1730451528756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_yaml.coverage" NAME="pytest for test_enigma.test_yaml Coverage Results" MODIFIED="1640609641464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$enigma.coverage" NAME="enigma Coverage Results" MODIFIED="1635268976907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$testKivy.coverage" NAME="testKivy Coverage Results" MODIFIED="1581870552246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_M4_message.coverage" NAME="pytest for test_enigma.test_M4_message Coverage Results" MODIFIED="1639944448611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_rotor_spec.coverage" NAME="pytest for test_enigma.test_rotor_spec Coverage Results" MODIFIED="1639302146089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_type_wiki_message.coverage" NAME="pytest for test_enigma.test_type_wiki_message Coverage Results" MODIFIED="1639933375051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_plug_board.coverage" NAME="pytest for test.test_plug_board Coverage Results" MODIFIED="1636281390688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_rotor_spec.coverage" NAME="pytest for test_enigma.test_rotor_spec Coverage Results" MODIFIED="1639302146089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$Doctest_via_pytest_in_plugboard_py.coverage" NAME="Doctest via pytest in plugboard.py Coverage Results" MODIFIED="1731096144076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/enigmatic" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_type_message.coverage" NAME="pytest for test_enigma.test_type_message Coverage Results" MODIFIED="1639246493020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_rotor_symmetry.coverage" NAME="pytest for test.test_rotor_symmetry Coverage Results" MODIFIED="1636282531993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_enigma_period__3_.coverage" NAME="pytest for test_enigma.test_enigma_period (3) Coverage Results" MODIFIED="1640411449595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_enigma_period__1_.coverage" NAME="pytest for test_enigma.test_enigma_period (1) Coverage Results" MODIFIED="1640417491731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$plugboard.coverage" NAME="plugboard Coverage Results" MODIFIED="1731090319674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/enigmatic" />
     <SUITE FILE_PATH="coverage/Enigma$Doctest_via_pytest_in___init___py.coverage" NAME="Doctest via pytest in __init__.py Coverage Results" MODIFIED="1731095729401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/enigmatic" />
     <SUITE FILE_PATH="coverage/Enigma$test.coverage" NAME="test Coverage Results" MODIFIED="1636181481392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_rotor_move.coverage" NAME="pytest for test_enigma.test_rotor_move Coverage Results" MODIFIED="1639312949270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_plugboard_test_symmetry.coverage" NAME="pytest for test_plugboard.test_symmetry Coverage Results" MODIFIED="1731140419632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/plugboard" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_plugboard_test_symmetry.coverage" NAME="pytest for test_plugboard.test_symmetry Coverage Results" MODIFIED="1731140958087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/plugboard" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma__1_.coverage" NAME="pytest for test_enigma (1) Coverage Results" MODIFIED="1640411460112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_plugboard_test_plug_board.coverage" NAME="pytest for test_plugboard.test_plug_board Coverage Results" MODIFIED="1731139835461" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/plugboard" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_repr_Enigma.coverage" NAME="pytest for test_enigma.test_repr_Enigma Coverage Results" MODIFIED="1640541750344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_unvalid_rotor_spec.coverage" NAME="pytest for test_enigma.test_unvalid_rotor_spec Coverage Results" MODIFIED="1639301524810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$enigmatic.coverage" NAME="enigmatic Coverage Results" MODIFIED="1638687667800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Enigma$dummy.coverage" NAME="dummy Coverage Results" MODIFIED="1730631340832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Enigma$run_enigma.coverage" NAME="run_enigma Coverage Results" MODIFIED="1730450516908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_plugboard_py.coverage" NAME="pytest in test_plugboard.py Coverage Results" MODIFIED="1731141052978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/plugboard" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_enigma_py.coverage" NAME="pytest in test_enigma.py Coverage Results" MODIFIED="1731141110499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_enigma_period.coverage" NAME="pytest for test_enigma.test_enigma_period Coverage Results" MODIFIED="1640541025539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$testKivi.coverage" NAME="testKivi Coverage Results" MODIFIED="1581849779990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Enigma$testGuiQt.coverage" NAME="testGuiQt Coverage Results" MODIFIED="1634971986854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_hello.coverage" NAME="pytest for test.test_hello Coverage Results" MODIFIED="1636181716407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$wheel.coverage" NAME="wheel Coverage Results" MODIFIED="1731097511378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/enigmatic" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_wheel_test_rotor_symmetry.coverage" NAME="pytest for test_wheel.test_rotor_symmetry Coverage Results" MODIFIED="1731144648942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_unvalid_rotor_spec.coverage" NAME="pytest for test.test_unvalid_rotor_spec Coverage Results" MODIFIED="1636194631837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_real_enigma.coverage" NAME="pytest for test_enigma.test_real_enigma Coverage Results" MODIFIED="1639311480841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma.coverage" NAME="pytest for test_enigma Coverage Results" MODIFIED="1640368048867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1730471933436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_wheel_py.coverage" NAME="pytest in test_wheel.py Coverage Results" MODIFIED="1731144571288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_py.coverage" NAME="pytest in test.py Coverage Results" MODIFIED="1636282538402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$rich_enigma.coverage" NAME="rich_enigma Coverage Results" MODIFIED="1730451528756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/Enigma$enigma.coverage" NAME="enigma Coverage Results" MODIFIED="1635268976907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_M4_message.coverage" NAME="pytest for test_enigma.test_M4_message Coverage Results" MODIFIED="1639944448611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_plug_board.coverage" NAME="pytest for test.test_plug_board Coverage Results" MODIFIED="1636281390688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_type_message.coverage" NAME="pytest for test_enigma.test_type_message Coverage Results" MODIFIED="1639246493020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_rotor_symmetry.coverage" NAME="pytest for test.test_rotor_symmetry Coverage Results" MODIFIED="1636282531993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_enigma_period__1_.coverage" NAME="pytest for test_enigma.test_enigma_period (1) Coverage Results" MODIFIED="1640417491731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_plugboard_test_beep_trough_cables.coverage" NAME="pytest for test_plugboard.test_beep_trough_cables Coverage Results" MODIFIED="1731141047168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/plugboard" />
+    <SUITE FILE_PATH="coverage/Enigma$dummy.coverage" NAME="dummy Coverage Results" MODIFIED="1730631340832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_plug_board.coverage" NAME="pytest for test_enigma.test_plug_board Coverage Results" MODIFIED="1731139497172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_enigma_py.coverage" NAME="pytest in test_enigma.py Coverage Results" MODIFIED="1731139444102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_plugboard_py.coverage" NAME="pytest in test_plugboard.py Coverage Results" MODIFIED="1731139753699" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/plugboard" />
   </component>
 </project>
