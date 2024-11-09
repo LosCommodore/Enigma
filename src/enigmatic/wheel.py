@@ -1,4 +1,3 @@
-from typing import Union
 import numpy as np
 from enigmatic import ALPHABET, Scrambler, _letters_to_numbers, _num2letter
 from attrs import define, field
@@ -68,12 +67,6 @@ class Wheel(Scrambler):
         self._relative_mapping = [m - i for i, m in enumerate(mapping)]
         self._relative_mapping_backwards = [m - i for i, m in enumerate(sorted_mapping)]
 
-    @property
-    def total_rotation(self):
-        #  Wird der Ring um eine Position weiter gestellt, wird statt Position B im Sichtfenster der Walze ein A angezeigt.
-        value = self.rotation - (self.ring_position - 1)
-        return value % len(ALPHABET)
-
     def route(self, character: int) -> int:
         rot = self.total_rotation
         return (character + self._relative_mapping[(character + rot) % len(ALPHABET)]) % len(ALPHABET)
@@ -81,6 +74,12 @@ class Wheel(Scrambler):
     def route_backward(self, letter: int) -> int:
         rot = self.total_rotation
         return (letter + self._relative_mapping_backwards[(letter + rot) % len(ALPHABET)]) % len(ALPHABET)
+
+    @property
+    def total_rotation(self):
+        #  Wird der Ring um eine Position weiter gestellt, wird statt Position B im Sichtfenster der Walze ein A angezeigt.
+        value = self.rotation - (self.ring_position - 1)
+        return value % len(ALPHABET)
 
     def does_step(self):
         return self.rotation in set(_letters_to_numbers(self.spec.notches))

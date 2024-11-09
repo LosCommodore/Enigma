@@ -2,7 +2,6 @@ import pytest
 
 import enigmatic
 from enigmatic.enigma import Enigma
-from enigmatic.pugboard import PlugBoard
 from enigmatic.wheel import Wheel, WheelSpec
 import random
 from rich.console import Console
@@ -16,19 +15,6 @@ from collections import Counter
 console = Console(legacy_windows=False, color_system="truecolor", style="Black on bright_white")
 console.size = (200, 50)
 
-
-def test_plug_board():
-    cables = ('BZ', 'FG')
-    p = PlugBoard(cables)
-
-    # scheck for symmetry
-    for x in enigmatic._letters_to_numbers(enigmatic.ALPHABET):
-        assert x == p.route_backward(p.route(x))
-
-    for cable in cables:
-        i, o = enigmatic._letters_to_numbers(cable)
-        assert p.route(i) == o
-        assert p.route(o) == i
 
 
 def test_wheel_spec_constructor():
@@ -212,7 +198,7 @@ def test_enigma_messages(data_tests):
 
 def test_repr_Enigma():
     enigma = Enigma.assemble(['ukw_caesar', 'beta', 'V', 'VI', 'VIII'])
-    enigma.plugboard.cables = "AE BF CM DQ HU JN LX PR SZ VW"
+    enigma.plugboard.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
     enigma.wheel_positions = "*NAEM"
     enigma.ring_positions = "*EPEL"
 

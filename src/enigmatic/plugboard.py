@@ -10,6 +10,7 @@ Up to 13 steckered pairs might be used at one time, although only 10 were normal
 
 from collections import Counter
 from typing import Iterable
+
 from enigmatic import Scrambler, ALPHABET, _letters_to_numbers
 
 
@@ -21,11 +22,11 @@ class PlugBoard(Scrambler):
     """
 
     _cables: set[str]  # e.g. {"AB", "FK"}
-    _mapping: bytearray
+    _mapping: list[int]
 
     def __init__(self, cables: Iterable[str] | str = ""):
         super().__init__(name="PlugBoard")
-        self._mapping = bytearray(len(ALPHABET))
+        self._mapping: list[int] = list(range(len(ALPHABET)))
         self._cables = set()
         self.add_cables(cables)
 
@@ -65,7 +66,7 @@ class PlugBoard(Scrambler):
 
     def _use_cables(self, cables: set[str]):
         self._cables = cables
-        self._mapping = bytearray(len(ALPHABET))
+        self._mapping = list(range(len(ALPHABET)))
         for cable in self._cables:
             i, o = _letters_to_numbers(cable)
             self._mapping[i] = o
@@ -78,7 +79,7 @@ class PlugBoard(Scrambler):
 def _validate_cables(cables: Iterable[str] | str) -> set[str]:
     """ Validate new cables from user
 
-    :return uppercase set of cables, e.g. {"GH", "FA"}
+    returns uppercase set of cables, e.g. {"GH", "FA"}
     """
     if isinstance(cables, str):
         cables = cables.split()
