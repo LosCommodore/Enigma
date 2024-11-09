@@ -9,25 +9,24 @@ from collections import deque
 from enigmatic import ALPHABET, _letters_to_numbers, _num2letter, Scrambler
 from enigmatic.plugboard import PlugBoard
 from enigmatic.wheel import WheelSpec, Wheel, WHEEL_SPECS
-import msgspec
-from msgspec import field
+from attrs import define, field
 
 
-class Enigma(msgspec.Struct):
+@define(repr=False)
+class Enigma:
     _wheels: list[Wheel]
-    plugboard: PlugBoard = field(default_factory=lambda: PlugBoard(""))
-    _memory: deque[list[str]] = field(default_factory=deque)
+    plugboard: PlugBoard = field(factory=lambda: PlugBoard(""))
+    _memory: deque[list[str]] = field(factory=deque)
 
     @classmethod
     def assemble(
-            cls,
-            wheel_specs: list[str | WheelSpec] = "",
-            max_memory: int = 100,
-            plugs: str = "",
-            wheel_positions: str = "",
-            ring_positions=()
+        cls,
+        wheel_specs: list[str | WheelSpec] = "",
+        max_memory: int = 100,
+        plugs: str = "",
+        wheel_positions: str = "",
+        ring_positions=(),
     ) -> Enigma:
-
         wheels = []
         for spec in wheel_specs:
             if isinstance(spec, WheelSpec):
@@ -45,9 +44,9 @@ class Enigma(msgspec.Struct):
             raise ValueError("No stators are allowed in between rotors")
 
         enigma = Enigma(
-            _wheels=wheels,
+            wheels=wheels,
             plugboard=PlugBoard(plugs),
-            _memory=deque([], maxlen=max_memory),
+            memory=deque([], maxlen=max_memory),
         )
         if wheel_positions:
             enigma.wheel_positions = wheel_positions
@@ -63,25 +62,25 @@ class Enigma(msgspec.Struct):
 
     @property
     def wheels(self) -> list[Wheel]:
-        """ All wheels, slow rotor first """
+        """All wheels, slow rotor first"""
         return self._wheels.copy()
 
     @property
     def rotors(self) -> list[Wheel]:
-        """ All rotors, slow rotor first """
+        """All rotors, slow rotor first"""
         return [x for x in self.wheels if x.spec.is_rotor]
 
     @property
     def wheel_positions(self):
-        """ All wheel_rotations, slow rotor first """
+        """All wheel_rotations, slow rotor first"""
 
         rots = [_num2letter(x.rotation) for x in self.wheels]
         return "".join(rots)
 
     @wheel_positions.setter
     def wheel_positions(self, rotations: str):
-        """ Set the rotations for all wheels.
-        Use "*" to skip a wheel """
+        """Set the rotations for all wheels.
+        Use "*" to skip a wheel"""
 
         if len(rotations) != len(self.wheels):
             raise ValueError("Wrong number of roations!")
@@ -96,7 +95,6 @@ class Enigma(msgspec.Struct):
 
     @ring_positions.setter
     def ring_positions(self, pos: Union[list[int], str]):
-
         if len(pos) != len(self.wheels):
             raise ValueError("Wrong number of ring_positions")
 
@@ -136,29 +134,30 @@ class Enigma(msgspec.Struct):
 
     def rotate(self):
         rotors = list(reversed(self.rotors))
-        do_rotate = {0} # first Rotor always rotates
+        do_rotate = {0}  # first Rotor always rotates
 
         for i, (r1, r2) in enumerate(zip(rotors, rotors[1:])):
             if r1.does_step():
                 do_rotate.add(i)
-                do_rotate.add(i+1)
+                do_rotate.add(i + 1)
 
         for i in do_rotate:
             rotors[i].rotation += 1
 
     def write(self, text: str) -> str:
-        input_text = text.upper().replace(' ', '').replace('\n', '')
+        input_text = text.upper().replace(" ", "").replace("\n", "")
 
         output_text = [self._press_key(key) for key in input_text]
 
         return "".join(output_text)
 
     def __repr__(self):
-        params = dict(wheel_specs=[w.spec.name for w in self.wheels],
-                      plugs=self.plugboard.cables,
-                      wheel_positions=self.wheel_positions,
-                      ring_positions=self.ring_positions,
-                      )
+        params = dict(
+            wheel_specs=[w.spec.name for w in self.wheels],
+            plugs=self.plugboard.cables,
+            wheel_positions=self.wheel_positions,
+            ring_positions=self.ring_positions,
+        )
 
         return f"Enigma(**{repr(params)})"
 
@@ -168,19 +167,18 @@ class Enigma(msgspec.Struct):
         return my_str
 
     def print_full(self) -> rich.console.RenderResult:
-
         if not self.memory:
             table = Table()
-            table.add_column('Component')
-            table.add_column('Routing')
+            table.add_column("Component")
+            table.add_column("Routing")
             for s in self.wheels:
                 table.add_row(s.name, s)
 
             yield table
         else:
             table = Table()
-            table.add_column('Component')
-            table.add_column('State')
+            table.add_column("Component")
+            table.add_column("State")
 
             for s in self.wheels:
                 table.add_row(s.name, s)
@@ -188,8 +186,8 @@ class Enigma(msgspec.Struct):
             yield table
 
             table = Table()
-            table.add_column('Component')
-            table.add_column('Routing')
+            table.add_column("Component")
+            table.add_column("Routing")
 
             m = self.memory[-1]
             input_nr = _letters_to_numbers(m[0])[0]
@@ -201,11 +199,14 @@ class Enigma(msgspec.Struct):
             scr += reversed(self.wheels[:-1])
             symbol = "[green]↓"
 
-            for s, routing, in zip(scr, _letters_to_numbers(m[1:])):
-                if type(s) == PlugBoard:
+            for (
+                s,
+                routing,
+            ) in zip(scr, _letters_to_numbers(m[1:])):
+                if isinstance(s, PlugBoard):
                     table.add_row("Plugboard", "".join(ALPHABET))
 
-                elif type(s) == Wheel:
+                elif isinstance(s, Wheel):
                     rot = deque(ALPHABET)
                     # noinspection PyUnresolvedReferences
                     rot.rotate(-1 * s.total_rotation)

@@ -14,30 +14,32 @@ class WheelSpec:
     @wiring.validator
     def _check_wiring(self, attribute, value):
         if sorted(value) != sorted(ALPHABET):
-            raise ValueError(r'Invalid wheel specification, invalid alphabet !')
+            raise ValueError(r"Invalid wheel specification, invalid alphabet !")
 
     @property
     def is_rotor(self) -> bool:
         return len(self.notches) > 0
 
 
-WHEEL_SPECS: dict[str, WheelSpec] = \
-    {spec.name: spec for spec in [
-        WheelSpec('I', 'EKMFLGDQVZNTOWYHXUSPAIBRCJ', 'Q'),
-        WheelSpec('II', 'AJDKSIRUXBLHWTMCQGZNPYFVOE', 'E'),
-        WheelSpec('III', 'BDFHJLCPRTXVZNYEIWGAKMUSQO', 'V'),
-        WheelSpec('IV', 'ESOVPZJAYQUIRHXLNFTGKDCMWB', 'J'),
-        WheelSpec('V', 'VZBRGITYUPSDNHLXAWMJQOFECK', 'Z'),
-        WheelSpec('VI', 'JPGVOUMFYQBENHZRDKASXLICTW', 'ZM'),
-        WheelSpec('VII', 'NZJHGRCXMYSWBOUFAIVLPEKQDT', 'ZM'),
-        WheelSpec('VIII', 'FKQHTLXOCBJSPDZRAMEWNIUYGV', 'ZM'),
-        WheelSpec('etw', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', ''),
-        WheelSpec('ukw_b', 'YRUHQSLDPXNGOKMIEBFZCWVJAT', ''),
-        WheelSpec('ukw_bruno', 'ENKQAUYWJICOPBLMDXZVFTHRGS', ''),  # == reflector b thin
-        WheelSpec('ukw_caesar', 'RDOBJNTKVEHMLFCWZAXGYIPSUQ', ''),  # == reflector c thin
-        WheelSpec('beta', 'LEYJVCNIXWPBQMDRTAKZGFUHOS', ''),
-        WheelSpec('gamma', 'FSOKANUERHMBTIYCWLQPZXVGJD', ''),
-    ]}
+WHEEL_SPECS: dict[str, WheelSpec] = {
+    spec.name: spec
+    for spec in [
+        WheelSpec("I", "EKMFLGDQVZNTOWYHXUSPAIBRCJ", "Q"),
+        WheelSpec("II", "AJDKSIRUXBLHWTMCQGZNPYFVOE", "E"),
+        WheelSpec("III", "BDFHJLCPRTXVZNYEIWGAKMUSQO", "V"),
+        WheelSpec("IV", "ESOVPZJAYQUIRHXLNFTGKDCMWB", "J"),
+        WheelSpec("V", "VZBRGITYUPSDNHLXAWMJQOFECK", "Z"),
+        WheelSpec("VI", "JPGVOUMFYQBENHZRDKASXLICTW", "ZM"),
+        WheelSpec("VII", "NZJHGRCXMYSWBOUFAIVLPEKQDT", "ZM"),
+        WheelSpec("VIII", "FKQHTLXOCBJSPDZRAMEWNIUYGV", "ZM"),
+        WheelSpec("etw", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", ""),
+        WheelSpec("ukw_b", "YRUHQSLDPXNGOKMIEBFZCWVJAT", ""),
+        WheelSpec("ukw_bruno", "ENKQAUYWJICOPBLMDXZVFTHRGS", ""),  # == reflector b thin
+        WheelSpec("ukw_caesar", "RDOBJNTKVEHMLFCWZAXGYIPSUQ", ""),  # == reflector c thin
+        WheelSpec("beta", "LEYJVCNIXWPBQMDRTAKZGFUHOS", ""),
+        WheelSpec("gamma", "FSOKANUERHMBTIYCWLQPZXVGJD", ""),
+    ]
+}
 
 
 def _ring_position_converter(position: int | str):
@@ -52,7 +54,8 @@ def _ring_position_converter(position: int | str):
 
 @define
 class Wheel(Scrambler):
-    """A rotor or reflector for the enigma machine """
+    """A rotor or reflector for the enigma machine"""
+
     spec: WheelSpec = field(on_setattr=frozen)
     rotation: int = field(default=0, converter=lambda x: x % len(ALPHABET))
     ring_position: int = field(default=1, converter=_ring_position_converter)

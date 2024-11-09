@@ -1,10 +1,9 @@
-from rich.console import Console
 
 import enigmatic
 from enigmatic.plugboard import PlugBoard
 
 
-def test_symmetry(cables=('BZ', 'FG')):
+def test_symmetry(cables=("BZ", "FG")):
     p = PlugBoard(cables)
     print("")
     print(p)
@@ -18,7 +17,7 @@ def test_symmetry(cables=('BZ', 'FG')):
         assert letter == r2
 
 
-def test_beep_trough_cables( cables = ('BZ', 'FG')):
+def test_beep_trough_cables(cables=("BZ", "FG")):
     p = PlugBoard(cables)
 
     for cable in cables:

@@ -1,4 +1,4 @@
-""" Plugboard
+"""Plugboard
 https://en.wikipedia.org/wiki/Enigma_machine#Plugboard
 https://www.cryptomuseum.com/crypto/enigma/i/sb.htm
 
@@ -15,7 +15,7 @@ from enigmatic import Scrambler, ALPHABET, _letters_to_numbers
 
 
 class PlugBoard(Scrambler):
-    """ PlugBoard (Mark 3)
+    """PlugBoard (Mark 3)
 
     Create Plugboard
     >>> pb = PlugBoard("AB CD HP")
@@ -50,8 +50,7 @@ class PlugBoard(Scrambler):
         counter = Counter("".join(cables))
         reoccuring_letters = set(letter for letter, count in counter.items() if count > 1)
         if reoccuring_letters:
-            raise ValueError(
-                f'Letters must not be used multiple times. All cables: {cables}. Error caused by letters: {reoccuring_letters}')
+            raise ValueError(f"Letters must not be used multiple times. All cables: {cables}. Error caused by letters: {reoccuring_letters}")
 
         self._use_cables(cables)
 
@@ -77,7 +76,7 @@ class PlugBoard(Scrambler):
 
 
 def _validate_cables(cables: Iterable[str] | str) -> set[str]:
-    """ Validate new cables from user
+    """Validate new cables from user
 
     returns uppercase set of cables, e.g. {"GH", "FA"}
     """
@@ -88,17 +87,18 @@ def _validate_cables(cables: Iterable[str] | str) -> set[str]:
     # Check for invalid letters
     letters = "".join(cables)
     if invalid_letters := set(letters) - set(ALPHABET):
-        raise ValueError(f'Invalid letters used for cable: {invalid_letters}')
+        raise ValueError(f"Invalid letters used for cable: {invalid_letters}")
 
     # Check cables are pairs of letters
     if invalid_cables := set(cable for cable in cables if len(cable) != 2):
-        raise ValueError(f'Cables must be pairs of letters. Invalid cables: {invalid_cables}')
+        raise ValueError(f"Cables must be pairs of letters. Invalid cables: {invalid_cables}")
 
     return cables
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     """ Demo usage: """

@@ -15,12 +15,12 @@ console.size = (200, 50)
 
 
 def test_double_step():
-    """ Test the double step feature
+    """Test the double step feature
     „Royal Flags Wave Kings Above
     https://de.wikipedia.org/wiki/Enigma_(Maschine)#Anomalie
     """
 
-    enigma = Enigma.assemble(['ukw_b', 'I', 'II', 'III'])
+    enigma = Enigma.assemble(["ukw_b", "I", "II", "III"])
     enigma.wheel_positions = "*ADU"
 
     enigma.write("x")
@@ -35,8 +35,8 @@ def test_double_step():
 
 @pytest.mark.parametrize(
     "wheels,expected_period",
-    [(['ukw_b', 'III', 'II', 'I'], 26 * 25 * 26),
-     (['ukw_b', 'III', 'II', 'VI'], 8450)])
+    [(["ukw_b", "III", "II", "I"], 26 * 25 * 26), (["ukw_b", "III", "II", "VI"], 8450)],
+)
 def test_enigma_period(wheels, expected_period):
     """
     https://de.wikipedia.org/wiki/Enigma_(Maschine)#Schl%C3%BCsselraum
@@ -46,7 +46,7 @@ def test_enigma_period(wheels, expected_period):
     The alphabet rings of rotors VI, VII and VIII contained two notches which, despite shortening the period of the substitution alphabet, made decryption more difficult.
     """
     print("\n")
-    console.rule(f"Testing the period of the enigma", align="left")
+    console.rule("Testing the period of the enigma", align="left")
     console.print(f"{wheels=}\n{expected_period=}")
     print("\n")
 
@@ -54,10 +54,7 @@ def test_enigma_period(wheels, expected_period):
 
     input_text = "X" * expected_period * 3
 
-    possible_states = set(x + y + z
-                          for x in enigmatic.ALPHABET
-                          for y in enigmatic.ALPHABET
-                          for z in enigmatic.ALPHABET)
+    possible_states = set(x + y + z for x in enigmatic.ALPHABET for y in enigmatic.ALPHABET for z in enigmatic.ALPHABET)
 
     states = []
     msg = []
@@ -116,7 +113,7 @@ def test_enigma_period(wheels, expected_period):
 
 
 def test_enigma_typing():
-    enigma = Enigma.assemble(['ukw_b', 'III', 'II', 'I'])
+    enigma = Enigma.assemble(["ukw_b", "III", "II", "I"])
 
     assert enigma.write("hallodiesisteintest") == "MTNCZEVKHZUDSOACOEF"
     console.print(enigma)
@@ -130,7 +127,7 @@ def load_testdata(schema):
     for f in source.glob(f"{schema}*.yaml"):
         with open(f, "r") as stream:
             y = yaml.safe_load(stream)
-            id_.append(y['id'])
+            id_.append(y["id"])
             data.append(y)
 
     return data, id_
@@ -146,21 +143,21 @@ def pytest_generate_tests(metafunc):
 
 
 def test_enigma_messages(data_tests):
-    enigma = Enigma.assemble(**data_tests['enigma'])
+    enigma = Enigma.assemble(**data_tests["enigma"])
     console.print("\n")
     console.print(enigma)
 
-    input_ = data_tests['input'].replace(' ', '').replace('\n', '')
+    input_ = data_tests["input"].replace(" ", "").replace("\n", "")
     output = enigma.write(input_)
 
-    expected_output = data_tests['output'].replace(' ', '').replace('\n', '').upper()
+    expected_output = data_tests["output"].replace(" ", "").replace("\n", "").upper()
 
     assert output == expected_output
 
 
 @pytest.mark.skip()
 def test_repr_enigma():
-    enigma = Enigma.assemble(['ukw_caesar', 'beta', 'V', 'VI', 'VIII'])
+    enigma = Enigma.assemble(["ukw_caesar", "beta", "V", "VI", "VIII"])
     enigma.plugboard.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
     enigma.wheel_positions = "*NAEM"
     enigma.ring_positions = "*EPEL"
