@@ -8,20 +8,20 @@ from collections import deque
 
 from enigmatic import ALPHABET, _letters_to_numbers, _num2letter, Scrambler
 from enigmatic.plugboard import PlugBoard
-from enigmatic.wheel import WheelSpec, Wheel, WHEEL_SPECS
+from enigmatic.rotor import RotorSpec, Rotor, WHEEL_SPECS
 from attrs import define, field
 
 
 @define(repr=False)
 class Enigma:
-    _wheels: list[Wheel]
+    _wheels: list[Rotor]
     plugboard: PlugBoard = field(factory=lambda: PlugBoard(""))
     _memory: deque[list[str]] = field(factory=deque)
 
     @classmethod
     def assemble(
         cls,
-        wheel_specs: list[str | WheelSpec] = "",
+        wheel_specs: list[str | RotorSpec] = "",
         max_memory: int = 100,
         plugs: str = "",
         wheel_positions: str = "",
@@ -29,10 +29,10 @@ class Enigma:
     ) -> Enigma:
         wheels = []
         for spec in wheel_specs:
-            if isinstance(spec, WheelSpec):
-                wheels.append(Wheel(spec))
+            if isinstance(spec, RotorSpec):
+                wheels.append(Rotor(spec))
             elif isinstance(spec, str):
-                wheels.append(Wheel(WHEEL_SPECS[spec]))
+                wheels.append(Rotor(WHEEL_SPECS[spec]))
 
         if wheels[0].spec.is_rotor:
             raise ValueError("Die first wheel has to be a stator for an enigma machine")
@@ -61,12 +61,12 @@ class Enigma:
         return self._memory
 
     @property
-    def wheels(self) -> list[Wheel]:
+    def wheels(self) -> list[Rotor]:
         """All wheels, slow rotor first"""
         return self._wheels.copy()
 
     @property
-    def rotors(self) -> list[Wheel]:
+    def rotors(self) -> list[Rotor]:
         """All rotors, slow rotor first"""
         return [x for x in self.wheels if x.spec.is_rotor]
 
@@ -74,7 +74,7 @@ class Enigma:
     def wheel_positions(self):
         """All wheel_rotations, slow rotor first"""
 
-        rots = [_num2letter(x.rotation) for x in self.wheels]
+        rots = [_num2letter(x.position) for x in self.wheels]
         return "".join(rots)
 
     @wheel_positions.setter
@@ -87,11 +87,11 @@ class Enigma:
 
         for whl, rot in zip(self.wheels, rotations):
             if rot != "*":
-                whl.rotation = _letters_to_numbers(rot)[0]
+                whl.position = _letters_to_numbers(rot)[0]
 
     @property
     def ring_positions(self) -> list[int]:
-        return [x.ring_position for x in self.wheels]
+        return [x.ring_settings for x in self.wheels]
 
     @ring_positions.setter
     def ring_positions(self, pos: Union[list[int], str]):
@@ -100,7 +100,7 @@ class Enigma:
 
         for whl, rot in zip(self.wheels, pos):
             if rot != "*":
-                whl.ring_position = rot
+                whl.ring_settings = rot
 
     def _route_scramblers(self) -> Union[Scrambler.route, Scrambler.route_backward]:
         yield self.plugboard.route
@@ -142,7 +142,7 @@ class Enigma:
                 do_rotate.add(i + 1)
 
         for i in do_rotate:
-            rotors[i].rotation += 1
+            rotors[i].position += 1
 
     def write(self, text: str) -> str:
         input_text = text.upper().replace(" ", "").replace("\n", "")
@@ -206,7 +206,7 @@ class Enigma:
                 if isinstance(s, PlugBoard):
                     table.add_row("Plugboard", "".join(ALPHABET))
 
-                elif isinstance(s, Wheel):
+                elif isinstance(s, Rotor):
                     rot = deque(ALPHABET)
                     # noinspection PyUnresolvedReferences
                     rot.rotate(-1 * s.total_rotation)

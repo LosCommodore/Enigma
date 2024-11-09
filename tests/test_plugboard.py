@@ -1,4 +1,3 @@
-
 import enigmatic
 from enigmatic.plugboard import PlugBoard
 

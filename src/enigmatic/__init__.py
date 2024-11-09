@@ -5,6 +5,7 @@ import rich.console
 
 # Global alphabet used by this package:
 ALPHABET: tuple[str, ...] = tuple(chr(ord("A") + i) for i in range(26))
+ALPHABET_SET: set[str] = set(ALPHABET)
 
 
 def _letters_to_numbers(letters: Iterable[str]) -> list[int]:
