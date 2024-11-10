@@ -1,11 +1,6 @@
 """Plugboard
 https://en.wikipedia.org/wiki/Enigma_machine#Plugboard
 https://www.cryptomuseum.com/crypto/enigma/i/sb.htm
-
-A cable placed onto the plugboard connected letters in pairs; for example, E and Q might be a steckered pair.
-The effect was to swap those letters before and after the main rotor scrambling unit.
-For example, when an operator pressed E, the signal was diverted to Q before entering the rotors.
-Up to 13 steckered pairs might be used at one time, although only 10 were normally used.
 """
 
 from collections import Counter
@@ -94,16 +89,3 @@ def _validate_cables(cables: Iterable[str] | str) -> set[str]:
         raise ValueError(f"Cables must be pairs of letters. Invalid cables: {invalid_cables}")
 
     return cables
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    """ Demo usage: """
-    p = PlugBoard("AB CD HP")
-    p.add_cables("KT")
-    p.remove_cables("AB")
-    print(p)
-    print(p.route(2))

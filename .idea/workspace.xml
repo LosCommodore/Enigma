@@ -29,8 +29,18 @@
   <component name="ChangeListManager">
     <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/rotorDetails.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/rotorDetails.ods" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infos.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/notes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/Enigma_(crittografia)_-_Museo_scienza_e_tecnologia_Milano.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmatic/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmatic/enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/enigma.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmatic/plugboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/plugboard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmatic/rotor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/rotor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rich_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/rich_enigma.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/run_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/run_enigma.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_enigma.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +140,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.koxudaxi.ruff.RuffConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -147,14 +157,14 @@
       <recent name="C:\Users\ChLan\PyProjects\Enigma\test\test_messages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ChLan\PyProjects\Enigma\doc" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\tests" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\src" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\src\snippets\db" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\src\enigmatic" />
-      <recent name="C:\Users\ChLan\PyProjects\Enigma\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in tests">
+  <component name="RunManager" selected="Python.run_enigma">
     <configuration name="rich_enigma" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="ENV_FILES" value="" />
@@ -257,9 +267,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.run_enigma" />
         <item itemvalue="Python tests.pytest in tests" />
         <item itemvalue="Python.rich_enigma" />
-        <item itemvalue="Python.run_enigma" />
         <item itemvalue="Python tests.pytest in test_enigma.py" />
         <item itemvalue="Python tests.pytest for test_enigma.test_repr_enigma" />
       </list>
@@ -405,7 +415,9 @@
       <workItem from="1731151360628" duration="1170000" />
       <workItem from="1731152759860" duration="704000" />
       <workItem from="1731161441294" duration="2315000" />
-      <workItem from="1731179171104" duration="3226000" />
+      <workItem from="1731179171104" duration="5665000" />
+      <workItem from="1731217107644" duration="6180000" />
+      <workItem from="1731223366930" duration="456000" />
     </task>
     <task id="LOCAL-00008" summary="refactoring">
       <created>1636264018142</created>
@@ -750,7 +762,7 @@
       <option name="project" value="LOCAL" />
       <updated>1640611471540</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -836,7 +848,7 @@
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_unvalid_rotor_spec.coverage" NAME="pytest for test_enigma.test_unvalid_rotor_spec Coverage Results" MODIFIED="1639301524810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$enigmatic.coverage" NAME="enigmatic Coverage Results" MODIFIED="1638687667800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_tests_test_enigma_test_double_step.coverage" NAME="pytest for tests.test_enigma.test_double_step Coverage Results" MODIFIED="1731145832192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Enigma$run_enigma.coverage" NAME="run_enigma Coverage Results" MODIFIED="1731179648074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/Enigma$run_enigma.coverage" NAME="run_enigma Coverage Results" MODIFIED="1731223679931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_plugboard_py.coverage" NAME="pytest in test_plugboard.py Coverage Results" MODIFIED="1731141052978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/plugboard" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_enigma_py.coverage" NAME="pytest in test_enigma.py Coverage Results" MODIFIED="1731146167586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_enigma_period.coverage" NAME="pytest for test_enigma.test_enigma_period Coverage Results" MODIFIED="1640541025539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
@@ -849,9 +861,9 @@
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_real_enigma.coverage" NAME="pytest for test_enigma.test_real_enigma Coverage Results" MODIFIED="1639311480841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma.coverage" NAME="pytest for test_enigma Coverage Results" MODIFIED="1640368048867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_wheel_py.coverage" NAME="pytest in test_wheel.py Coverage Results" MODIFIED="1731144970716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1731181717249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1731223049118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_py.coverage" NAME="pytest in test.py Coverage Results" MODIFIED="1636282538402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Enigma$rich_enigma.coverage" NAME="rich_enigma Coverage Results" MODIFIED="1731179655680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/Enigma$rich_enigma.coverage" NAME="rich_enigma Coverage Results" MODIFIED="1731222873863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Enigma$enigma.coverage" NAME="enigma Coverage Results" MODIFIED="1635268976907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_M4_message.coverage" NAME="pytest for test_enigma.test_M4_message Coverage Results" MODIFIED="1639944448611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_plug_board.coverage" NAME="pytest for test.test_plug_board Coverage Results" MODIFIED="1636281390688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />

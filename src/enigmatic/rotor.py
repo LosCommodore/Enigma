@@ -3,6 +3,8 @@ https://en.wikipedia.org/wiki/Enigma_rotor_details
 https://www.cryptomuseum.com/crypto/enigma/wiring.htm
 """
 
+from functools import cached_property
+
 import numpy as np
 from enigmatic import ALPHABET, ALPHABET_SET, Scrambler, _letters_to_numbers, _num2letter
 from attrs import define, field
@@ -28,8 +30,13 @@ class RotorSpec:
             raise ValueError(r"Invalid wheel specification, invalid alphabet !")
 
     @property
-    def is_rotor(self) -> bool:
+    def is_dynamic(self) -> bool:
+        """A dynamic rotor is actually able to rotate (not a stator)"""
         return len(self.notches) > 0
+
+    @cached_property
+    def notch_numbers(self) -> tuple[int, ...]:
+        return tuple(_letters_to_numbers(self.notches))
 
 
 WHEEL_SPECS: dict[str, RotorSpec] = {
@@ -70,7 +77,9 @@ class Rotor(Scrambler):
     spec: RotorSpec = field(on_setattr=frozen)
 
     position: int = field(default=0, converter=lambda x: x % len(ALPHABET))
-    """ Visible position of the rotor in the enigma machine as number (A=0) """
+    """ Visible letter of the alphabet ring of the rotor trough the window of the enigma machine.
+    The letter is represented as a 0-indexed number (A=0) 
+    """
 
     ring_setting: int = field(default=1, converter=_ring_settings_converter)
     """ Changing the position of the ring will change 
@@ -117,7 +126,7 @@ class Rotor(Scrambler):
         return rotation % len(ALPHABET)
 
     def does_step(self) -> bool:
-        return self.position in set(_letters_to_numbers(self.spec.notches))
+        return self.position in self.spec.notch_numbers
 
     def __str__(self):
         my_str = f"Pos: {_num2letter(self.position)} Ring: {self.ring_setting}  Wiring: {self.spec.wiring} Notch: {self.spec.notches}"

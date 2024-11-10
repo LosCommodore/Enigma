@@ -1,7 +1,7 @@
 import abc
-import dataclasses
 from typing import Iterable
 import rich.console
+from attrs import define
 
 # Global alphabet used by this package:
 ALPHABET: tuple[str, ...] = tuple(chr(ord("A") + i) for i in range(26))
@@ -21,7 +21,7 @@ def _num2letter(num: int):
     return ALPHABET[num]
 
 
-@dataclasses.dataclass(kw_only=True)
+@define(kw_only=True)
 class Scrambler(abc.ABC):
     """A Scramber is any part which takes part in the encryption of the signal. For an Enigma machine these are the
     Rotors and the Plugboard"""
@@ -34,7 +34,7 @@ class Scrambler(abc.ABC):
 
     @abc.abstractmethod
     def route_backward(self, letter: int) -> int:
-        """Backwarts routing of a letter through the Scrambler"""
+        """Backwards routing of a letter through the Scrambler"""
 
     # noinspection PyUnusedLocal
     def __rich_console__(self, console: rich.console.Console, options: rich.console.ConsoleOptions) -> rich.console.RenderResult:

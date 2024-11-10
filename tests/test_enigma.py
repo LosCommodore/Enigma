@@ -158,7 +158,7 @@ def test_enigma_messages(data_tests):
 @pytest.mark.skip()
 def test_repr_enigma():
     enigma = Enigma.assemble(["ukw_caesar", "beta", "V", "VI", "VIII"])
-    enigma.plugboard.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
+    enigma.plug_board.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
     enigma.wheel_positions = "*NAEM"
     enigma.ring_positions = "*EPEL"
 

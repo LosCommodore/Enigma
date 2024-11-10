@@ -40,33 +40,8 @@ def main():
     table.add_row("rot_3", "D", *r3)
     table.add_row("Mirror", "D", *r4)
 
-    # table.padding = (0,0,0,0)
-
-    # for i, letter in enumerate(alphabet):
-    #    if i == 10:
-    #        table.add_row("",letter,letter,"<- " +letter,"")
-    #    else:
-    #        table.add_row("",letter, letter, "   " + letter,"")
-
     console.clear()
     console.clear_live()
     console.print(table)
-    console.save_html("blub.html")
-
-    # console.print("Danger, Will Robinson!", style="blink bold red underline on rgb(255,255,255)")
-
-    # layout = Layout()
-    #
-    # layout.split_row(
-    #     Layout(table,name="upper"),
-    #     Layout("hallo Welt",name="lower")
-    # )
-    #
-    # with console.screen():
-    #     #console.print(table)
-    #     console.print(layout)
-    #
-    # print("ende")
-
 
 main()
