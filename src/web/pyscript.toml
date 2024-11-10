@@ -1,0 +1,15 @@
+name = "Enigma"
+description = "enigma"
+
+packages = [
+    "attrs",
+    "numpy",
+    "rich",
+]
+
+[files]
+"main.py" = ""
+"../enigmatic/__init__.py" = "enigmatic/__init__.py"
+"../enigmatic/enigma.py" = "enigmatic/enigma.py"
+"../enigmatic/plugboard.py" = "enigmatic/plugboard.py"
+"../enigmatic/rotor.py" = "enigmatic/rotor.py"

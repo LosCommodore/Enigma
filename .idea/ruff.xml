@@ -3,7 +3,7 @@
   <component name="RuffConfigService">
     <option name="disableOnSaveOutsideOfProject" value="false" />
     <option name="globalRuffExecutablePath" value="c:\users\chlan\.local\bin\ruff.exe" />
-    <option name="runRuffOnSave" value="true" />
+    <option name="runRuffOnReformatCode" value="false" />
     <option name="useRuffFormat" value="true" />
     <option name="useRuffServer" value="true" />
   </component>

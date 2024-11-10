@@ -28,19 +28,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="refactoring">
+      <change afterPath="$PROJECT_DIR$/src/web/enigma.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/web/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/web/pyscript.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ruff.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ruff.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/rotorDetails.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/rotorDetails.ods" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infos.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/notes.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pictures/Enigma_(crittografia)_-_Museo_scienza_e_tecnologia_Milano.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmatic/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmatic/enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/enigma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmatic/plugboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/plugboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmatic/rotor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/rotor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rich_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/rich_enigma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/run_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/run_enigma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_enigma.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +133,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.koxudaxi.ruff.RuffConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -418,6 +411,9 @@
       <workItem from="1731179171104" duration="5665000" />
       <workItem from="1731217107644" duration="6180000" />
       <workItem from="1731223366930" duration="456000" />
+      <workItem from="1731242988798" duration="8498000" />
+      <workItem from="1731257801948" duration="738000" />
+      <workItem from="1731258561413" duration="957000" />
     </task>
     <task id="LOCAL-00008" summary="refactoring">
       <created>1636264018142</created>
@@ -762,7 +758,7 @@
       <option name="project" value="LOCAL" />
       <updated>1640611471540</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
