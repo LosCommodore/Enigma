@@ -27,18 +27,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="refactoring">
-      <change afterPath="$PROJECT_DIR$/src/web/enigma.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/pyscript.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ruff.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ruff.xml" afterDir="false" />
+    <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="pyscript">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,6 +50,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -95,48 +101,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Doctest via pytest in __init__.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Doctest via pytest in plugboard.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_enigma.test_enigma_messages.executor&quot;: &quot;Debug&quot;,
-    &quot;Python tests.pytest for test_enigma.test_plug_board.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_enigma.test_repr_enigma.executor&quot;: &quot;Debug&quot;,
-    &quot;Python tests.pytest for test_plugboard.test_beep_trough_cables.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_plugboard.test_check_cables.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_plugboard.test_plug_board.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_plugboard.test_symmetry.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_wheel.test_rotor_symmetry.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_wheel.test_wheel_spec_create.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_wheel.test_wrong_wheel_spec.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for tests.test_enigma.test_double_step.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_enigma.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_plugboard.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_wheel.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in tests.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dummy.executor&quot;: &quot;Run&quot;,
-    &quot;Python.new_wheel.executor&quot;: &quot;Run&quot;,
-    &quot;Python.plugboard.executor&quot;: &quot;Run&quot;,
-    &quot;Python.rich_enigma.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run_enigma (1).executor&quot;: &quot;Debug&quot;,
-    &quot;Python.run_enigma.executor&quot;: &quot;Run&quot;,
-    &quot;Python.wheel.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ChLan/PyProjects/Enigma/src/enigmatic/__init__.py&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.koxudaxi.ruff.RuffConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Doctest via pytest in __init__.py.executor": "Run",
+    "Python tests.Doctest via pytest in plugboard.py.executor": "Run",
+    "Python tests.pytest for test_enigma.test_enigma_messages.executor": "Debug",
+    "Python tests.pytest for test_enigma.test_plug_board.executor": "Run",
+    "Python tests.pytest for test_enigma.test_repr_enigma.executor": "Debug",
+    "Python tests.pytest for test_plugboard.test_beep_trough_cables.executor": "Run",
+    "Python tests.pytest for test_plugboard.test_check_cables.executor": "Run",
+    "Python tests.pytest for test_plugboard.test_plug_board.executor": "Run",
+    "Python tests.pytest for test_plugboard.test_symmetry.executor": "Run",
+    "Python tests.pytest for test_wheel.test_rotor_symmetry.executor": "Run",
+    "Python tests.pytest for test_wheel.test_wheel_spec_create.executor": "Run",
+    "Python tests.pytest for test_wheel.test_wrong_wheel_spec.executor": "Run",
+    "Python tests.pytest for tests.test_enigma.test_double_step.executor": "Run",
+    "Python tests.pytest in test_enigma.py.executor": "Run",
+    "Python tests.pytest in test_plugboard.py.executor": "Run",
+    "Python tests.pytest in test_wheel.py.executor": "Run",
+    "Python tests.pytest in tests.executor": "Run",
+    "Python.dummy.executor": "Run",
+    "Python.new_wheel.executor": "Run",
+    "Python.plugboard.executor": "Run",
+    "Python.rich_enigma.executor": "Run",
+    "Python.run_enigma (1).executor": "Debug",
+    "Python.run_enigma.executor": "Run",
+    "Python.wheel.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "page",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/ChLan/PyProjects/Enigma/src/enigmatic/__init__.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "com.koxudaxi.ruff.RuffConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="Enigma" is-module-sdk="true">
@@ -150,11 +156,11 @@
       <recent name="C:\Users\ChLan\PyProjects\Enigma\test\test_messages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ChLan\PyProjects\Enigma" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\doc" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\tests" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\src" />
       <recent name="C:\Users\ChLan\PyProjects\Enigma\src\snippets\db" />
-      <recent name="C:\Users\ChLan\PyProjects\Enigma\src\enigmatic" />
     </key>
   </component>
   <component name="RunManager" selected="Python.run_enigma">
@@ -222,25 +228,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_enigma.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="Enigma" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_enigma.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest in tests" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in C:/Users/ChLan/PyProjects/Enigma/tests" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -258,12 +246,30 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest in C:/Users/ChLan/PyProjects/Enigma/tests/test_enigma.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Enigma" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_enigma.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.run_enigma" />
-        <item itemvalue="Python tests.pytest in tests" />
+        <item itemvalue="Python tests.pytest in C:/Users/ChLan/PyProjects/Enigma/tests" />
         <item itemvalue="Python.rich_enigma" />
-        <item itemvalue="Python tests.pytest in test_enigma.py" />
+        <item itemvalue="Python tests.pytest in C:/Users/ChLan/PyProjects/Enigma/tests/test_enigma.py" />
         <item itemvalue="Python tests.pytest for test_enigma.test_repr_enigma" />
       </list>
     </recent_temporary>
@@ -413,7 +419,7 @@
       <workItem from="1731223366930" duration="456000" />
       <workItem from="1731242988798" duration="8498000" />
       <workItem from="1731257801948" duration="738000" />
-      <workItem from="1731258561413" duration="957000" />
+      <workItem from="1731258561413" duration="2626000" />
     </task>
     <task id="LOCAL-00008" summary="refactoring">
       <created>1636264018142</created>
@@ -758,7 +764,7 @@
       <option name="project" value="LOCAL" />
       <updated>1640611471540</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,7 +794,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="pytest" />
     <MESSAGE value="mypy" />
     <MESSAGE value="bugfix" />
     <MESSAGE value="fixing" />
@@ -813,7 +818,8 @@
     <MESSAGE value="test messages with yaml" />
     <MESSAGE value="refactoring: ruff" />
     <MESSAGE value="refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
+    <MESSAGE value="pyscript" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyscript" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_test_create_rotor_spec.coverage" NAME="pytest for test.test_create_rotor_spec Coverage Results" MODIFIED="1636266123302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
