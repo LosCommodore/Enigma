@@ -1,0 +1,95 @@
+<!doctype html>
+
+<html lang="EN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script type="module" src="https://pyscript.net/releases/2024.10.2/core.js"></script>
+    <link href="./output.css" rel="stylesheet">
+
+    <!-- for splashscreen -->
+    <style>
+        #loading {
+            outline: none;
+            border: none;
+            background: transparent
+        }
+    </style>
+    <script type="module">
+        const loading = document.getElementById('loading');
+        addEventListener('py:ready', () => loading.close());
+        loading.showModal();
+    </script>
+
+    <title>PyScript Hello World</title>
+</head>
+
+<body>
+<dialog id="loading">
+    <h1>Loading...</h1>
+</dialog>
+
+<section id="content">
+    <h1 class="text-3xl font-bold underline">Enigma M4</h1>
+
+    <div class="flex flex-row justify-center m-2 p-2">
+        <textarea
+                cols="100"
+                row="10"
+                id="cyper"
+                class="content-center block resize rounded-md border m-2 p-2"
+                autofocus
+        ></textarea>
+    </div>
+
+    <div class="flex flex-row justify-center m-2 p-2 bg-grey-100">
+        <label for="cables" class="p-2">Cables</label>
+        <input type="text" id="cables" class="p-2 border border-red-900 rounded w-1/4" placeholder="Cables" required/>
+
+        <label for="whl_pos" class="p-2">Wheel Positions</label>
+        <input type="text" id="whl_pos" class="p-2 border border-red-900 rounded w-24" required/>
+
+        <label for="ring_pos" class="p-2">Ring Positions</label>
+        <input type="text" id="ring_pos" class="p-2 border border-red-900 rounded w-24" required/>
+
+        <br>
+    </div>
+
+    <div class="flex flex-row justify-center m-2 p-2 bg-grey-100">
+        <a href=https://www.cryptomuseum.com/crypto/enigma/wiring.htm#15
+           class="text-blue-500 underline hover:text-blue-700">Enigma M4 rotors</a>
+
+        <select name="cars" id="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+        </select>
+    </div>
+
+
+    <div class="flex flex-row justify-center m-2 p-2">
+        <button type="button"
+                class="justify-center focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                py-click="handle_click"
+        >
+            Run Enigma
+        </button>
+    </div>
+
+    <div class="flex flex-row justify-center m-2 p-2">
+        <div
+                id="decode"
+                class="break-all min-h-10 min-w-96 border border-indigo-600"
+                name="decode"
+        >
+        </div>
+    </div>
+
+</section>
+
+<section class="pyscript">
+    <script type="py" config="./pyscript.toml" src="main.py"></script>
+</section>
+</body>
+</html>
