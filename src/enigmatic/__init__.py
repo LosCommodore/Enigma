@@ -37,5 +37,7 @@ class Scrambler(abc.ABC):
         """Backwards routing of a letter through the Scrambler"""
 
     # noinspection PyUnusedLocal
-    def __rich_console__(self, console: rich.console.Console, options: rich.console.ConsoleOptions) -> rich.console.RenderResult:
+    def __rich_console__(
+        self, console: rich.console.Console, options: rich.console.ConsoleOptions
+    ) -> rich.console.RenderResult:
         yield self.__str__()

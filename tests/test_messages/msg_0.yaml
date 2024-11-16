@@ -9,8 +9,8 @@ enigma:
     - VI
     - VIII
   rotor_positions: "*CDSZ"
-  plugs: AE BF CM DQ HU JN LX PR SZ VW
-  ring_positions: "*EPEL"
+  cables: AE BF CM DQ HU JN LX PR SZ VW
+  ring_settings: "*EPEL"
 input: >
     LANO TCTO UARB BFPM HPHG CZXT DYGA HGUF XGEW KBLK GJWL QXXT
     GPJJ AVTO CKZF SLPP QIHZ FXOE BWII EKFZ LCLO AQJU LJOY HSSM BBGW HZAN

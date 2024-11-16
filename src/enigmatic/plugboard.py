@@ -45,7 +45,9 @@ class PlugBoard(Scrambler):
         counter = Counter("".join(cables))
         reoccuring_letters = set(letter for letter, count in counter.items() if count > 1)
         if reoccuring_letters:
-            raise ValueError(f"Letters must not be used multiple times. All cables: {cables}. Error caused by letters: {reoccuring_letters}")
+            raise ValueError(
+                f"Letters must not be used multiple times. All cables: {cables}. Error caused by letters: {reoccuring_letters}"
+            )
 
         self._use_cables(cables)
 

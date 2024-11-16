@@ -13,9 +13,10 @@ from attrs.setters import frozen
 
 @define(frozen=True)
 class RotorSpec:
-    """ Specification of the enigma rotors
+    """Specification of the enigma rotors
     According to: https://www.cryptomuseum.com/crypto/enigma/wiring.htm
     """
+
     name: str = field(converter=lambda x: x.upper())
     wiring: str = field(converter=lambda x: x.upper())
 
@@ -47,15 +48,12 @@ class RotorSpec:
 
 WHEEL_SPECS: dict[str, RotorSpec] = {
     spec.name: spec
-
     # ENIGMA M4: Uboat-Enigma
     for spec in [
         # --- ENIGMA M3
         RotorSpec("M3: ukw-b", "YRUHQSLDPXNGOKMIEBFZCWVJAT", ""),
-
         # --- ENIGMA M4: Uboot-Enigma ---
         # https://www.cryptomuseum.com/crypto/enigma/wiring.htm#15
-
         RotorSpec("ETW", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", ""),
         RotorSpec("I", "EKMFLGDQVZNTOWYHXUSPAIBRCJ", "Q"),
         RotorSpec("II", "AJDKSIRUXBLHWTMCQGZNPYFVOE", "E"),

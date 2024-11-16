@@ -20,7 +20,7 @@ with open(THIS_DIR.parent / r"tests\test_messages\msg_0.yaml", "r") as stream:
 enigma = Enigma.assemble(rotor_specs=["ukw-c", "beta", "V", "VI", "VIII"])
 enigma.plug_board.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
 enigma.rotor_positions = "*SCHL"
-enigma.ring_positions = "*AAEL"
+enigma.ring_settings = "*AAEL"
 
 cypher_text = """TAWZZYNZGGMICVLSADLQFDFKHDGZLSEEMDFFBQLYISEIWKDONDWJWETKZOWWYLTYII
 OWSMCFTGNLKOZCAAWHBHFJDRWLDHFHEWUBPWVDEZFPBOCVKECVFXWZGSVBDPHLTVOJCFLSQNSODYFMBQFQU

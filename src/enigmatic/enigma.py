@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
-from typing import Union, Callable, Iterable
+from typing import Callable, Iterable
 from collections import deque
 
 from enigmatic import ALPHABET, _letters_to_numbers, _num2letter
@@ -13,34 +13,35 @@ from attrs import define, field
 @define
 class Enigma:
     plug_board: PlugBoard
-    _rotors: list[Rotor] = field()
-    """ List of rotors, slow rotor first """
+
+    _rotors: list[Rotor] = field(validator=lambda instance, attribute, value: validate_rotors(value))
+    """ Slow rotor first """
 
     memory: deque[list[str]] = field(factory=deque)
+    """ Each keystroke and the corresponding routing is saved here"""
 
     @classmethod
     def assemble(
         cls,
-        rotor_specs: list[str | RotorSpec] = "",
-        max_memory: int = 100,
-        plugs: str = "",
+        rotor_specs: Iterable[str | RotorSpec] = "",
+        cables: str = "",
         rotor_positions: str = "",
-        ring_positions=(),
+        ring_settings: str | Iterable[int] = "",
+        max_memory: int = 100,
     ) -> Enigma:
         """Assemlbes a new enigma machine
 
         :param rotor_specs: list of wheel specs, slow rotor first.
-        :param max_memory:
-        :param plugs:
-        :param rotor_positions:
-        :param ring_positions:
-        :return:
+        :param max_memory: set how many keystrokes are remenbered
+        :param cables: list of cables for the plugboard, e.g. "AB DF ZK"
+        :param rotor_positions: slow rotor first. Use "*" for a stator. Example: "*NAEM"
+        :param ring_settings: slow rotor first. Example: "*ABCD". Alternative you can provide a list of numbers with A->1; B->2,...
         """
 
         rotors = [Rotor(spec if isinstance(spec, RotorSpec) else WHEEL_SPECS[spec.upper()]) for spec in rotor_specs]
 
         enigma = Enigma(
-            plug_board=PlugBoard(plugs),
+            plug_board=PlugBoard(cables),
             rotors=rotors,
             memory=deque([], maxlen=max_memory),
         )
@@ -48,22 +49,10 @@ class Enigma:
         if rotor_positions:
             enigma.rotor_positions = rotor_positions
 
-        if ring_positions:
-            enigma.ring_positions = ring_positions
+        if ring_settings:
+            enigma.ring_settings = ring_settings
 
         return enigma
-
-    # noinspection PyUnresolvedReferences
-    @_rotors.validator
-    def _check_rotors(self, _, rotors):
-        if rotors[0].spec.is_dynamic:
-            raise ValueError("Die first wheel has to be a stator for an enigma machine")
-
-        idx_is_rotor = np.where(np.array([x.spec.is_dynamic for x in rotors]))
-        rotors_in_block = np.all(np.diff(idx_is_rotor) == 1)
-
-        if not rotors_in_block:
-            raise ValueError("No stators are allowed in between rotors")
 
     @property
     def rotors(self) -> list[Rotor]:
@@ -95,11 +84,11 @@ class Enigma:
                 whl.position = _letters_to_numbers(rot)[0]
 
     @property
-    def ring_positions(self) -> list[int]:
+    def ring_settings(self) -> list[int]:
         return [x.ring_setting for x in self.rotors]
 
-    @ring_positions.setter
-    def ring_positions(self, pos: Union[list[int], str]):
+    @ring_settings.setter
+    def ring_settings(self, pos: str | Iterable[int]):
         if len(pos) != len(self.rotors):
             raise ValueError("Wrong number of ring_positions")
 
@@ -156,6 +145,17 @@ class Enigma:
         return "".join(output_text)
 
     def __str__(self):
-        my_str = f"Enigma -> Pos: {self.rotor_positions}, Wheels: {[x.spec.name for x in self.rotors]} Ring: {self.ring_positions}, Plugboard: {self.plug_board.cables}"
+        my_str = f"Enigma -> Pos: {self.rotor_positions}, Wheels: {[x.spec.name for x in self.rotors]} Ring: {self.ring_settings}, Plugboard: {self.plug_board.cables}"
 
         return my_str
+
+
+def validate_rotors(rotors: list[Rotor]):
+    if rotors[0].spec.is_dynamic:
+        raise ValueError("Die first wheel has to be a stator for an enigma machine")
+
+    idx_is_rotor = np.where(np.array([x.spec.is_dynamic for x in rotors]))
+    rotors_in_block = np.all(np.diff(idx_is_rotor) == 1)
+
+    if not rotors_in_block:
+        raise ValueError("No stators are allowed in between rotors")

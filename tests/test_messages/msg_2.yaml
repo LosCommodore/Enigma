@@ -9,8 +9,8 @@ enigma:
     - VII
     - VI
   rotor_positions: "*FBDE"
-  plugs: AB CD EF GH IJ KL MN OP QR ST
-  ring_positions:
+  cables: AB CD EF GH IJ KL MN OP QR ST
+  ring_settings:
     - 1
     - 6
     - 5

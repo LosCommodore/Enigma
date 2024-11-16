@@ -11,6 +11,7 @@ cables_input.value = "AE BF CM DQ HU JN LX PR SZ VW"
 whl_input.value = "*SCHL"
 ring_input.value = "*AAEL"
 
+
 def handle_click(event):
     input_text = document.querySelector("#cyper").value
     whl_text = document.querySelector("#whl_pos").value
@@ -21,7 +22,7 @@ def handle_click(event):
     enigma = Enigma.assemble(rotor_specs=["ukw-c", "I", "V", "VI", "VIII"])
     enigma.plug_board.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
     enigma.rotor_positions = whl_text
-    enigma.ring_positions = ring_text
+    enigma.ring_settings = ring_text
 
     output_text = enigma.write(input_text)
 

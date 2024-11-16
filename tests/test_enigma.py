@@ -164,7 +164,7 @@ def test_repr_enigma():
     enigma = Enigma.assemble(["ukw-c", "beta", "V", "VI", "VIII"])
     enigma.plug_board.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
     enigma.rotor_positions = "*NAEM"
-    enigma.ring_positions = "*EPEL"
+    enigma.ring_settings = "*EPEL"
 
     print("\n")
     console.print(enigma)

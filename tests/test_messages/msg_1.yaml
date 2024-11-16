@@ -8,8 +8,8 @@ enigma:
     - IV
     - III
   rotor_positions: "*RTZ"
-  plugs: AD CN ET FL GI JV KZ PU QY WX
-  ring_positions: 
+  cables: AD CN ET FL GI JV KZ PU QY WX
+  ring_settings:
     - 1
     - 16
     - 26

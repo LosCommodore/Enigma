@@ -44,4 +44,5 @@ def main():
     console.clear_live()
     console.print(table)
 
+
 main()

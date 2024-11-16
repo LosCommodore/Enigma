@@ -28,20 +28,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="refactoring">
-      <change afterPath="$PROJECT_DIR$/src/web/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/input.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/output.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/web/tailwind.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmatic/enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/enigma.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmatic/rotor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/rotor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/run_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/run_enigma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/enigma.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rich_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/rich_enigma.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_enigma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_messages/msg_0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_messages/msg_0.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_messages/msg_1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_messages/msg_1.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_messages/msg_2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_messages/msg_2.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,51 +105,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Doctest via pytest in __init__.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Doctest via pytest in plugboard.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_enigma.test_double_step.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_enigma.test_enigma_messages.executor&quot;: &quot;Debug&quot;,
-    &quot;Python tests.pytest for test_enigma.test_enigma_period.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_enigma.test_enigma_typing.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_enigma.test_plug_board.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_enigma.test_repr_enigma.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_plugboard.test_beep_trough_cables.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_plugboard.test_check_cables.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_plugboard.test_plug_board.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_plugboard.test_symmetry.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_wheel.test_rotor_symmetry.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_wheel.test_wheel_spec_create.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_wheel.test_wrong_wheel_spec.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for tests.test_enigma.test_double_step.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_enigma.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_plugboard.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_wheel.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in tests.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dummy.executor&quot;: &quot;Run&quot;,
-    &quot;Python.new_wheel.executor&quot;: &quot;Run&quot;,
-    &quot;Python.plugboard.executor&quot;: &quot;Run&quot;,
-    &quot;Python.rich_enigma.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run_enigma (1).executor&quot;: &quot;Debug&quot;,
-    &quot;Python.run_enigma.executor&quot;: &quot;Run&quot;,
-    &quot;Python.wheel.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ChLan/PyProjects/Enigma/src/enigmatic/__init__.py&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.koxudaxi.ruff.RuffConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Doctest via pytest in __init__.py.executor": "Run",
+    "Python tests.Doctest via pytest in plugboard.py.executor": "Run",
+    "Python tests.pytest for test_enigma.test_double_step.executor": "Run",
+    "Python tests.pytest for test_enigma.test_enigma_messages.executor": "Debug",
+    "Python tests.pytest for test_enigma.test_enigma_period.executor": "Run",
+    "Python tests.pytest for test_enigma.test_enigma_typing.executor": "Run",
+    "Python tests.pytest for test_enigma.test_plug_board.executor": "Run",
+    "Python tests.pytest for test_enigma.test_repr_enigma.executor": "Run",
+    "Python tests.pytest for test_plugboard.test_beep_trough_cables.executor": "Run",
+    "Python tests.pytest for test_plugboard.test_check_cables.executor": "Run",
+    "Python tests.pytest for test_plugboard.test_plug_board.executor": "Run",
+    "Python tests.pytest for test_plugboard.test_symmetry.executor": "Run",
+    "Python tests.pytest for test_wheel.test_rotor_symmetry.executor": "Run",
+    "Python tests.pytest for test_wheel.test_wheel_spec_create.executor": "Run",
+    "Python tests.pytest for test_wheel.test_wrong_wheel_spec.executor": "Run",
+    "Python tests.pytest for tests.test_enigma.test_double_step.executor": "Run",
+    "Python tests.pytest in test_enigma.py.executor": "Run",
+    "Python tests.pytest in test_plugboard.py.executor": "Run",
+    "Python tests.pytest in test_wheel.py.executor": "Run",
+    "Python tests.pytest in tests.executor": "Run",
+    "Python.dummy.executor": "Run",
+    "Python.new_wheel.executor": "Run",
+    "Python.plugboard.executor": "Run",
+    "Python.rich_enigma.executor": "Run",
+    "Python.run_enigma (1).executor": "Debug",
+    "Python.run_enigma.executor": "Run",
+    "Python.wheel.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/ChLan/PyProjects/Enigma/src/enigmatic/__init__.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="Enigma" is-module-sdk="true">
@@ -431,6 +422,7 @@
       <workItem from="1731532563472" duration="841000" />
       <workItem from="1731611602127" duration="2987000" />
       <workItem from="1731696450951" duration="5981000" />
+      <workItem from="1731747459800" duration="2618000" />
     </task>
     <task id="LOCAL-00008" summary="refactoring">
       <created>1636264018142</created>
@@ -775,7 +767,7 @@
       <option name="project" value="LOCAL" />
       <updated>1640611471540</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -805,7 +797,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="pytest" />
     <MESSAGE value="mypy" />
     <MESSAGE value="bugfix" />
     <MESSAGE value="fixing" />
@@ -829,6 +820,7 @@
     <MESSAGE value="test with yaml" />
     <MESSAGE value="test messages with yaml" />
     <MESSAGE value="refactoring: ruff" />
+    <MESSAGE value="web app" />
     <MESSAGE value="refactoring" />
     <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
   </component>
@@ -837,7 +829,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/enigmatic/rotor.py</url>
-          <line>106</line>
+          <line>104</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -862,9 +854,9 @@
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_enigma_messages.coverage" NAME="pytest for test_enigma.test_enigma_messages Coverage Results" MODIFIED="1730450721529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_yaml.coverage" NAME="pytest for test_enigma.test_yaml Coverage Results" MODIFIED="1640609641464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$testKivy.coverage" NAME="testKivy Coverage Results" MODIFIED="1581870552246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Enigma$Doctest_via_pytest_in_plugboard_py.coverage" NAME="Doctest via pytest in plugboard.py Coverage Results" MODIFIED="1731096144076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/enigmatic" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_rotor_spec.coverage" NAME="pytest for test_enigma.test_rotor_spec Coverage Results" MODIFIED="1639302146089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_type_wiki_message.coverage" NAME="pytest for test_enigma.test_type_wiki_message Coverage Results" MODIFIED="1639933375051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_rotor_spec.coverage" NAME="pytest for test_enigma.test_rotor_spec Coverage Results" MODIFIED="1639302146089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Enigma$Doctest_via_pytest_in_plugboard_py.coverage" NAME="Doctest via pytest in plugboard.py Coverage Results" MODIFIED="1731096144076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/enigmatic" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_enigma_period__3_.coverage" NAME="pytest for test_enigma.test_enigma_period (3) Coverage Results" MODIFIED="1640411449595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$plugboard.coverage" NAME="plugboard Coverage Results" MODIFIED="1731090319674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/enigmatic" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_repr_enigma.coverage" NAME="pytest for test_enigma.test_repr_enigma Coverage Results" MODIFIED="1731702432419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
@@ -891,7 +883,7 @@
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma_test_real_enigma.coverage" NAME="pytest for test_enigma.test_real_enigma Coverage Results" MODIFIED="1639311480841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_for_test_enigma.coverage" NAME="pytest for test_enigma Coverage Results" MODIFIED="1640368048867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_wheel_py.coverage" NAME="pytest in test_wheel.py Coverage Results" MODIFIED="1731144970716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Enigma$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1731702662494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Enigma$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1731748698526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Enigma$pytest_in_test_py.coverage" NAME="pytest in test.py Coverage Results" MODIFIED="1636282538402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Enigma$rich_enigma.coverage" NAME="rich_enigma Coverage Results" MODIFIED="1731222873863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/Enigma$enigma.coverage" NAME="enigma Coverage Results" MODIFIED="1635268976907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
