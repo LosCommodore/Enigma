@@ -3,7 +3,7 @@
 id: M3 Wikipedia message
 enigma: 
   wheel_specs: 
-    - ukw_b
+    - "M3: ukw-b"
     - I
     - IV
     - III

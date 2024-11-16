@@ -3,7 +3,7 @@
 id: M4 Testmessage HU Berin
 enigma: 
   wheel_specs:
-    - ukw_bruno
+    - ukw-b
     - beta
     - VIII
     - VII

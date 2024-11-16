@@ -27,7 +27,7 @@ class Enigma:
     ) -> Enigma:
         """Assemlbes a new enigma machine"""
 
-        rotors = [Rotor(spec if isinstance(spec, RotorSpec) else WHEEL_SPECS[spec]) for spec in wheel_specs]
+        rotors = [Rotor(spec if isinstance(spec, RotorSpec) else WHEEL_SPECS[spec.upper()]) for spec in wheel_specs]
 
         enigma = Enigma(
             plug_board=PlugBoard(plugs),

@@ -1,6 +1,6 @@
 """Enigma Rotors
-https://en.wikipedia.org/wiki/Enigma_rotor_details
 https://www.cryptomuseum.com/crypto/enigma/wiring.htm
+Secodary source: Wikipedia (less precise): https://en.wikipedia.org/wiki/Enigma_rotor_details
 """
 
 from functools import cached_property
@@ -13,9 +13,15 @@ from attrs.setters import frozen
 
 @define(frozen=True)
 class RotorSpec:
-    name: str
+    """ Specification of the enigma rotors
+    According to: https://www.cryptomuseum.com/crypto/enigma/wiring.htm
+    """
+    name: str = field(converter=lambda x: x.upper())
     wiring: str = field(converter=lambda x: x.upper())
-    notches: str = field(converter=lambda x: x.upper())  # Übertragskerben
+
+    turnovers: str = field(converter=lambda x: x.upper())  #
+    """ Turnover shows which letter (or number) is visible in the window at the point of stepping .
+    In German: Übertragskerben"""
 
     # noinspection PyUnresolvedReferences,PyUnusedLocal
     @wiring.validator
@@ -24,7 +30,7 @@ class RotorSpec:
             raise ValueError(r"Invalid wheel specification, invalid alphabet !")
 
     # noinspection PyUnresolvedReferences,PyUnusedLocal
-    @notches.validator
+    @turnovers.validator
     def _check_wiring(self, attribute, value):
         if not set(value).issubset(ALPHABET_SET):
             raise ValueError(r"Invalid wheel specification, invalid alphabet !")
@@ -32,16 +38,25 @@ class RotorSpec:
     @property
     def is_dynamic(self) -> bool:
         """A dynamic rotor is actually able to rotate (not a stator)"""
-        return len(self.notches) > 0
+        return len(self.turnovers) > 0
 
     @cached_property
     def notch_numbers(self) -> tuple[int, ...]:
-        return tuple(_letters_to_numbers(self.notches))
+        return tuple(_letters_to_numbers(self.turnovers))
 
 
 WHEEL_SPECS: dict[str, RotorSpec] = {
     spec.name: spec
+
+    # ENIGMA M4: Uboat-Enigma
     for spec in [
+        # --- ENIGMA M3
+        RotorSpec("M3: ukw-b", "YRUHQSLDPXNGOKMIEBFZCWVJAT", ""),
+
+        # --- ENIGMA M4: Uboot-Enigma ---
+        # https://www.cryptomuseum.com/crypto/enigma/wiring.htm#15
+
+        RotorSpec("ETW", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", ""),
         RotorSpec("I", "EKMFLGDQVZNTOWYHXUSPAIBRCJ", "Q"),
         RotorSpec("II", "AJDKSIRUXBLHWTMCQGZNPYFVOE", "E"),
         RotorSpec("III", "BDFHJLCPRTXVZNYEIWGAKMUSQO", "V"),
@@ -50,12 +65,10 @@ WHEEL_SPECS: dict[str, RotorSpec] = {
         RotorSpec("VI", "JPGVOUMFYQBENHZRDKASXLICTW", "ZM"),
         RotorSpec("VII", "NZJHGRCXMYSWBOUFAIVLPEKQDT", "ZM"),
         RotorSpec("VIII", "FKQHTLXOCBJSPDZRAMEWNIUYGV", "ZM"),
-        RotorSpec("etw", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", ""),
-        RotorSpec("ukw_b", "YRUHQSLDPXNGOKMIEBFZCWVJAT", ""),
-        RotorSpec("ukw_bruno", "ENKQAUYWJICOPBLMDXZVFTHRGS", ""),  # == reflector b thin
-        RotorSpec("ukw_caesar", "RDOBJNTKVEHMLFCWZAXGYIPSUQ", ""),  # == reflector c thin
-        RotorSpec("beta", "LEYJVCNIXWPBQMDRTAKZGFUHOS", ""),
-        RotorSpec("gamma", "FSOKANUERHMBTIYCWLQPZXVGJD", ""),
+        RotorSpec("Beta", "LEYJVCNIXWPBQMDRTAKZGFUHOS", ""),
+        RotorSpec("Gamma", "FSOKANUERHMBTIYCWLQPZXVGJD", ""),
+        RotorSpec("UKW-B", "ENKQAUYWJICOPBLMDXZVFTHRGS", ""),  # UKW-BRUNO  == reflector b thin
+        RotorSpec("UKW-C", "RDOBJNTKVEHMLFCWZAXGYIPSUQ", ""),  # UKW-CAESAR == reflector c thin
     ]
 }
 
@@ -84,8 +97,7 @@ class Rotor(Scrambler):
     ring_setting: int = field(default=1, converter=_ring_settings_converter)
     """ Changing the position of the ring will change 
     the position of the notch and alphabet, relative to the internal wiring. This setting is called the ring setting
-
-    ring_setings is 1-indexed -> 1==A 
+    ring_setting is 1-indexed -> 1==A 
     """
 
     _relative_rotation: list[int] = field(init=False, repr=False)
@@ -129,6 +141,6 @@ class Rotor(Scrambler):
         return self.position in self.spec.notch_numbers
 
     def __str__(self):
-        my_str = f"Pos: {_num2letter(self.position)} Ring: {self.ring_setting}  Wiring: {self.spec.wiring} Notch: {self.spec.notches}"
+        my_str = f"Pos: {_num2letter(self.position)} Ring: {self.ring_setting}  Wiring: {self.spec.wiring} Notch: {self.spec.turnovers}"
 
         return my_str

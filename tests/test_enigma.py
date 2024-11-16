@@ -9,6 +9,8 @@ import plotext as plt
 import yaml
 from collections import Counter
 
+from enigmatic.rotor import RotorSpec
+
 # console
 console = Console(legacy_windows=False, color_system="truecolor", style="Black on bright_white")
 console.size = (200, 50)
@@ -19,8 +21,9 @@ def test_double_step():
     „Royal Flags Wave Kings Above
     https://de.wikipedia.org/wiki/Enigma_(Maschine)#Anomalie
     """
+    ukw_b = RotorSpec("ukw_b", "YRUHQSLDPXNGOKMIEBFZCWVJAT", "")
 
-    enigma = Enigma.assemble(["ukw_b", "I", "II", "III"])
+    enigma = Enigma.assemble([ukw_b, "I", "II", "III"])
     enigma.wheel_positions = "*ADU"
 
     enigma.write("x")
@@ -35,7 +38,7 @@ def test_double_step():
 
 @pytest.mark.parametrize(
     "wheels,expected_period",
-    [(["ukw_b", "III", "II", "I"], 26 * 25 * 26), (["ukw_b", "III", "II", "VI"], 8450)],
+    [(["ukw-b", "III", "II", "I"], 26 * 25 * 26), (["ukw-b", "III", "II", "VI"], 8450)],
 )
 def test_enigma_period(wheels, expected_period):
     """
@@ -113,7 +116,8 @@ def test_enigma_period(wheels, expected_period):
 
 
 def test_enigma_typing():
-    enigma = Enigma.assemble(["ukw_b", "III", "II", "I"])
+    ukw_b = RotorSpec("ukw_b", "YRUHQSLDPXNGOKMIEBFZCWVJAT", "")
+    enigma = Enigma.assemble([ukw_b, "III", "II", "I"])
 
     assert enigma.write("hallodiesisteintest") == "MTNCZEVKHZUDSOACOEF"
     console.print(enigma)
@@ -157,7 +161,7 @@ def test_enigma_messages(data_tests):
 
 @pytest.mark.skip()
 def test_repr_enigma():
-    enigma = Enigma.assemble(["ukw_caesar", "beta", "V", "VI", "VIII"])
+    enigma = Enigma.assemble(["ukw-c", "beta", "V", "VI", "VIII"])
     enigma.plug_board.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
     enigma.wheel_positions = "*NAEM"
     enigma.ring_positions = "*EPEL"
