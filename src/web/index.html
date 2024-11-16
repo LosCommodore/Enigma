@@ -1,20 +1,18 @@
 <!doctype html>
 
+<!--suppress HtmlFormInputWithoutLabel -->
 <html lang="EN">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+          rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script type="module" src="https://pyscript.net/releases/2024.10.2/core.js"></script>
     <link href="./output.css" rel="stylesheet">
 
-    <!-- for splashscreen -->
-    <style>
-        #loading {
-            outline: none;
-            border: none;
-            background: transparent
-        }
-    </style>
     <script type="module">
         const loading = document.getElementById('loading');
         addEventListener('py:ready', () => loading.close());
@@ -24,47 +22,146 @@
     <title>PyScript Hello World</title>
 </head>
 
+<style>
+    .figtree-myfont {
+        font-family: "Figtree", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-style: normal;
+    }
+
+</style>
 <body>
 <dialog id="loading">
-    <h1>Loading...</h1>
+    <h1 class="p-4 m-4 bg-white text-3xl inline-block align-middle text-center min-w-96">Loading python ...</h1>
 </dialog>
 
 <section id="content">
-    <h1 class="text-3xl font-bold underline">Enigma M4</h1>
+    <h1 class="figtree-myfont bg-blue-800 text-3xl font-bold text-white p-2 shadow-md">Python Enigma Simulator</h1>
 
     <div class="flex flex-row justify-center m-2 p-2">
         <textarea
-                cols="100"
-                row="10"
+                rows="2"
                 id="cyper"
-                class="content-center block resize rounded-md border m-2 p-2"
+                class="content-center block resize rounded-md border border-blue-700 m-2 p-2"
+                placeholder="Type here ..."
                 autofocus
+                style="width: 40rem"
         ></textarea>
+    </div>
+
+    <h2 class="text-l font-bold text-center">Settings</h2>
+
+    <a href=https://www.cryptomuseum.com/crypto/enigma/wiring.htm#15
+       class="block text-center text-blue-500 underline hover:text-blue-700">Enigma M4 rotors</a>
+
+    <div class="flex flex-row justify-center m-2 p-2 bg-grey-100">
+        <table class="table-fixed border-separate border border-spacing-2">
+            <thead>
+            <tr class="">
+                <th><label>Description</label></th>
+                <th><label>Rotor</label></th>
+                <th class="w-8"><label>Position</label></th>
+                <th class="w-8"><label>Ring Setting</label></th>
+            </tr>
+            </thead>
+            <tr class="text-left">
+                <td>Reflector (Umkehrwalze)</td>
+                <td>
+                    <select name="rot1" id="rot1" class="border">
+                        <option selected value="UKW-B">UKW-B</option>
+                        <option value="UKW-C">UKW-C</option>
+                    </select>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="text-left">
+                <td>Rotor 2</td>
+                <td>
+                    <select name="rot2" id="rot2" class="border w-full">
+                        <option selected value="I">I</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                        <option value="V">V</option>
+                        <option value="VI">VI</option>
+                        <option value="VII">VII</option>
+                        <option value="VIII">VIII</option>
+                    </select>
+                </td>
+                <td><input id="pos2" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
+                </td>
+                <td><input id="ring2" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
+                </td>
+            </tr>
+
+            <tr class="text-left">
+                <td>Rotor 3</td>
+                <td>
+                    <select name="rot3" id="rot3" class="border w-full">
+                        <option value="I">I</option>
+                        <option selected value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                        <option value="V">V</option>
+                        <option value="VI">VI</option>
+                        <option value="VII">VII</option>
+                        <option value="VIII">VIII</option>
+                    </select>
+                </td>
+                <td><input id="pos3" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
+                </td>
+                <td><input id="ring3" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
+                </td>
+            </tr>
+
+            <tr class="text-left">
+                <td>Rotor 4</td>
+                <td>
+                    <select name="rot4" id="rot4" class="border w-full">
+                        <option value="I">I</option>
+                        <option value="II">II</option>
+                        <option selected value="III">III</option>
+                        <option value="IV">IV</option>
+                        <option value="V">V</option>
+                        <option value="VI">VI</option>
+                        <option value="VII">VII</option>
+                        <option value="VIII">VIII</option>
+                    </select>
+                </td>
+                <td><input id="pos4" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
+                </td>
+                <td><input id="ring4" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
+                </td>
+            </tr>
+
+            <tr class="text-left">
+                <td>Rotor 5</td>
+                <td>
+                    <select name="rot5" id="rot5" class="border w-full">
+                        <option value="I">I</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option selected value="IV">IV</option>
+                        <option value="V">V</option>
+                        <option value="VI">VI</option>
+                        <option value="VII">VII</option>
+                        <option value="VIII">VIII</option>
+                    </select>
+                </td>
+                <td><input id="pos5" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
+                </td>
+                <td><input id="ring5" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div class="flex flex-row justify-center m-2 p-2 bg-grey-100">
         <label for="cables" class="p-2">Cables</label>
-        <input type="text" id="cables" class="p-2 border border-red-900 rounded w-1/4" placeholder="Cables" required/>
-
-        <label for="whl_pos" class="p-2">Wheel Positions</label>
-        <input type="text" id="whl_pos" class="p-2 border border-red-900 rounded w-24" required/>
-
-        <label for="ring_pos" class="p-2">Ring Positions</label>
-        <input type="text" id="ring_pos" class="p-2 border border-red-900 rounded w-24" required/>
-
-        <br>
-    </div>
-
-    <div class="flex flex-row justify-center m-2 p-2 bg-grey-100">
-        <a href=https://www.cryptomuseum.com/crypto/enigma/wiring.htm#15
-           class="text-blue-500 underline hover:text-blue-700">Enigma M4 rotors</a>
-
-        <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-        </select>
+        <input type="text" id="cables" class="p-2 border border-red-900 rounded w-1/4" placeholder="Cables"
+               value="AE BF CM DQ HU JN LX PR SZ VW"/>
     </div>
 
 
@@ -78,17 +175,18 @@
     </div>
 
     <div class="flex flex-row justify-center m-2 p-2">
-        <div
-                id="decode"
-                class="break-all min-h-10 min-w-96 border border-indigo-600"
-                name="decode"
+        <div id="decode"
+             class="rounded break-all min-h-10 border border-blue-700"
+             style="width: 40rem;"
         >
+            <p class="align-middle text-center text-gray-400"> Output </p>
         </div>
     </div>
 
 </section>
 
 <section class="pyscript">
+    <!--suppress HtmlUnknownAttribute -->
     <script type="py" config="./pyscript.toml" src="main.py"></script>
 </section>
 </body>

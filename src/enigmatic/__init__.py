@@ -14,7 +14,7 @@ def _letters_to_numbers(letters: Iterable[str]) -> list[int]:
     >>> _letters_to_numbers("AB")
     [0, 1]
     """
-    return [ALPHABET.index(k) for k in letters]
+    return [ALPHABET.index(k.upper()) for k in letters]
 
 
 def _num2letter(num: int):
