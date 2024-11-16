@@ -17,9 +17,9 @@ THIS_DIR = Path(__file__).parent
 with open(THIS_DIR.parent / r"tests\test_messages\msg_0.yaml", "r") as stream:
     x = yaml.safe_load(stream)
 
-enigma = Enigma.assemble(wheel_specs=["ukw-c", "beta", "V", "VI", "VIII"])
+enigma = Enigma.assemble(rotor_specs=["ukw-c", "beta", "V", "VI", "VIII"])
 enigma.plug_board.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
-enigma.wheel_positions = "*SCHL"
+enigma.rotor_positions = "*SCHL"
 enigma.ring_positions = "*AAEL"
 
 cypher_text = """TAWZZYNZGGMICVLSADLQFDFKHDGZLSEEMDFFBQLYISEIWKDONDWJWETKZOWWYLTYII

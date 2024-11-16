@@ -2,12 +2,12 @@
 # Message described in: https://de.wikipedia.org/wiki/Enigma_(Maschine)
 id: M3 Wikipedia message
 enigma: 
-  wheel_specs: 
+  rotor_specs:
     - "M3: ukw-b"
     - I
     - IV
     - III
-  wheel_positions: "*RTZ"
+  rotor_positions: "*RTZ"
   plugs: AD CN ET FL GI JV KZ PU QY WX
   ring_positions: 
     - 1

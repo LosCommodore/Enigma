@@ -24,16 +24,16 @@ def test_double_step():
     ukw_b = RotorSpec("ukw_b", "YRUHQSLDPXNGOKMIEBFZCWVJAT", "")
 
     enigma = Enigma.assemble([ukw_b, "I", "II", "III"])
-    enigma.wheel_positions = "*ADU"
+    enigma.rotor_positions = "*ADU"
 
     enigma.write("x")
-    assert enigma.wheel_positions == "AADV"
+    assert enigma.rotor_positions == "AADV"
 
     enigma.write("x")
-    assert enigma.wheel_positions == "AAEW"
+    assert enigma.rotor_positions == "AAEW"
 
     enigma.write("x")
-    assert enigma.wheel_positions == "ABFX"
+    assert enigma.rotor_positions == "ABFX"
 
 
 @pytest.mark.parametrize(
@@ -62,7 +62,7 @@ def test_enigma_period(wheels, expected_period):
     states = []
     msg = []
     for t in input_text:
-        states.append(enigma.wheel_positions[1:])
+        states.append(enigma.rotor_positions[1:])
         m = enigma.write(t)
         msg.append(m)
 
@@ -163,7 +163,7 @@ def test_enigma_messages(data_tests):
 def test_repr_enigma():
     enigma = Enigma.assemble(["ukw-c", "beta", "V", "VI", "VIII"])
     enigma.plug_board.add_cables("AE BF CM DQ HU JN LX PR SZ VW")
-    enigma.wheel_positions = "*NAEM"
+    enigma.rotor_positions = "*NAEM"
     enigma.ring_positions = "*EPEL"
 
     print("\n")

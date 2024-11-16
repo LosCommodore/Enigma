@@ -2,13 +2,13 @@
 # https://www.cryptomuseum.com/crypto/enigma/msg/p1030681.htm
 id: Message from Doenitz - 1 May 1945
 enigma: 
-  wheel_specs: 
+  rotor_specs:
     - ukw-c
     - beta
     - V
     - VI
     - VIII
-  wheel_positions: "*CDSZ"
+  rotor_positions: "*CDSZ"
   plugs: AE BF CM DQ HU JN LX PR SZ VW
   ring_positions: "*EPEL"
 input: >
