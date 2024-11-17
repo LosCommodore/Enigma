@@ -73,8 +73,7 @@ class Enigma:
 
     @rotor_positions.setter
     def rotor_positions(self, rotations: str):
-        """Set the rotations for all rotors.
-        Use "*" to skip a rotor"""
+        """Set the rotations for all rotors. Use "*" to skip a rotor"""
 
         if len(rotations) != len(self.rotors):
             raise ValueError("Wrong number of roations!")
@@ -89,6 +88,8 @@ class Enigma:
 
     @ring_settings.setter
     def ring_settings(self, pos: str | Iterable[int]):
+        """Set the ring settings for all rotors. Use "*" to skip a rotor"""
+
         if len(pos) != len(self.rotors):
             raise ValueError("Wrong number of ring_positions")
 

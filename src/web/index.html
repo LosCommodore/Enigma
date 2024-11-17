@@ -71,15 +71,18 @@
             </tr>
             </thead>
             <tr class="text-left">
-                <td>Reflector (Umkehrwalze)</td>
+                <td>Umkehrwalze + Griechenwalze</td>
                 <td>
                     <select name="rot1" id="rot1" class="border">
-                        <option selected value="UKW-B">UKW-B</option>
-                        <option value="UKW-C">UKW-C</option>
+                        <option selected value="UKW-B">UKW-B + β</option>
+                        <option value="UKW-C">UKW-C + γ</option>
                     </select>
                 </td>
-                <td></td>
-                <td></td>
+                <td><input id="pos1" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
+                </td>
+                <td><input id="ring1" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
+                </td>
+
             </tr>
             <tr class="text-left">
                 <td>Rotor 2</td>
@@ -138,26 +141,6 @@
                 <td><input id="pos4" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
                 </td>
                 <td><input id="ring4" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
-                </td>
-            </tr>
-
-            <tr class="text-left">
-                <td>Rotor 5</td>
-                <td>
-                    <select name="rot5" id="rot5" class="border w-full">
-                        <option value="I">I</option>
-                        <option value="II">II</option>
-                        <option value="III">III</option>
-                        <option selected value="IV">IV</option>
-                        <option value="V">V</option>
-                        <option value="VI">VI</option>
-                        <option value="VII">VII</option>
-                        <option value="VIII">VIII</option>
-                    </select>
-                </td>
-                <td><input id="pos5" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
-                </td>
-                <td><input id="ring5" class="w-full border" type="text" pattern="[A-Za-z]{1}" maxlength="1" value="A">
                 </td>
             </tr>
         </table>
