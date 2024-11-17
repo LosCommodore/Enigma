@@ -1,6 +1,7 @@
 from enigmatic.enigma import Enigma
 from pyscript import window, document  # noqa: F401
 
+
 def handle_click(event):
     sel_output = document.querySelector("#decode")
     sel_output.innerHTML = ""
@@ -13,9 +14,9 @@ def handle_click(event):
 
     # -- insert beta for ukb-b and gamma for ukw-c
     if rot_names[0] == "UKW-B":
-        rot_names.insert(1,"beta")
+        rot_names.insert(1, "beta")
     elif rot_names[0] == "UKW-C":
-        rot_names.insert(1,"gamma")
+        rot_names.insert(1, "gamma")
     else:
         raise Exception("wrong Input for ukw! ")
 

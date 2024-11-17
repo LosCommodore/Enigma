@@ -28,12 +28,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb83f8a8-5c2a-4f74-8195-4a2edbaf0e9d" name="Default Changelist" comment="web">
-      <change afterPath="$PROJECT_DIR$/src/run2_enigma.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmatic/enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmatic/enigma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -428,7 +423,7 @@
       <workItem from="1731757228922" duration="5566000" />
       <workItem from="1731780009036" duration="5338000" />
       <workItem from="1731825598420" duration="3453000" />
-      <workItem from="1731833909334" duration="445000" />
+      <workItem from="1731833909334" duration="1345000" />
     </task>
     <task id="LOCAL-00008" summary="refactoring">
       <created>1636264018142</created>
@@ -773,7 +768,7 @@
       <option name="project" value="LOCAL" />
       <updated>1640611471540</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -791,11 +786,41 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="b5f87eae-0b85-4523-9a77-83d67b4afd44" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
             <State />
+          </value>
+        </entry>
+        <entry key="b5f87eae-0b85-4523-9a77-83d67b4afd44">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Users/ChLan/PyProjects/Enigma/src/enigmatic" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
           </value>
         </entry>
       </map>
